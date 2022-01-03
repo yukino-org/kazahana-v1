@@ -122,15 +122,13 @@ abstract class ExtensionsManager {
   ) async {
     switch (ext.type) {
       case ExtensionType.anime:
-        animes[ext.id] = await ExtensionInternals.transpileToAnimeExtractor(
-          ext,
-        );
+        animes[ext.id] =
+            await ExtensionInternals.transpileToAnimeExtractor(ext);
         break;
 
       case ExtensionType.manga:
-        mangas[ext.id] = await ExtensionInternals.transpileToMangaExtractor(
-          ext,
-        );
+        mangas[ext.id] =
+            await ExtensionInternals.transpileToMangaExtractor(ext);
         break;
     }
   }
