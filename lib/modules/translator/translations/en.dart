@@ -18,7 +18,7 @@ class Sentences extends TranslationSentences {
   String episodes() => 'Episodes';
 
   @override
-  String episode() => 'Episode';
+  String episode(final String episode) => 'Episode $episode';
 
   @override
   String noValidSources() => 'No valid sources were found.';
@@ -70,7 +70,7 @@ class Sentences extends TranslationSentences {
   String back() => 'Back';
 
   @override
-  String of() => 'of';
+  String of(final String prefix, final String suffix) => '$prefix of $suffix';
 
   @override
   String chooseTheme() => 'Choose Theme';
@@ -94,10 +94,10 @@ class Sentences extends TranslationSentences {
   String volumes() => 'Volumes';
 
   @override
-  String chapter() => 'Chapter';
+  String chapter(final String chapter) => 'Chapter $chapter';
 
   @override
-  String volume() => 'Volume';
+  String volume(final String volume) => 'Volume $volume';
 
   @override
   String page() => 'Page';

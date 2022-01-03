@@ -28,14 +28,14 @@ class Chapters extends StatelessWidget {
 
     if (chapter.title != null) {
       if (chapter.volume != null) {
-        first.add('${Translator.t.volume()} ${chapter.volume}');
+        first.add(Translator.t.volume(chapter.volume!));
       }
 
-      first.add('${Translator.t.chapter()} ${chapter.chapter}');
+      first.add(Translator.t.chapter(chapter.chapter));
       second.add(chapter.title!);
     } else {
-      first.add('${Translator.t.volume()} ${chapter.volume ?? '?'}');
-      second.add('${Translator.t.chapter()} ${chapter.chapter}');
+      first.add(Translator.t.volume(chapter.volume ?? '?'));
+      second.add(Translator.t.chapter(chapter.chapter));
     }
 
     return RichText(

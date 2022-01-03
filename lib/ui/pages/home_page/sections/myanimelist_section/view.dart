@@ -352,7 +352,7 @@ class _HorizontalEntityList extends StatelessWidget {
                                             if (x.latest != null)
                                               TextSpan(
                                                 text:
-                                                    ' | ${Translator.t.episode()} ${x.latest}',
+                                                    ' | ${Translator.t.episode(x.latest!)}',
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .caption

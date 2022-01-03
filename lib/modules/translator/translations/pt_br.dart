@@ -18,7 +18,7 @@ class Sentences extends en.Sentences {
   String episodes() => 'Episódios';
 
   @override
-  String episode() => 'Episódio';
+  String episode(final String episode) => 'Episódio $episode';
 
   @override
   String noValidSources() => 'Nenhuma fonte válida encontrada.';
@@ -69,7 +69,7 @@ class Sentences extends en.Sentences {
   String back() => 'Voltar';
 
   @override
-  String of() => 'de';
+  String of(final String prefix, final String suffix) => '$prefix de $suffix';
 
   @override
   String chooseTheme() => 'Escolher Tema';
@@ -93,10 +93,10 @@ class Sentences extends en.Sentences {
   String volumes() => 'Volumes';
 
   @override
-  String chapter() => 'Capítulo';
+  String chapter(final String chapter) => 'Capítulo $chapter';
 
   @override
-  String volume() => 'Volume';
+  String volume(final String volume) => 'Volume $volume';
 
   @override
   String page() => 'Página';

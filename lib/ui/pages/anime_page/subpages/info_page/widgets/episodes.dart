@@ -58,25 +58,9 @@ class Episodes extends StatelessWidget {
                                 horizontal: remToPx(0.4),
                                 vertical: remToPx(0.3),
                               ),
-                              child: RichText(
-                                text: TextSpan(
-                                  children: <InlineSpan>[
-                                    TextSpan(
-                                      text: '${Translator.t.episode()} ',
-                                      style:
-                                          Theme.of(context).textTheme.subtitle2,
-                                    ),
-                                    TextSpan(
-                                      text: x.episode.padLeft(2, '0'),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle2
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                              child: Text(
+                                '${Translator.t.episode(x.episode.padLeft(2, '0'))} ',
+                                style: Theme.of(context).textTheme.subtitle2,
                                 textAlign: TextAlign.center,
                               ),
                             ),

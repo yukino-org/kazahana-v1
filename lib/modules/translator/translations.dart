@@ -9,7 +9,7 @@ abstract class TranslationSentences {
   String search();
   String settings();
   String episodes();
-  String episode();
+  String episode(final String episode);
   String noValidSources();
   String prohibitedPage();
   String selectPlugin();
@@ -26,7 +26,7 @@ abstract class TranslationSentences {
   String darkMode();
   String close();
   String back();
-  String of();
+  String of(final String prefix, final String suffix);
   String chooseTheme();
   String language();
   String chooseLanguage();
@@ -34,8 +34,8 @@ abstract class TranslationSentences {
   String manga();
   String chapters();
   String volumes();
-  String chapter();
-  String volume();
+  String chapter(final String chapter);
+  String volume(final String volume);
   String page();
   String noPagesFound();
   String vol();
