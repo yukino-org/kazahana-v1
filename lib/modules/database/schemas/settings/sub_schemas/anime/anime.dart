@@ -15,6 +15,7 @@ abstract class AnimeSettingsSchemaDefaults {
   static const bool fullscreen = true;
   static const int syncThreshold = 80;
   static const bool landscape = true;
+  static const int volume = VideoPlayer.maxVolume;
 }
 
 @JsonSerializable()
@@ -27,6 +28,7 @@ class AnimeSettingsSchema {
     final this.fullscreen = AnimeSettingsSchemaDefaults.fullscreen,
     final this.syncThreshold = AnimeSettingsSchemaDefaults.syncThreshold,
     final this.landscape = AnimeSettingsSchemaDefaults.landscape,
+    final this.volume = AnimeSettingsSchemaDefaults.volume,
     final this.shortcuts = const AnimeKeyboardShortcuts(
       <AnimeKeyboardShortcutsKeys, Set<LogicalKeyboardKey>?>{},
     ),
@@ -44,6 +46,7 @@ class AnimeSettingsSchema {
   bool fullscreen;
   int syncThreshold;
   bool landscape;
+  int volume;
   final AnimeKeyboardShortcuts shortcuts;
 
   Map<dynamic, dynamic> toJson() => _$AnimeSettingsSchemaToJson(this);

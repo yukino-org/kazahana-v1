@@ -36,7 +36,7 @@ class WatchPageController extends Controller<WatchPageController> {
 
   bool isBuffering = false;
   bool isPlaying = false;
-  int volume = VideoPlayer.maxVolume;
+  int volume = AppState.settings.value.anime.volume;
   double speed = VideoPlayer.defaultSpeed;
 
   VideoPlayer? videoPlayer;
@@ -175,7 +175,7 @@ class WatchPageController extends Controller<WatchPageController> {
   void _videoPlayerSubscriber(final VideoPlayerEvent event) {
     switch (event.event) {
       case VideoPlayerEvents.load:
-        videoPlayer!.setVolume(volume);
+        videoPlayer!.setVolume(volume = AppState.settings.value.anime.volume);
         currentPlayerWidget = videoPlayer!.getWidget();
         reassemble();
         _updateDuration();
