@@ -70,9 +70,6 @@ class Sentences extends TranslationSentences {
   String back() => 'Back';
 
   @override
-  String of(final String prefix, final String suffix) => '$prefix of $suffix';
-
-  @override
   String chooseTheme() => 'Choose Theme';
 
   @override
@@ -492,4 +489,7 @@ class Sentences extends TranslationSentences {
 
   @override
   String nextChapter() => 'Next Chapter';
+
+  @override
+  String episodeXofY(final String x, final String y) => 'Episode $x of $y';
 }

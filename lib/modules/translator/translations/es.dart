@@ -70,9 +70,6 @@ class Sentences extends en.Sentences {
   String back() => 'Volver';
 
   @override
-  String of(final String prefix, final String suffix) => '$prefix de $suffix';
-
-  @override
   String chooseTheme() => 'Cambiar Tema';
 
   @override
@@ -467,4 +464,7 @@ class Sentences extends en.Sentences {
 
   @override
   String copiedErrorToClipboard() => 'Error copiado al portapapeles';
+
+  @override
+  String episodeXofY(final String x, final String y) => '${episode(x)} de $y';
 }

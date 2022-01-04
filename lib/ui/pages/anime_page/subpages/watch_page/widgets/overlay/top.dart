@@ -110,10 +110,8 @@ class OverlayTop extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    Translator.t.of(
-                      Translator.t.episode(
-                        controller.animeController.currentEpisode!.episode,
-                      ),
+                    Translator.t.episodeXofY(
+                      controller.animeController.currentEpisode!.episode,
                       '${controller.animeController.info.value!.episodes.length}',
                     ),
                     style: const TextStyle(

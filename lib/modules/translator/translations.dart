@@ -26,7 +26,6 @@ abstract class TranslationSentences {
   String darkMode();
   String close();
   String back();
-  String of(final String prefix, final String suffix);
   String chooseTheme();
   String language();
   String chooseLanguage();
@@ -168,4 +167,5 @@ abstract class TranslationSentences {
   String nextPage();
   String previousChapter();
   String nextChapter();
+  String episodeXofY(final String x, final String y);
 }

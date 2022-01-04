@@ -69,9 +69,6 @@ class Sentences extends en.Sentences {
   String back() => 'Voltar';
 
   @override
-  String of(final String prefix, final String suffix) => '$prefix de $suffix';
-
-  @override
   String chooseTheme() => 'Escolher Tema';
 
   @override
@@ -497,4 +494,7 @@ class Sentences extends en.Sentences {
 
   @override
   String nextChapter() => 'Próximo Capítulo';
+
+  @override
+  String episodeXofY(final String x, final String y) => '${episode(x)} de $y';
 }
