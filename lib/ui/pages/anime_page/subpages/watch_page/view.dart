@@ -41,7 +41,7 @@ class _WatchPageState extends State<WatchPage>
 
     controller.ready().then((final void _) async {
       if (!mounted) return;
-      await controller.showSelectSources(context);
+      await controller.initialize(context);
 
       if (mounted && controller.currentSourceIndex == null) {
         await controller.animeController.goHome();

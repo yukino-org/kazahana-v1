@@ -168,4 +168,5 @@ abstract class TranslationSentences {
   String previousChapter();
   String nextChapter();
   String episodeXofY(final String x, final String y);
+  String rememberSelectedSourceQualityNextTime();
 }

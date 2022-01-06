@@ -1,7 +1,7 @@
 import 'package:utilx/utilities/locale.dart';
-import '../translations.dart';
+import './en.dart' as en;
 
-class Sentences extends TranslationSentences {
+class Sentences extends en.Sentences {
   @override
   Locale get locale => const Locale(LanguageCodes.en);
 
@@ -24,7 +24,7 @@ class Sentences extends TranslationSentences {
   String noValidSources() => '有効なソースが見つかりませんでした。';
 
   @override
-  String prohibitedPage() => "アクセスが拒否されました。";
+  String prohibitedPage() => 'アクセスが拒否されました。';
 
   @override
   String selectPlugin() => 'プラグインを選択';
@@ -48,8 +48,7 @@ class Sentences extends TranslationSentences {
   String landscapeVideoPlayer() => '横画面の動画プレイヤー';
 
   @override
-  String landscapeVideoPlayerDetail() =>
-      '動画の再生時に強制的に横画面で表示するようにします';
+  String landscapeVideoPlayerDetail() => '動画の再生時に強制的に横画面で表示するようにします';
 
   @override
   String theme() => 'テーマ';
@@ -163,8 +162,7 @@ class Sentences extends TranslationSentences {
   String autoNext() => '自動で次の動画を開く';
 
   @override
-  String autoNextDetail() =>
-      '現在の動画の終了後に、自動的に次のビデオの再生を開始します';
+  String autoNextDetail() => '現在の動画の終了後に、自動的に次のビデオの再生を開始します';
 
   @override
   String speed() => '速度';
@@ -173,12 +171,10 @@ class Sentences extends TranslationSentences {
   String doubleTapToSwitchChapter() => 'ダブルタップでチャプターを切り替え';
 
   @override
-  String doubleTapToSwitchChapterDetail() =>
-      'ダブルタップ時に前または次のチャプターに切り替えます';
+  String doubleTapToSwitchChapterDetail() => 'ダブルタップ時に前または次のチャプターに切り替えます';
 
   @override
-  String tapAgainToSwitchPreviousChapter() =>
-      'もう一度タップすると前のチャプターに移動します';
+  String tapAgainToSwitchPreviousChapter() => 'もう一度タップすると前のチャプターに移動します';
 
   @override
   String tapAgainToSwitchNextChapter() => 'もう一度タップすると次のチャプターに移動します';
@@ -205,15 +201,13 @@ class Sentences extends TranslationSentences {
   String autoAnimeFullscreen() => '自動でフルスクリーン再生';
 
   @override
-  String autoAnimeFullscreenDetail() =>
-      'アニメの再生時に自動でフルスクリーン表示します';
+  String autoAnimeFullscreenDetail() => 'アニメの再生時に自動でフルスクリーン表示します';
 
   @override
   String autoMangaFullscreen() => '自動でフルスクリーン表示';
 
   @override
-  String autoMangaFullscreenDetail() =>
-      'マンガの表示時に自動でフルスクリーン表示します';
+  String autoMangaFullscreenDetail() => 'マンガの表示時に自動でフルスクリーン表示します';
 
   @override
   String authenticationFailed() => '認証に失敗しました!';
@@ -385,8 +379,7 @@ class Sentences extends TranslationSentences {
   String nsfw() => 'NSFW';
 
   @override
-  String restartAppForChangesToTakeEffect() =>
-      'アプリケーションを再起動すると変更が反映されます';
+  String restartAppForChangesToTakeEffect() => 'アプリケーションを再起動すると変更が反映されます';
 
   @override
   String copyError() => 'エラーをコピー';

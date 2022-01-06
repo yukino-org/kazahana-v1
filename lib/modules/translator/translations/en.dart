@@ -492,4 +492,8 @@ class Sentences extends TranslationSentences {
 
   @override
   String episodeXofY(final String x, final String y) => 'Episode $x of $y';
+
+  @override
+  String rememberSelectedSourceQualityNextTime() =>
+      'Automatically select source quality next time';
 }

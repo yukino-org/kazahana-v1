@@ -61,6 +61,7 @@ class AnimePageController extends Controller<AnimePageController> {
   AnimeExtractor? extractor;
   Locale? locale;
   int? currentEpisodeIndex;
+  Quality? lastPersistedQuality;
 
   final StatefulValueHolderWithError<AnimeInfo?> info =
       StatefulValueHolderWithError<AnimeInfo?>(null);

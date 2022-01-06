@@ -12,7 +12,7 @@ import '../../../../../modules/translator/translator.dart';
 import '../../../../../modules/video_player/video_player.dart';
 import '../../../../models/controller.dart';
 import '../../controller.dart';
-import '../../widgets/select_source.dart';
+import 'widgets/select_source.dart';
 
 class VideoDuration {
   const VideoDuration(this.current, this.total);
@@ -291,8 +291,25 @@ class WatchPageController extends Controller<WatchPageController> {
     }
   }
 
+  Future<void> initialize(final BuildContext context) async {
+    final int? calculatedSourceIndex =
+        animeController.lastPersistedQuality != null
+            ? sources?.indexWhere(
+                (final EpisodeSource x) =>
+                    x.quality == animeController.lastPersistedQuality,
+              )
+            : null;
+
+    if (calculatedSourceIndex != null) {
+      currentSourceIndex = calculatedSourceIndex;
+      await setPlayer(currentSourceIndex!);
+    } else {
+      await showSelectSources(context);
+    }
+  }
+
   Future<void> showSelectSources(final BuildContext context) async {
-    final dynamic value = await showGeneralDialog(
+    await showGeneralDialog(
       context: context,
       barrierDismissible: currentSourceIndex != null,
       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
@@ -302,19 +319,12 @@ class WatchPageController extends Controller<WatchPageController> {
         final Animation<double> a2,
       ) =>
           SafeArea(
-        child: SelectSourceWidget(
-          sources: sources!,
-          selected:
-              currentSourceIndex != null ? sources![currentSourceIndex!] : null,
-        ),
+        child: SelectSourceWidget(controller: this),
       ),
     );
 
-    if (value is EpisodeSource) {
-      final int index = sources!.indexOf(value);
-      if (index >= 0) {
-        setPlayer(index);
-      }
+    if (currentSourceIndex != null) {
+      await setPlayer(currentSourceIndex!);
     }
   }
 
