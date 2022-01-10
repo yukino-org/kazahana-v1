@@ -30,7 +30,7 @@ You can download the latest version of app from the [releases](https://github.co
 -   [Wiki](https://yukino-app.github.io/wiki/)
 -   [Discord](https://yukino-app.github.io/discord/)
 -   [GitHub](https://github.com/yukino-app/yukino/)
--   [Patreon](https://patreon.com/yukino-app/)
+-   [Patreon](https://patreon.com/yukino_app/)
 
 For any queries, contact me at [yukino-app@hotmail.com](mailto:yukino-app@hotmail.com).
 
