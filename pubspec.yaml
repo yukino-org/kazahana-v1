@@ -57,6 +57,8 @@ dependency_overrides:
 
 dev_dependencies:
     build_runner: ^2.0.5
+    devx:
+        path: packages/devx
     json_serializable: ^6.1.1
     lint: ^1.5.3
     objectbox_generator: any

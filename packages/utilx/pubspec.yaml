@@ -13,6 +13,8 @@ dependencies:
         sdk: flutter
 
 dev_dependencies:
+    devx:
+        path: ../devx
     lint: ^1.5.3
 
 flutter:

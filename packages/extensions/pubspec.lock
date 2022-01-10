@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.1"
+  devx:
+    dependency: "direct dev"
+    description:
+      path: "../devx"
+      relative: true
+    source: path
+    version: "0.0.0"
   encrypt:
     dependency: "direct main"
     description:

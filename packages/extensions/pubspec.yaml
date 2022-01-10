@@ -28,4 +28,6 @@ dependency_overrides:
         path: ../utilx
 
 dev_dependencies:
+    devx:
+        path: ../devx
     lint: ^1.5.3
