@@ -27,3 +27,4 @@ linter:
         avoid_renaming_method_parameters: true
         avoid_relative_lib_imports: true
         use_build_context_synchronously: true
+        always_use_package_imports: false
