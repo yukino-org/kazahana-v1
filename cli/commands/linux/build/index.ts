@@ -10,7 +10,7 @@ const logger = new Logger("linux:build");
 export const build = async () => {
     logger.log("Running build command...");
     await spawn("flutter", ["build", "linux"], { cwd: config.base });
-    logger.log("Finished running build command");
+    logger.log("Finished running build command.");
 
-    logger.log(`Generated binaries at ${buildDir}`);
+    logger.log(`Binaries generated: r{clr,cyanBright,${buildDir}}.`);
 };

@@ -1,5 +1,4 @@
 import { dirname, join } from "path";
-import chalk from "chalk";
 import { ensureDir, readFile, writeFile } from "fs-extra";
 import { parse as yaml } from "yaml";
 import { config } from "../../../../config";
@@ -11,7 +10,9 @@ const metaFile = join(config.base, "assets/data/meta.json");
 
 export const generateMeta = async () => {
     const pubspecPath = join(config.base, "pubspec.yaml");
-    logger.log(`Reading pubspec.yaml from ${pubspecPath}`);
+    logger.log(
+        `Reading r{clr,cyanBright,pubspec.yaml} from r{clr,cyanBright,${pubspecPath}}...`
+    );
 
     const pubspec = yaml((await readFile(pubspecPath)).toString());
 
@@ -25,5 +26,5 @@ export const generateMeta = async () => {
         })
     );
 
-    logger.log(`Generated ${chalk.cyanBright(metaFile)}`);
+    logger.log(`Generated: r{clr,cyanBright,${metaFile}}.`);
 };

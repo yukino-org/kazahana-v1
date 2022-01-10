@@ -19,5 +19,5 @@ export const zip = async () => {
     file.addLocalFolder(buildDir);
     await promisify(file.writeZip)(out);
 
-    logger.log(`Zip created: ${out}`);
+    logger.log(`Zip created: r{clr,cyanBright,${out}}.`);
 };

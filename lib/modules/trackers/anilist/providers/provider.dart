@@ -173,6 +173,8 @@ abstract class AniListProvider {
             info: mediaList,
           );
         }
+
+        return null;
       };
 
   static Future<List<ResolvableTrackerItem>> Function(String title)

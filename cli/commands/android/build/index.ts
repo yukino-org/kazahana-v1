@@ -15,7 +15,7 @@ const logger = new Logger("android:build");
 export const build = async () => {
     logger.log("Running build command...");
     await spawn("flutter", ["build", "apk"], { cwd: config.base });
-    logger.log("Finished running build command");
+    logger.log("Finished running build command.");
 
     const out = join(
         config.android.packed,
@@ -24,5 +24,5 @@ export const build = async () => {
     await ensureDir(dirname(out));
     await copyFile(built, out);
 
-    logger.log(`Installer created: ${out}`);
+    logger.log(`Installer created: r{clr,cyanBright,${out}}.`);
 };

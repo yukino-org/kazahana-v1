@@ -7,9 +7,7 @@ const logger = new Logger("macos:icons");
 const sizes: number[] = [16, 32, 64, 128, 256, 512, 1024];
 
 export const generate = async () => {
-    const started = Date.now();
-
-    logger.log(`Icon path: ${config.macos.icon}`);
+    logger.log(`Icon path: r{clr,cyanBright,${config.macos.icon}}.`);
     const original = await jimp.read(config.macos.icon);
 
     for (const size of sizes) {
@@ -22,8 +20,6 @@ export const generate = async () => {
         img.quality(100);
         img.resize(size, size);
         await img.writeAsync(path);
-        logger.log(`Generated ${path}`);
+        logger.log(`Generated: r{clr,cyanBright,${path}}.`);
     }
-
-    logger.log(`Completed in ${Date.now() - started}ms`);
 };

@@ -12,19 +12,19 @@ const logger = new Logger("windows:build");
 export const build = async () => {
     logger.log("Running build command...");
     await spawn("flutter", ["build", "windows"], { cwd: config.base });
-    logger.log("Finished running build command");
+    logger.log("Finished running build command.");
 
     const dllDir = join(__dirname, "dlls");
     for await (const file of readdirp(dllDir)) {
         const out = file.fullPath.replace(dllDir, buildDir);
         await copyFile(file.fullPath, out);
         logger.log(
-            `Copied ${file.fullPath.replace(
+            `Copied r{clr,cyanBright,${file.fullPath.replace(
                 process.cwd(),
                 ""
-            )} to ${out.replace(process.cwd(), "")}`
+            )}} to r{clr,cyanBright,${out.replace(process.cwd(), "")}}.`
         );
     }
 
-    logger.log(`Generated binaries at ${buildDir}`);
+    logger.log(`Binaries generated: r{clr,cyanBright,${buildDir}}.`);
 };

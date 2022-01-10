@@ -28,15 +28,15 @@ export const build = async () => {
     });
 
     await writeFile(builderGYml, rendered);
-    logger.log(`Rendered ${builderGYml}`);
+    logger.log(`Rendered r{clr,cyanBright,${builderGYml}}.`);
 
-    logger.log("Running appimage-builder command");
+    logger.log("Running r{clr,cyanBright,appimage-builder} command...");
     await spawn(
         "appimage-builder",
         ["--recipe", `./${relative(config.base, builderGYml)}`, "--skip-tests"],
         { cwd: config.base, stdio: "inherit" }
     );
-    logger.log("Finished running appimage-builder command");
+    logger.log("Finished running r{clr,cyanBright,appimage-builder} command.");
 
     const outPath = (await readdir(config.base)).find((x) =>
         x.endsWith(".AppImage")
@@ -51,5 +51,5 @@ export const build = async () => {
     );
     await ensureDir(dirname(finalPath));
     await rename(outPath, finalPath);
-    logger.log(`AppImage created: ${finalPath}`);
+    logger.log(`AppImage created: r{clr,cyanBright,${finalPath}}.`);
 };

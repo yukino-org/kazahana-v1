@@ -1,5 +1,4 @@
 import { join } from "path";
-import chalk from "chalk";
 import { readFile, writeFile } from "fs-extra";
 import semver from "semver";
 import { prompt } from "inquirer";
@@ -12,7 +11,7 @@ const logger = new Logger("version:bump");
 
 export const increment = async () => {
     const path = join(config.base, "pubspec.yaml");
-    logger.log(`Path: ${path}`);
+    logger.log(`Path: r{clr,cyanBright,${path}}.`);
 
     let pubspec = (await readFile(path)).toString();
 
@@ -54,9 +53,7 @@ export const increment = async () => {
         await writeFile(path, pubspec);
 
         logger.log(
-            `Bumped from ${chalk.cyanBright(
-                previousVersion.version
-            )} to ${chalk.cyanBright(newVersion.version)}`
+            `Bumped from r{clr,cyanBright,${previousVersion.version}} to r{clr,cyanBright,${newVersion.version}}.`
         );
     }
 };

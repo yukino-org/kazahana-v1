@@ -1,7 +1,7 @@
 import chalk from "chalk";
-import logSymbols from "log-symbols";
 import prettyMs from "pretty-ms";
 import { executeHooksFor } from "./hooks";
+import { Logger } from "./logger";
 
 export const run = async (fn: () => Promise<void>) => {
     const startedAt = Date.now();
@@ -15,9 +15,11 @@ export const run = async (fn: () => Promise<void>) => {
         await executeHooksFor("postrun", process.env.npm_lifecycle_event);
 
         console.log(
-            `\n${logSymbols.success} Finished in ${chalk.greenBright(
-                prettyMs(Date.now() - startedAt)
-            )}\n`
+            Logger.renderText(
+                `\nr{sym,success} Finished in r{clr,greenBright,${prettyMs(
+                    Date.now() - startedAt
+                )}}\n`
+            )
         );
     } catch (err) {
         console.error(chalk.redBright(err));
@@ -27,9 +29,11 @@ export const run = async (fn: () => Promise<void>) => {
         }
 
         console.log(
-            `\n${logSymbols.error} Failed in ${chalk.redBright(
-                prettyMs(Date.now() - startedAt)
-            )}\n`
+            Logger.renderText(
+                `\nr{sym,error} Failed in r{clr,redBright,${prettyMs(
+                    Date.now() - startedAt
+                )}}\n`
+            )
         );
         process.exit(1);
     }

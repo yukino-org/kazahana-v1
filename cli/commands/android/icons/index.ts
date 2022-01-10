@@ -14,9 +14,7 @@ const sizes: [number, string][] = [
 ];
 
 export const generate = async () => {
-    const started = Date.now();
-
-    logger.log(`Icon path: ${config.android.icon}`);
+    logger.log(`Icon path: r{clr,cyanBright,${config.android.icon}}.`);
     const original = await jimp.read(
         await getModifiedIcon(config.android.icon)
     );
@@ -30,8 +28,6 @@ export const generate = async () => {
         img.quality(100);
         img.resize(size[0], size[0]);
         await img.writeAsync(path);
-        logger.log(`Generated ${path}`);
+        logger.log(`Generated: r{clr,cyanBright,${path}}.`);
     }
-
-    logger.log(`Completed in ${Date.now() - started}ms`);
 };

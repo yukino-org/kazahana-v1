@@ -26,5 +26,7 @@ abstract class WindowsChromeFinder {
         }
       }
     }
+
+    return null;
   }
 }

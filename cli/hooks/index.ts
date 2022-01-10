@@ -24,7 +24,7 @@ export const executeHook = async (hook: HooksConfig) => {
 
 export const executeHooksFor = async (type: HookType, cmd: string) => {
     const logger = new Logger(`${cmd}:hooks`);
-    logger.log(`Executing hook: ${type}`);
+    logger.log(`Executing hook: r{clr,cyanBright,${type}}...`);
 
     let cycles = 0;
     for (const hook of hooks) {
@@ -34,5 +34,7 @@ export const executeHooksFor = async (type: HookType, cmd: string) => {
         }
     }
 
-    logger.log(`Hook finished: ${type} with ${cycles} commands`);
+    logger.log(
+        `Hook finished: r{clr,cyanBright,${type}} with r{clr,cyanBright,${cycles}} commands.`
+    );
 };

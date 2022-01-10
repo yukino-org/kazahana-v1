@@ -27,6 +27,8 @@ class KeyboardHandler {
         return x;
       }
     }
+
+    return null;
   }
 
   void onRawKeyEvent(

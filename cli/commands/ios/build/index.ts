@@ -15,7 +15,7 @@ export const build = async () => {
     await spawn("flutter", ["build", "ios", "--no-codesign"], {
         cwd: config.base,
     });
-    logger.log("Finished running build command");
+    logger.log("Finished running build command.");
 
     const zip = new AdmZip();
     zip.addLocalFolder(built, join("Payload", built.match(/[^\\/]+$/)![0]));
@@ -26,5 +26,5 @@ export const build = async () => {
     );
     await promisify(zip.writeZip)(out);
 
-    logger.log(`Installer created: ${out}`);
+    logger.log(`Installer created: r{clr,cyanBright,${out}}.`);
 };

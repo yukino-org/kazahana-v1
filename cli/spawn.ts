@@ -7,7 +7,7 @@ export class SpawnResult {
         public readonly code: number | null,
         public readonly stdout: string,
         public readonly stderr: string
-    ) {}
+    ) { }
 }
 
 export class SpawnError extends Error {
@@ -21,27 +21,36 @@ export class SpawnError extends Error {
             Object.assign(this, err);
         }
 
-        this.message = `Spawn failed with code ${result.code}\nCommand: ${
-            result.command || "-"
-        }\nOutput: ${result.stdout || "-"}\nError: ${err || "-"}`;
+        this.message = `Spawn failed with code ${result.code}\nCommand: ${result.command || "-"
+            }\nOutput: ${result.stdout || "-"}\nError: ${err || "-"}`;
     }
 }
 
 export interface SpawnOptions {
     cwd: string;
     stdio?: StdioOptions;
+    env?: Record<string, string | undefined>;
 }
 
 export const spawn = async (
     cmd: string,
     args: string[],
-    { cwd, stdio }: SpawnOptions
+    { cwd, stdio, env }: SpawnOptions
 ) =>
     new Promise<SpawnResult>(async (resolve, reject) => {
+        if (!env) {
+            env = { ...process.env };
+        }
+
+        if (isVerbose()) {
+            stdio = "inherit";
+            env.verbose = "true";
+        }
+
         const cp = crossSpawn(cmd, args, {
-            stdio: stdio ?? (isVerbose() ? "inherit" : undefined),
-            env: process.env,
-            cwd: cwd,
+            stdio,
+            env,
+            cwd,
         });
 
         let stdout = "";
@@ -82,7 +91,7 @@ export const getArgsInfo = () => ({
 });
 
 export const isVerbose = () =>
-    process.argv.slice(2).some((x) => defaultArgs.verbose.includes(x));
+    process.env.verbose === "true" || process.argv.slice(2).some((x) => defaultArgs.verbose.includes(x));
 
 export const isForce = () =>
     process.argv.slice(2).some((x) => defaultArgs.force.includes(x));

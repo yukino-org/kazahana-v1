@@ -25,7 +25,9 @@ class Locale {
   static Locale? tryParse(final String locale) {
     try {
       return Locale.parse(locale);
-    } catch (_) {}
+    } catch (_) {
+      return null;
+    }
   }
 
   final LanguageCodes code;

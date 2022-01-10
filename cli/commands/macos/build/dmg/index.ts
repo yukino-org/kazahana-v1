@@ -23,7 +23,7 @@ export const build = async () => {
             256
         )
     );
-    logger.log(`Generated ${icns}`);
+    logger.log(`Generated: r{clr,cyanBright,${icns}}.`);
 
     const outName = `${config.name}_v${version}-macos.dmg`;
     await spawn(
@@ -62,5 +62,5 @@ export const build = async () => {
     const finalPath = join(config.macos.packed, outName);
     await ensureDir(dirname(finalPath));
     await rename(join(buildDir, outName), finalPath);
-    logger.log(`Dmg created: ${finalPath}`);
+    logger.log(`Dmg created: r{clr,cyanBright,${finalPath}}.`);
 };

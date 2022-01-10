@@ -12,13 +12,9 @@ export const path = join(
 );
 
 export const generate = async () => {
-    const started = Date.now();
-
-    logger.log(`Icon path: ${config.windows.icon}`);
+    logger.log(`Icon path: r{clr,cyanBright,${config.windows.icon}}.`);
 
     const ico = await png2ico(config.windows.icon);
     await writeFile(path, ico);
-    logger.log(`Generated ${path}`);
-
-    logger.log(`Completed in ${Date.now() - started}ms`);
+    logger.log(`Generated: r{clr,cyanBright,${path}}.`);
 };

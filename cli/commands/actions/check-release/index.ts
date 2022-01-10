@@ -8,21 +8,22 @@ import { getVersion } from "../../version/print";
 const logger = new Logger("actions:check-release");
 
 export const checkRelease = async () => {
-    logger.log("Checking for previous releases");
+    logger.log("Checking for previous releases...");
 
-    const ends = getArgs()
-        .map((x) => {
-            let y: string = x;
-            if (y.startsWith("'")) y = y.slice(1);
-            if (y.endsWith("'")) y = y.slice(0, -1);
-            return y;
-        });
+    const ends = getArgs().map((x) => {
+        let y: string = x;
+        if (y.startsWith("'")) y = y.slice(1);
+        if (y.endsWith("'")) y = y.slice(0, -1);
+        return y;
+    });
 
     if (!Array.isArray(ends) || !ends.length) {
-        throw new Error("No input were got");
+        throw new Error("No inputs were got");
     }
 
-    logger.log(`Input: ${ends.map((x) => `"${x}"`).join(", ")}`);
+    logger.log(
+        `Input: r{clr,cyanBright,${ends.map((x) => `"${x}"`).join(", ")}}.`
+    );
 
     const octokit = new Octokit();
     const version = await getVersion();
@@ -48,10 +49,12 @@ export const checkRelease = async () => {
 
         if (matches) {
             throw new Error(
-                `Matches in tag v${version} were found. Please remove them before building.`
+                `Matches in tag r{clr,cyanBright,v${version}} were found. Please remove them before building.`
             );
         }
     }
 
-    logger.log(`Tag v${version} does not exist, proceeding...`);
+    logger.log(
+        `Tag r{clr,cyanBright,v${version}} does not exist, proceeding...`
+    );
 };

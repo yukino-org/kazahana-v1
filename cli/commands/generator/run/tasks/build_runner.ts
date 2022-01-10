@@ -1,5 +1,4 @@
 import { dirname, join, relative } from "path";
-import chalk from "chalk";
 import {
     pathExists,
     copyFile,
@@ -21,9 +20,10 @@ const generated = {
         files: ["objectbox-model.json"],
         async do() {
             logger.log(
-                `Restoring files to ${chalk.cyanBright(
-                    relative(config.base, generated.from)
-                )}`
+                `Restoring files to r{clr,cyanBright,${relative(
+                    config.base,
+                    generated.from
+                )}}.`
             );
 
             for (const x of generated.pre.files) {
@@ -38,9 +38,10 @@ const generated = {
         files: ["objectbox.g.dart", "objectbox-model.json"],
         async do(success: boolean) {
             logger.log(
-                `Moving files to ${chalk.cyanBright(
-                    relative(config.base, generated.to)
-                )}`
+                `Moving files to r{clr,cyanBright,${relative(
+                    config.base,
+                    generated.to
+                )}}.`
             );
 
             await ensureDir(generated.to);
@@ -59,7 +60,12 @@ const generated = {
                     await copyFile(path, join(generated.to, x));
                 }
 
-                await rm(path);
+                if (await pathExists(path)) {
+                    await rm(path, {
+                        recursive: true,
+                        force: true,
+                    });
+                }
             }
         },
     },
@@ -107,7 +113,7 @@ const execute = async (force: boolean) => {
 };
 
 export const runDartBuildRunner = async () => {
-    logger.log("Running dart build_runner command...");
+    logger.log("Running r{clr,cyanBright,dart build_runner} command...");
 
     try {
         await execute(isForce());
@@ -118,9 +124,7 @@ export const runDartBuildRunner = async () => {
             err.result.code === 78
         ) {
             logger.warn(
-                `Found conflicting outputs, retrying with ${chalk.redBright(
-                    "--delete-conflicting-outputs"
-                )} flag`
+                `Found conflicting outputs, retrying with r{clr,redBright,--delete-conflicting-outputs} flag`
             );
 
             await execute(true);
@@ -129,5 +133,5 @@ export const runDartBuildRunner = async () => {
         }
     }
 
-    logger.log("Finished running dart build_runner command");
+    logger.log("Finished running r{clr,cyanBright,dart build_runner} command.");
 };

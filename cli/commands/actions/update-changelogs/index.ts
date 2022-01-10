@@ -12,7 +12,7 @@ export const updateChangelogs = async (
     githubToken: string,
     discordWebhookURL: string
 ) => {
-    logger.log("Generating changelogs");
+    logger.log("Generating changelogs...");
 
     const github = getOctokit(githubToken, {});
 
@@ -24,7 +24,9 @@ export const updateChangelogs = async (
         }
     );
     const [latest, previous] = data.filter((x) => !x.draft);
-    logger.log(`Comparing ${previous.tag_name} & ${latest.tag_name}`);
+    logger.log(
+        `Comparing r{clr,cyanBright,${previous.tag_name} & ${latest.tag_name}}...`
+    );
 
     const { data: diff } = await github.request(
         "GET /repos/{owner}/{repo}/compare/{base}...{head}",
@@ -42,7 +44,7 @@ export const updateChangelogs = async (
         release_id: latest.id,
         body: changelogs.getGithubReleaseBody(latest.body ?? ""),
     });
-    logger.log("Updated release");
+    logger.log(`Updated release (r{clr,cyanBright,v${latest.id}}).`);
 
     await got.post(discordWebhookURL, {
         headers: {
@@ -66,5 +68,5 @@ export const updateChangelogs = async (
             ],
         }),
     });
-    logger.log("Posted webhook");
+    logger.log("Posted webhook.");
 };

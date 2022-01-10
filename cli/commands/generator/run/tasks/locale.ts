@@ -1,5 +1,4 @@
 import { dirname, join } from "path";
-import chalk from "chalk";
 import got from "got";
 import { Octokit } from "@octokit/rest";
 import { ensureDir, readFile, writeFile, lstat } from "fs-extra";
@@ -47,7 +46,9 @@ export const generateLocales = async () => {
     });
 
     if (previousSha === latestSha && previousId === latestId) {
-        logger.log(`Aborting update due to matching SHA and ID`);
+        logger.log(
+            `Aborting update due to matching r{clr,cyanBright,SHA} and r{clr,cyanBright,ID}.`
+        );
         return;
     }
 
@@ -78,7 +79,7 @@ ${getCountriesClass(countries)}
 
     await ensureDir(dirname(localeFile));
     await writeFile(localeFile, content);
-    logger.log(`Generated ${chalk.cyanBright(localeFile)}`);
+    logger.log(`Generated: r{clr,cyanBright,${localeFile}}.`);
 };
 
 const getLanguagesClass = (languages: Record<string, string>) => {

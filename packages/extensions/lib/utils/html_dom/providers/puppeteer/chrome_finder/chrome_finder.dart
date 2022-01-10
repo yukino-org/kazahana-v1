@@ -11,5 +11,7 @@ abstract class ChromeFinder {
     if (Platform.isLinux) {
       return LinuxChromeFinder.find();
     }
+
+    return null;
   }
 }

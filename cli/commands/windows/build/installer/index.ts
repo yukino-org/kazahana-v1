@@ -33,16 +33,16 @@ export const build = async () => {
         delimiter: "%",
     });
     await writeFile(installerGIss, rendered);
-    logger.log(`Rendered ${installerIss}`);
+    logger.log(`Rendered: r{clr,cyanBright,${installerIss}}.`);
 
-    logger.log("Running iscc command");
+    logger.log("Running r{clr,cyanBright,iscc} command...");
     await spawn("iscc", [installerGIss], { cwd: config.base });
-    logger.log("Finished running iscc command");
+    logger.log("Finished running r{clr,cyanBright,iscc} command.");
 
     logger.log(
-        `Installer created: ${join(
+        `Installer created: r{clr,cyanBright,${join(
             context.outputDir,
             `${context.setupName}.exe`
-        )}`
+        )}}.`
     );
 };

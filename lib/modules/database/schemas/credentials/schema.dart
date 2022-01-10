@@ -22,6 +22,8 @@ class CredentialsSchema {
         return AniListTokenInfo.fromJson(parsed);
       }
     }
+
+    return null;
   }
 
   set anilist(final AniListTokenInfo? val) {
@@ -38,6 +40,8 @@ class CredentialsSchema {
         return MyAnimeListTokenInfo.fromJson(parsed);
       }
     }
+
+    return null;
   }
 
   set myanimelist(final MyAnimeListTokenInfo? val) {

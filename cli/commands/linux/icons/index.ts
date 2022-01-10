@@ -19,5 +19,5 @@ export const generate = async () => {
     img.resize(size, size);
 
     await img.writeAsync(path);
-    logger.log(`Generated ${path}`);
+    logger.log(`Generated: r{clr,cyanBright,${path}}.`);
 };

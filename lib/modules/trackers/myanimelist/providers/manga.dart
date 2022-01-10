@@ -53,6 +53,8 @@ final TrackerProvider<MangaProgress> mangaProvider =
         info: mediaList,
       );
     }
+
+    return null;
   },
   getComputables: (final String title) async {
     final List<MyAnimeListSearchManga> media =

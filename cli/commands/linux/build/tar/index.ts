@@ -28,5 +28,5 @@ export const build = async () => {
     ).pipe(stream);
     await new Promise((resolve) => stream.once("close", resolve));
 
-    logger.log(`Tarball created: ${finalPath}`);
+    logger.log(`Tarball created: r{clr,cyanBright,${finalPath}}.`);
 };

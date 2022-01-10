@@ -55,6 +55,8 @@ abstract class InstanceManager {
         }
       } catch (_) {}
     }
+
+    return null;
   }
 
   static Future<InstanceInfo> register() async {
