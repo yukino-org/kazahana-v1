@@ -117,7 +117,7 @@ export const runDartBuildRunner = async () => {
 
     try {
         await execute(isForce());
-    } catch (err: any) {
+    } catch (err) {
         if (
             err instanceof SpawnError &&
             typeof err.result.code === "number" &&

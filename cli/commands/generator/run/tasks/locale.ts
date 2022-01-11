@@ -19,8 +19,11 @@ export const generateLocales = async () => {
     let previousContent: string | undefined;
     try {
         previousContent = (await readFile(localeFile)).toString();
-    } catch (err: any) {
-        if (err.code != "ENOENT") {
+    } catch (err) {
+        if (
+            err instanceof Error &&
+            (err as NodeJS.ErrnoException)?.code != "ENOENT"
+        ) {
             throw err;
         }
     }
@@ -52,20 +55,14 @@ export const generateLocales = async () => {
         return;
     }
 
-    const { body } = await got.get(
-        Repos.extensionsStore.languagesJson(latestSha),
-        {
-            responseType: "json",
-        }
-    );
-
     const {
-        countries,
-        languages,
-    }: {
+        body: { countries, languages },
+    } = await got.get<{
         countries: Record<string, string>;
         languages: Record<string, string>;
-    } = body as any;
+    }>(Repos.extensionsStore.languagesJson(latestSha), {
+        responseType: "json",
+    });
 
     const content = `
 // SHA: ${latestSha}

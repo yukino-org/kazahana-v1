@@ -43,7 +43,7 @@ export const checkRelease = async () => {
         });
 
     if (res?.status == 200) {
-        const matches = res.data.assets.some((x: any) =>
+        const matches = res.data.assets.some((x) =>
             ends.some((y: string) => x.name.endsWith(y))
         );
 
