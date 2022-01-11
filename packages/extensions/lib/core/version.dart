@@ -1,5 +1,6 @@
+@immutable
 class ExtensionVersion {
-  ExtensionVersion(this.year, this.month, this.revision);
+  const ExtensionVersion(this.year, this.month, this.revision);
 
   factory ExtensionVersion.parse(final String version) {
     final RegExpMatch? match =
