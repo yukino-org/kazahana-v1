@@ -2,7 +2,6 @@ import '../generated/locale.g.dart';
 
 export '../generated/locale.g.dart';
 
-@immutable
 class Locale {
   const Locale(this.code, [this.country]);
 

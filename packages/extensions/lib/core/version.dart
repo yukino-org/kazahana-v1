@@ -1,4 +1,3 @@
-@immutable
 class ExtensionVersion {
   const ExtensionVersion(this.year, this.month, this.revision);
 
