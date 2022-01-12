@@ -233,7 +233,7 @@ packages:
     source: path
     version: "0.0.0"
   encrypt:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: encrypt
       url: "https://pub.dartlang.org"
@@ -327,12 +327,12 @@ packages:
     source: hosted
     version: "2.1.0"
   hetu_script:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: hetu_script
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.2+5"
+    version: "0.3.9"
   html:
     dependency: "direct main"
     description:
@@ -664,6 +664,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1+1"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   shelf:
     dependency: "direct main"
     description:
@@ -732,13 +739,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  tar:
-    dependency: "direct main"
-    description:
-      name: tar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.1"
   term_glyph:
     dependency: transitive
     description:

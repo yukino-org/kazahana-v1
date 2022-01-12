@@ -15,14 +15,12 @@ dependencies:
     collection: ^1.15.0
     crypto: ^3.0.1
     dart_vlc: ^0.1.8
-    encrypt: ^5.0.0
     extensions:
         path: packages/extensions
     flutter:
         sdk: flutter
     flutter_markdown: ^0.6.6
     fuzzy: ^0.4.0-nullsafety.0
-    hetu_script: ^0.1.2+5
     html: ^0.15.0
     http: ^0.13.3
     json_annotation: ^4.4.0
@@ -37,7 +35,6 @@ dependencies:
             url: https://github.com/zyrouge/dart_protocol_registry.git
             ref: 885fc4bdaf6a60e5fd27013b876a9d6bec3addc2
     shelf: ^1.2.0
-    tar: ^0.5.1
     uni_links: ^0.5.1
     url_launcher: ^6.0.9
     utilx:
