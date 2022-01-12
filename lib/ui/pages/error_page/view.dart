@@ -12,7 +12,7 @@ const KawaiiErrorWidgetTexts errorTexts = KawaiiErrorWidgetTexts(
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({
-    required this.error,
+    required final this.error,
     final Key? key,
   }) : super(key: key);
 

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:extensions/hetu/helpers/helpers.dart';
+import 'package:extensions/hetu/helpers/definitions/http/client.dart';
 import '../database/database.dart';
 import '../state/eventer.dart';
 
@@ -12,8 +12,8 @@ abstract class AppState {
         (final SettingsSchema current, final SettingsSchema previous) {
           if (current.developers.ignoreBadHttpCertificate !=
               previous.developers.ignoreBadHttpCertificate) {
-            HetuHttpClient.set(
-              HetuHttpClient(
+            HetuHttpClient.initialize(
+              HttpClientOptions(
                 ignoreSSLCertificate:
                     current.developers.ignoreBadHttpCertificate,
               ),

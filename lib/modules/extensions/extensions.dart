@@ -22,7 +22,7 @@ abstract class ExtensionsManager {
 
   static Future<void> initialize() async {
     await ExtensionInternals.initialize(
-      httpOptions: HetuHttpClient(
+      httpOptions: HttpClientOptions(
         ignoreSSLCertificate:
             AppState.settings.value.developers.ignoreBadHttpCertificate,
       ),

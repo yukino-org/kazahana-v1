@@ -4,34 +4,35 @@ import './resolved.dart';
 import '../../models/anime.dart';
 import '../../models/base.dart';
 import '../../models/manga.dart';
-import '../hetu/helpers/http.dart';
+import '../hetu/helpers/definitions/http/client.dart';
 import '../hetu/hetu.dart';
 import '../utils/html_dom/html_dom.dart';
 
 export './base.dart';
 export './resolvable.dart';
 export './resolved.dart';
-export '../hetu/helpers/http.dart' show HetuHttpClient;
+export '../hetu/helpers/definitions/http/client.dart' show HttpClientOptions;
 export '../utils/html_dom/html_dom.dart' show HtmlDOMOptions;
 
 abstract class ExtensionInternals {
   static Future<void> initialize({
-    required final HetuHttpClient httpOptions,
+    required final HttpClientOptions httpOptions,
     required final HtmlDOMOptions htmlDOMOptions,
   }) async {
     await HtmlDOMManager.initialize(htmlDOMOptions);
-    HetuHttpClient.set(httpOptions);
+    HetuHttpClient.initialize(httpOptions);
   }
 
   static Future<void> dispose() async {
     await HtmlDOMManager.dispose();
   }
 
-  static String _getDefaultLocale(final Hetu runner) {
+  static Future<String> _getDefaultLocale(final Hetu runner) async {
     try {
       return runner.invoke('defaultLocale') as String;
-    } on HTError catch (err) {
-      HetuManager.editError(err);
+    } on HTError catch (err, stack) {
+      await Future<void>.error(HetuManager.getModifiedError(err), stack);
+      // To keep the compiler quiet
       rethrow;
     }
   }
@@ -43,12 +44,12 @@ abstract class ExtensionInternals {
 
     try {
       await runner.eval(HetuManager.prependDefinitions(ext.code));
-    } on HTError catch (err) {
-      HetuManager.editError(err);
+    } on HTError catch (err, stack) {
+      await Future<void>.error(HetuManager.getModifiedError(err), stack);
       rethrow;
     }
 
-    final Locale defaultLocale = Locale.parse(_getDefaultLocale(runner));
+    final Locale defaultLocale = Locale.parse(await _getDefaultLocale(runner));
 
     return AnimeExtractor(
       name: ext.name,
@@ -70,8 +71,8 @@ abstract class ExtensionInternals {
                 (final Map<dynamic, dynamic> x) => SearchInfo.fromJson(x),
               )
               .toList();
-        } on HTError catch (err) {
-          HetuManager.editError(err);
+        } on HTError catch (err, stack) {
+          await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
         }
       },
@@ -86,8 +87,8 @@ abstract class ExtensionInternals {
           );
 
           return AnimeInfo.fromJson(result as Map<dynamic, dynamic>);
-        } on HTError catch (err) {
-          HetuManager.editError(err);
+        } on HTError catch (err, stack) {
+          await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
         }
       },
@@ -106,8 +107,8 @@ abstract class ExtensionInternals {
                 (final Map<dynamic, dynamic> x) => EpisodeSource.fromJson(x),
               )
               .toList();
-        } on HTError catch (err) {
-          HetuManager.editError(err);
+        } on HTError catch (err, stack) {
+          await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
         }
       },
@@ -121,12 +122,12 @@ abstract class ExtensionInternals {
 
     try {
       await runner.eval(HetuManager.prependDefinitions(ext.code));
-    } on HTError catch (err) {
-      HetuManager.editError(err);
+    } on HTError catch (err, stack) {
+      await Future<void>.error(HetuManager.getModifiedError(err), stack);
       rethrow;
     }
 
-    final Locale defaultLocale = Locale.parse(_getDefaultLocale(runner));
+    final Locale defaultLocale = Locale.parse(await _getDefaultLocale(runner));
 
     return MangaExtractor(
       name: ext.name,
@@ -148,8 +149,8 @@ abstract class ExtensionInternals {
                 (final Map<dynamic, dynamic> x) => SearchInfo.fromJson(x),
               )
               .toList();
-        } on HTError catch (err) {
-          HetuManager.editError(err);
+        } on HTError catch (err, stack) {
+          await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
         }
       },
@@ -164,8 +165,8 @@ abstract class ExtensionInternals {
           );
 
           return MangaInfo.fromJson(result as Map<dynamic, dynamic>);
-        } on HTError catch (err) {
-          HetuManager.editError(err);
+        } on HTError catch (err, stack) {
+          await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
         }
       },
@@ -184,8 +185,8 @@ abstract class ExtensionInternals {
                 (final Map<dynamic, dynamic> x) => PageInfo.fromJson(x),
               )
               .toList();
-        } on HTError catch (err) {
-          HetuManager.editError(err);
+        } on HTError catch (err, stack) {
+          await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
         }
       },
@@ -199,8 +200,8 @@ abstract class ExtensionInternals {
           );
 
           return ImageDescriber.fromJson(result as Map<dynamic, dynamic>);
-        } on HTError catch (err) {
-          HetuManager.editError(err);
+        } on HTError catch (err, stack) {
+          await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
         }
       },
