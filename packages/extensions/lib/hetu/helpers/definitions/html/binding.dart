@@ -7,6 +7,29 @@ class HtmlElementClassBinding extends HTExternalClass {
   HtmlElementClassBinding() : super('HtmlElement');
 
   @override
+  dynamic memberGet(
+    final String varName, {
+    final String? from,
+    final bool error = true,
+  }) {
+    switch (varName) {
+      case 'HtmlElement.parse':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              HtmlElement.parse(positionalArgs[0] as String),
+        );
+
+      default:
+        throw HTError.undefined(varName);
+    }
+  }
+
+  @override
   dynamic instanceMemberGet(final dynamic object, final String varName) {
     final HtmlElement element = object as HtmlElement;
 

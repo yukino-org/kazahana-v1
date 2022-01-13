@@ -14,6 +14,8 @@ external class HtmlElement {
   
   fun querySelector(selector);
   fun querySelectorAll(selector);
+
+  static fun parse(html);
 }
       '''
       .trim(),
