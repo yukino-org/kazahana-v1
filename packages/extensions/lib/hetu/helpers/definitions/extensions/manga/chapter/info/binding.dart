@@ -1,7 +1,6 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:utilx/utilities/locale.dart';
-import '../../../../../../../models/base/image_describer.dart';
 import '../../../../../../../models/manga/chapter/info.dart';
 import '../../../../../model.dart';
 

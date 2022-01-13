@@ -1,6 +1,5 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
-import 'package:hetu_script/values.dart';
 import './class.dart';
 import './key/class.dart';
 import '../../model.dart';
