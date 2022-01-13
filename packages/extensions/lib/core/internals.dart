@@ -63,12 +63,7 @@ abstract class ExtensionInternals {
             ],
           );
 
-          return (result as List<dynamic>)
-              .cast<Map<dynamic, dynamic>>()
-              .map(
-                (final Map<dynamic, dynamic> x) => SearchInfo.fromJson(x),
-              )
-              .toList();
+          return (result as List<dynamic>).cast<SearchInfo>().toList();
         } on HTError catch (err, stack) {
           await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
@@ -84,7 +79,7 @@ abstract class ExtensionInternals {
             ],
           );
 
-          return AnimeInfo.fromJson(result as Map<dynamic, dynamic>);
+          return result as AnimeInfo;
         } on HTError catch (err, stack) {
           await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
@@ -99,12 +94,7 @@ abstract class ExtensionInternals {
             ],
           );
 
-          return (result as List<dynamic>)
-              .cast<Map<dynamic, dynamic>>()
-              .map(
-                (final Map<dynamic, dynamic> x) => EpisodeSource.fromJson(x),
-              )
-              .toList();
+          return (result as List<dynamic>).cast<EpisodeSource>().toList();
         } on HTError catch (err, stack) {
           await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
@@ -141,12 +131,7 @@ abstract class ExtensionInternals {
             ],
           );
 
-          return (result as List<dynamic>)
-              .cast<Map<dynamic, dynamic>>()
-              .map(
-                (final Map<dynamic, dynamic> x) => SearchInfo.fromJson(x),
-              )
-              .toList();
+          return (result as List<dynamic>).cast<SearchInfo>().toList();
         } on HTError catch (err, stack) {
           await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
@@ -162,7 +147,7 @@ abstract class ExtensionInternals {
             ],
           );
 
-          return MangaInfo.fromJson(result as Map<dynamic, dynamic>);
+          return result as MangaInfo;
         } on HTError catch (err, stack) {
           await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
@@ -177,12 +162,7 @@ abstract class ExtensionInternals {
             ],
           );
 
-          return (result as List<dynamic>)
-              .cast<Map<dynamic, dynamic>>()
-              .map(
-                (final Map<dynamic, dynamic> x) => PageInfo.fromJson(x),
-              )
-              .toList();
+          return (result as List<dynamic>).cast<PageInfo>().toList();
         } on HTError catch (err, stack) {
           await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
@@ -197,7 +177,7 @@ abstract class ExtensionInternals {
             ],
           );
 
-          return ImageDescriber.fromJson(result as Map<dynamic, dynamic>);
+          return result as ImageDescriber;
         } on HTError catch (err, stack) {
           await Future<void>.error(HetuManager.getModifiedError(err), stack);
           rethrow;
