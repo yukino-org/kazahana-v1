@@ -2,7 +2,7 @@ import './binding.dart';
 import '../../model.dart';
 
 final HetuHelperClass hWebviewClass = HetuHelperClass(
-  definition: WebviewClassBinding(),
+  definition: HetuWebviewClassBinding(),
   declaration: '''
 external class Webview {
   final disposed;

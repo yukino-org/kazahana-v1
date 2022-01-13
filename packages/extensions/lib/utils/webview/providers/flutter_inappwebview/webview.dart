@@ -63,6 +63,8 @@ class FlutterWebviewWebview extends Webview<FlutterWebviewProvider> {
 
   @override
   Future<void> open(final String url, final WebviewWaitUntil waitUntil) async {
+    beforeMethod();
+
     final Uri uri = Uri.parse(url);
     final Completer<void> future = Completer<void>();
 
@@ -115,6 +117,8 @@ class FlutterWebviewWebview extends Webview<FlutterWebviewProvider> {
 
   @override
   Future<dynamic> evalJavascript(final String code) async {
+    beforeMethod();
+
     final CallAsyncJavaScriptResult? result = await webview!.webViewController
         .callAsyncJavaScript(functionBody: code);
 
@@ -122,10 +126,16 @@ class FlutterWebviewWebview extends Webview<FlutterWebviewProvider> {
   }
 
   @override
-  Future<String?> getHtml() async => webview!.webViewController.getHtml();
+  Future<String?> getHtml() async {
+    beforeMethod();
+
+    return webview!.webViewController.getHtml();
+  }
 
   @override
   Future<Map<String, String>> getCookies(final String url) async {
+    beforeMethod();
+
     final List<Cookie> got =
         await provider.cookies!.getCookies(url: Uri.parse(url));
 
@@ -136,11 +146,18 @@ class FlutterWebviewWebview extends Webview<FlutterWebviewProvider> {
   }
 
   @override
-  Future<void> deleteCookie(final String url, final String name) =>
-      provider.cookies!.deleteCookie(url: Uri.parse(url), name: name);
+  Future<void> deleteCookie(final String url, final String name) async {
+    beforeMethod();
+
+    await provider.cookies!.deleteCookie(url: Uri.parse(url), name: name);
+  }
 
   @override
-  Future<void> clearAllCookies() => provider.cookies!.deleteAllCookies();
+  Future<void> clearAllCookies() async {
+    beforeMethod();
+
+    await provider.cookies!.deleteAllCookies();
+  }
 
   @override
   Future<void> dispose() async {

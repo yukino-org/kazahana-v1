@@ -21,6 +21,8 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
 
   @override
   Future<void> open(final String url, final WebviewWaitUntil waitUntil) async {
+    beforeMethod();
+
     final Until? until;
 
     switch (waitUntil) {
@@ -41,10 +43,16 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
   }
 
   @override
-  Future<void> evalJavascript(final String code) => page!.evaluate(code);
+  Future<dynamic> evalJavascript(final String code) async {
+    beforeMethod();
+
+    return page!.evaluate(code);
+  }
 
   @override
   Future<String?> getHtml() async {
+    beforeMethod();
+
     final dynamic result =
         await page!.evaluate('() => document.documentElement.outerHTML');
 
@@ -53,6 +61,8 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
 
   @override
   Future<Map<String, String>> getCookies(final String url) async {
+    beforeMethod();
+
     final Uri uri = Uri.parse(url);
     final String domain = uri.authority;
     final List<Cookie> cookies = await page!.cookies();
@@ -71,6 +81,8 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
 
   @override
   Future<void> deleteCookie(final String url, final String name) async {
+    beforeMethod();
+
     final Uri uri = Uri.parse(url);
     final String domain = uri.authority;
     final List<Cookie> cookies = await page!.cookies();
@@ -87,6 +99,8 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
 
   @override
   Future<void> clearAllCookies() async {
+    beforeMethod();
+
     await Future.wait(
       (await page!.cookies())
           .map((final Cookie x) => page!.deleteCookie(x.name)),

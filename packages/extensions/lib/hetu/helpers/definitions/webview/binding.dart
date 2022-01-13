@@ -6,8 +6,8 @@ import './class.dart';
 import '../../../../utils/webview/utils.dart';
 import '../../model.dart';
 
-class WebviewClassBinding extends HTExternalClass {
-  WebviewClassBinding() : super('Webview');
+class HetuWebviewClassBinding extends HTExternalClass {
+  HetuWebviewClassBinding() : super('Webview');
 
   @override
   dynamic memberGet(
@@ -24,7 +24,7 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              createWebview(),
+              HetuWebview.createWebview(),
         );
 
       default:
@@ -34,7 +34,7 @@ class WebviewClassBinding extends HTExternalClass {
 
   @override
   dynamic instanceMemberGet(final dynamic object, final String varName) {
-    final Webview<dynamic> webview = object as Webview<dynamic>;
+    final HetuWebview webview = object as HetuWebview;
 
     switch (varName) {
       case 'disposed':
@@ -135,7 +135,7 @@ class WebviewClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               WebviewUtils.tryBypassBrowserVerification(
-            webview,
+            webview.instance,
             (final String html) => (positionalArgs[0] as HTFunction)
                 .call(positionalArgs: <dynamic>[html]) as bool,
           ),
@@ -150,7 +150,7 @@ class WebviewClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               WebviewUtils.tryBypassBrowserVerification(
-            webview,
+            webview.instance,
             WebviewUtils.isCloudflareVerification,
           ),
         );
