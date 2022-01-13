@@ -26,7 +26,7 @@ abstract class ExtensionsManager {
         ignoreSSLCertificate:
             AppState.settings.value.developers.ignoreBadHttpCertificate,
       ),
-      htmlDOMOptions: HtmlDOMOptions(
+      webviewProviderOptions: WebviewProviderOptions(
         localChromiumPath: path.join(PathDirs.otherData, 'local-chromium'),
       ),
     );

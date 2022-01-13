@@ -17,6 +17,7 @@ dependencies:
     hetu_script: ^0.3.9
     html: ^0.15.0
     http: ^0.13.3
+    meta: ^1.7.0
     puppeteer: ^2.3.0
     utilx:
         git:

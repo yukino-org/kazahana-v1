@@ -11,7 +11,7 @@ extension ExtensionTypeUtils on ExtensionType {
 }
 
 class BaseExtension {
-  BaseExtension({
+  const BaseExtension({
     required final this.name,
     required final this.id,
     required final this.author,

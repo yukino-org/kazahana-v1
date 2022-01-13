@@ -1,30 +1,28 @@
 import 'package:hetu_script/hetu_script.dart';
 import 'package:utilx/utilities/locale.dart';
 import './resolved.dart';
-import '../../models/anime.dart';
-import '../../models/base.dart';
-import '../../models/manga.dart';
 import '../hetu/helpers/definitions/http/client.dart';
 import '../hetu/hetu.dart';
-import '../utils/html_dom/html_dom.dart';
+import '../models/exports.dart';
+import '../utils/webview/webview.dart';
 
 export './base.dart';
 export './resolvable.dart';
 export './resolved.dart';
 export '../hetu/helpers/definitions/http/client.dart' show HttpClientOptions;
-export '../utils/html_dom/html_dom.dart' show HtmlDOMOptions;
+export '../utils/webview/webview.dart' show WebviewProviderOptions;
 
 abstract class ExtensionInternals {
   static Future<void> initialize({
     required final HttpClientOptions httpOptions,
-    required final HtmlDOMOptions htmlDOMOptions,
+    required final WebviewProviderOptions webviewProviderOptions,
   }) async {
-    await HtmlDOMManager.initialize(htmlDOMOptions);
+    await WebviewManager.initialize(webviewProviderOptions);
     HetuHttpClient.initialize(httpOptions);
   }
 
   static Future<void> dispose() async {
-    await HtmlDOMManager.dispose();
+    await WebviewManager.dispose();
   }
 
   static Future<String> _getDefaultLocale(final Hetu runner) async {

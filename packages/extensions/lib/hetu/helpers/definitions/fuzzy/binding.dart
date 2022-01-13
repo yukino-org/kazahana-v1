@@ -26,14 +26,7 @@ class FuzzySearchClassBinding extends HTExternalClass {
               FuzzySearch(
             items: (namedArgs['items'] as List<dynamic>)
                 .cast<Map<dynamic, dynamic>>(),
-            keys: (namedArgs['keys'] as List<dynamic>).map((final dynamic x) {
-              final HTInstance keyObject = x as HTInstance;
-
-              return FuzzySearchKey(
-                getter: keyObject.memberGet('getter') as HTFunction,
-                weight: keyObject.memberGet('weight') as double,
-              );
-            }).toList(),
+            keys: (namedArgs['keys'] as List<dynamic>).cast<FuzzySearchKey>(),
           ),
         );
 

@@ -5,7 +5,7 @@ import './resolved.dart';
 import './version.dart';
 
 class ResolvableExtension extends BaseExtension {
-  ResolvableExtension({
+  const ResolvableExtension({
     required final String name,
     required final String id,
     required final String author,

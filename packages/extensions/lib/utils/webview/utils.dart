@@ -1,10 +1,10 @@
-import './html_dom.dart';
+import './models/webview.dart';
 
 /// `true` = Needs to be bypassed | `false` = Has been bypassed
 typedef HtmlBypassBrowserCheck = bool Function(String);
 
-abstract class HtmlDOMUtils {
-  static bool checkCloudflare(final String html) {
+abstract class WebviewUtils {
+  static bool isCloudflareVerification(final String html) {
     final String htmlLwr = html.toLowerCase();
 
     return <bool>[
@@ -14,8 +14,8 @@ abstract class HtmlDOMUtils {
     ].contains(true);
   }
 
-  static Future<bool> tryBypassBrowserChecks(
-    final HtmlDOMTab tab,
+  static Future<bool> tryBypassBrowserVerification(
+    final Webview<dynamic> webview,
     final HtmlBypassBrowserCheck check,
   ) async {
     final List<Duration> checkIntervals = <Duration>[
@@ -29,7 +29,7 @@ abstract class HtmlDOMUtils {
     for (final Duration i in checkIntervals) {
       await Future<void>.delayed(i);
 
-      final String? html = await tab.getHtml();
+      final String? html = await webview.getHtml();
       if (html != null && !check(html)) {
         return true;
       }

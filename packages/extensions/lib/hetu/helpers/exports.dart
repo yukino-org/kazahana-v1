@@ -2,6 +2,14 @@ import 'package:hetu_script/binding.dart';
 import './definitions/collection/definition.dart';
 import './definitions/converter/definition.dart';
 import './definitions/crypto/definition.dart';
+import './definitions/extensions/anime/episode/info/definition.dart';
+import './definitions/extensions/anime/episode/source/definition.dart';
+import './definitions/extensions/anime/info/definition.dart';
+import './definitions/extensions/base/image_describer/definition.dart';
+import './definitions/extensions/base/search/info/definition.dart';
+import './definitions/extensions/manga/chapter/info/definition.dart';
+import './definitions/extensions/manga/info/definition.dart';
+import './definitions/extensions/manga/page/info/definition.dart';
 import './definitions/flaw/definition.dart';
 import './definitions/fuzzy/definition.dart';
 import './definitions/fuzzy/key/definition.dart';
@@ -22,6 +30,14 @@ abstract class HetuHelperExports {
     hCollectionClass,
     hConverterClass,
     hCryptoClass,
+    hEpisodeInfoClass,
+    hEpisodeSourceClass,
+    hAnimeInfoClass,
+    hImageDescriberClass,
+    hSearchInfoClass,
+    hChapterInfoClass,
+    hMangaInfoClass,
+    hPageInfoClass,
     hFlawClass,
     hFuzzySearchClass,
     hFuzzySearchKeyClass,

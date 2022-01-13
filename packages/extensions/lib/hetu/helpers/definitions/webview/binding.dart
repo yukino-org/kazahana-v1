@@ -1,7 +1,9 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/values.dart';
+import 'package:utilx/utilities/utils/enum.dart';
 import './class.dart';
+import '../../../../utils/webview/utils.dart';
 import '../../model.dart';
 
 class WebviewClassBinding extends HTExternalClass {
@@ -32,11 +34,11 @@ class WebviewClassBinding extends HTExternalClass {
 
   @override
   dynamic instanceMemberGet(final dynamic object, final String varName) {
-    final HtmlDOMTab tab = object as HtmlDOMTab;
+    final Webview<dynamic> webview = object as Webview<dynamic>;
 
     switch (varName) {
       case 'disposed':
-        return tab.disposed;
+        return webview.disposed;
 
       case 'open':
         return createHTExternalFunction(
@@ -46,9 +48,12 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.open(
+              webview.open(
             positionalArgs.first as String,
-            positionalArgs[1] as String,
+            EnumUtils.find(
+              WebviewWaitUntil.values,
+              positionalArgs[1] as String,
+            ),
           ),
         );
 
@@ -60,7 +65,7 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.getHtml(),
+              webview.getHtml(),
         );
 
       case 'evalJavascript':
@@ -71,7 +76,7 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.evalJavascript(positionalArgs.first as String),
+              webview.evalJavascript(positionalArgs.first as String),
         );
 
       case 'getCookies':
@@ -82,7 +87,7 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.getCookies(positionalArgs.first as String),
+              webview.getCookies(positionalArgs.first as String),
         );
 
       case 'deleteCookie':
@@ -93,7 +98,7 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.deleteCookie(
+              webview.deleteCookie(
             positionalArgs.first as String,
             positionalArgs[1] as String,
           ),
@@ -107,7 +112,7 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.clearAllCookies(),
+              webview.clearAllCookies(),
         );
 
       case 'dispose':
@@ -118,10 +123,10 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.dispose(),
+              webview.dispose(),
         );
 
-      case 'tryBypassBrowserChecks':
+      case 'tryBypassBrowserVerification':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -129,12 +134,14 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.tryBypassBrowserChecks(
-            positionalArgs[0] as HTFunction,
+              WebviewUtils.tryBypassBrowserVerification(
+            webview,
+            (final String html) => (positionalArgs[0] as HTFunction)
+                .call(positionalArgs: <dynamic>[html]) as bool,
           ),
         );
 
-      case 'tryBypassCloudflareCheck':
+      case 'tryBypassCloudfareBrowserVerification':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -142,7 +149,10 @@ class WebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              tab.tryBypassCloudflareCheck(),
+              WebviewUtils.tryBypassBrowserVerification(
+            webview,
+            WebviewUtils.isCloudflareVerification,
+          ),
         );
 
       default:

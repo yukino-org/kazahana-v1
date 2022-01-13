@@ -3,7 +3,7 @@ import './base.dart';
 import './version.dart';
 
 class ResolvedExtension extends BaseExtension {
-  ResolvedExtension({
+  const ResolvedExtension({
     required final String name,
     required final String id,
     required final String author,
