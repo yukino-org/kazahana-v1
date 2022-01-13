@@ -4,7 +4,7 @@ import '../../../model.dart';
 final HetuHelperClass hFuzzySearchKeyClass = HetuHelperClass(
   definition: FuzzySearchKeyClassBinding(),
   declaration: '''
-external class FuzzyKey {
+external class FuzzySearchKey {
   construct({ getter, weight });
 
   final getter;
