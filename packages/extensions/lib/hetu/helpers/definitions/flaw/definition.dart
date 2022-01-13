@@ -7,9 +7,9 @@ final HetuHelperClass hFlawClass = HetuHelperClass(
 external class Flaw {
   construct(err, [stack, task]);
 
-  const err;
-  const stack;
-  const taskTrace;
+  final err;
+  final stack;
+  final taskTrace;
   fun toString();
 
   static fun throwFlaw(err, [trace]);

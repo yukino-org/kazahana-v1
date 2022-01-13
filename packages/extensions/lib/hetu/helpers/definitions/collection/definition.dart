@@ -4,7 +4,7 @@ import '../../model.dart';
 final HetuHelperClass hCollectionClass = HetuHelperClass(
   definition: CollectionClassBinding(),
   declaration: '''
-external class Collection {  
+external class Collection {
   static fun rangeList(a, b);
   static fun mergeList(list1, list2);
   static fun eachList(list, fn);

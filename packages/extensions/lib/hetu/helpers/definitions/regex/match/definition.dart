@@ -4,10 +4,10 @@ import '../../../model.dart';
 final HetuHelperClass hRegexMatchClass = HetuHelperClass(
   definition: RegexMatchClassBinding(),
   declaration: '''
-external class RegExpMatchResult {
-  const input: str;
+external class RegexMatch {
+  final input: str;
   
-  fun group(group: num); // -> String?
+  fun group(group: num);
 }
       '''
       .trim(),
