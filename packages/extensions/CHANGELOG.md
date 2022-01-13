@@ -64,4 +64,9 @@
 
 ## 0.0.16
 
--   Added map utilitu method: `listFromMap`
+-   Added map utility method: `listFromMap`
+
+## 1.0.1
+
+-   Mirgrated all function into namespace (class)
+-   Added class bindings for anime/manga entities
