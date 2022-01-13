@@ -5,36 +5,44 @@ import '../flaw/class.dart';
 class Promise {
   static Future<dynamic> resolve(
     final HTFunction function,
-    final HTFunction callback,
-  ) async {
-    dynamic result;
-    Error? error;
-
+    final HTFunction successCallback, [
+    final HTFunction? failureCallback,
+  ]) async {
     try {
-      result = await function();
-    } catch (err, stack) {
-      error = Flaw.fromError(err, stack);
-    }
+      final dynamic result = await function();
 
-    return await callback.call(positionalArgs: <dynamic>[error, result]);
+      return await successCallback.call(positionalArgs: <dynamic>[result]);
+    } catch (err, stack) {
+      final Error flaw = Flaw.fromError(err, stack);
+
+      if (failureCallback != null) {
+        return await failureCallback.call(positionalArgs: <dynamic>[flaw]);
+      } else {
+        await Future<void>.error(flaw, stack);
+      }
+    }
   }
 
   static Future<dynamic> resolveAll(
     final List<HTFunction> functions,
-    final HTFunction callback,
-  ) async {
-    List<dynamic>? result;
-    Flaw? error;
-
+    final HTFunction successCallback, [
+    final HTFunction? failureCallback,
+  ]) async {
     try {
-      result = await Future.wait(
+      final dynamic result = await Future.wait(
         functions.map((final HTFunction x) => x.call() as Future<dynamic>),
       ).timeout(const Duration(seconds: 30));
-    } catch (err, stack) {
-      error = Flaw.fromError(err, stack);
-    }
 
-    return await callback.call(positionalArgs: <dynamic>[error, result]);
+      return await successCallback.call(positionalArgs: <dynamic>[result]);
+    } catch (err, stack) {
+      final Error flaw = Flaw.fromError(err, stack);
+
+      if (failureCallback != null) {
+        return await failureCallback.call(positionalArgs: <dynamic>[flaw]);
+      } else {
+        await Future<void>.error(flaw, stack);
+      }
+    }
   }
 
   static Future<dynamic> wait(

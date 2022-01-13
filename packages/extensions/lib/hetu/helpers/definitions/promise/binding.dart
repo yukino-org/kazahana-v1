@@ -25,6 +25,7 @@ class PromiseClassBinding extends HTExternalClass {
               Promise.resolve(
             positionalArgs[0] as HTFunction,
             positionalArgs[1] as HTFunction,
+            positionalArgs[2] as HTFunction?,
           ),
         );
 
@@ -39,6 +40,7 @@ class PromiseClassBinding extends HTExternalClass {
               Promise.resolveAll(
             (positionalArgs[0] as List<dynamic>).cast<HTFunction>(),
             positionalArgs[1] as HTFunction,
+            positionalArgs[2] as HTFunction?,
           ),
         );
 
