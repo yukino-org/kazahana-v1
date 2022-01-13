@@ -3,8 +3,12 @@ import '../task_trace/class.dart';
 class Flaw implements Error {
   const Flaw(this.err, [this.stack, this.task]);
 
-  factory Flaw.fromError(final Object error, [final StackTrace? trace]) =>
-      Flaw(error.toString(), trace?.toString());
+  factory Flaw.fromError(
+    final Object error, [
+    final StackTrace? stack,
+    final TaskTrace? trace,
+  ]) =>
+      Flaw(error.toString(), stack?.toString(), trace);
 
   final String err;
   final String? stack;

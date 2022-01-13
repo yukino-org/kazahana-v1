@@ -2,6 +2,7 @@ import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/value/function/function.dart';
 import '../../model.dart';
+import '../task_trace/class.dart';
 import 'class.dart';
 
 class PromiseClassBinding extends HTExternalClass {
@@ -24,8 +25,9 @@ class PromiseClassBinding extends HTExternalClass {
           }) =>
               Promise.resolve(
             positionalArgs[0] as HTFunction,
-            positionalArgs[1] as HTFunction,
-            positionalArgs[2] as HTFunction?,
+            onDone: namedArgs['onDone'] as HTFunction,
+            onFail: namedArgs['onFail'] as HTFunction?,
+            trace: namedArgs['trace'] as TaskTrace?,
           ),
         );
 
@@ -39,8 +41,9 @@ class PromiseClassBinding extends HTExternalClass {
           }) =>
               Promise.resolveAll(
             (positionalArgs[0] as List<dynamic>).cast<HTFunction>(),
-            positionalArgs[1] as HTFunction,
-            positionalArgs[2] as HTFunction?,
+            onDone: namedArgs['onDone'] as HTFunction,
+            onFail: namedArgs['onFail'] as HTFunction?,
+            trace: namedArgs['trace'] as TaskTrace?,
           ),
         );
 
