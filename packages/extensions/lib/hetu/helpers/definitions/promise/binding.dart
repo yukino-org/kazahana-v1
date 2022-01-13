@@ -22,13 +22,15 @@ class PromiseClassBinding extends HTExternalClass {
             final List<dynamic> positionalArgs = const <dynamic>[],
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
-          }) =>
-              Promise.resolve(
-            positionalArgs[0] as HTFunction,
-            onDone: namedArgs['onDone'] as HTFunction,
-            onFail: namedArgs['onFail'] as HTFunction?,
-            trace: namedArgs['trace'] as TaskTrace?,
-          ),
+          }) {
+            print(positionalArgs[0]);
+            return Promise.resolve(
+              positionalArgs[0] as HTFunction,
+              onDone: namedArgs['onDone'] as HTFunction,
+              onFail: namedArgs['onFail'] as HTFunction?,
+              trace: namedArgs['trace'] as TaskTrace?,
+            );
+          },
         );
 
       case 'Promise.resolveAll':
