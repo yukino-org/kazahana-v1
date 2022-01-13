@@ -13,7 +13,7 @@ class ModifiedHetuError {
   @override
   String toString() => error.toString().replaceFirst(
         'Line: ${error.line}',
-        'Thrown Line: ${error.line}, Purged Line: ${error.line}',
+        'Thrown Line: ${error.line}, Purged Line: ${line ?? '-'}',
       );
 }
 
