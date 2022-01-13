@@ -29,7 +29,7 @@ class FlawClassBinding extends HTExternalClass {
           ),
         );
 
-      case 'Flaw.throwError':
+      case 'Flaw.throwFlaw':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
