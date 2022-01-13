@@ -27,6 +27,9 @@ class HetuWebview {
 
   bool get disposed => instance.disposed;
 
-  static Future<Webview<dynamic>> createWebview() =>
-      WebviewManager.provider.create();
+  static Future<HetuWebview> createWebview() async {
+    final Webview<dynamic> instance = await WebviewManager.provider.create();
+
+    return HetuWebview(instance);
+  }
 }
