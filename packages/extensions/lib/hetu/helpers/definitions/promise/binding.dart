@@ -24,6 +24,8 @@ class PromiseClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) {
             print(positionalArgs[0]);
+            print(namedArgs);
+
             return Promise.resolve(
               positionalArgs[0] as HTFunction,
               onDone: namedArgs['onDone'] as HTFunction,
