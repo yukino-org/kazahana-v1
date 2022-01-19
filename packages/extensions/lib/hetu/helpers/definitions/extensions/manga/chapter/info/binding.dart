@@ -47,7 +47,7 @@ class ChapterInfoClassBinding extends HTExternalClass {
         return element.url;
 
       case 'locale':
-        return element.locale;
+        return element.locale.toCodeString();
 
       case 'title':
         return element.title;
