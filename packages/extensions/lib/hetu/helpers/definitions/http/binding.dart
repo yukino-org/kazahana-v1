@@ -1,5 +1,6 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
+import 'package:hetu_script/values.dart';
 import './class.dart';
 import '../../model.dart';
 
@@ -24,7 +25,9 @@ class HttpClassBinding extends HTExternalClass {
               Http.fetch(
             method: namedArgs['method'] as String,
             url: namedArgs['url'] as String,
-            headers: namedArgs['headers'] as Map<dynamic, dynamic>?,
+            headers: (namedArgs['headers'] as HTStruct?)
+                ?.toJson()
+                .cast<String, String>(),
             body: namedArgs['body'] as String?,
           ),
         );

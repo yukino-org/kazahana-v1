@@ -7,7 +7,7 @@ class Http {
   static Future<HttpResponse> fetch({
     required final String method,
     required final String url,
-    final Map<dynamic, dynamic>? headers,
+    final Map<String, String>? headers,
     final String? body,
   }) async {
     final String encodedURL = HttpUtils.tryEncodeURL(url);
