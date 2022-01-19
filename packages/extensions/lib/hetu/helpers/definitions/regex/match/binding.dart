@@ -1,12 +1,14 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
+import './class.dart';
 
 class RegexMatchClassBinding extends HTExternalClass {
   RegexMatchClassBinding() : super('RegexMatch');
 
   @override
   dynamic instanceMemberGet(final dynamic object, final String varName) {
-    final RegExpMatch element = object as RegExpMatch;
+    final RegexMatch element = object as RegexMatch;
+
     switch (varName) {
       case 'input':
         return element.input;
