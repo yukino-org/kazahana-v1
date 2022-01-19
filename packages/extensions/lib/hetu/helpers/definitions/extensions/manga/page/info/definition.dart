@@ -6,6 +6,11 @@ final HetuHelperClass hPageInfoClass = HetuHelperClass(
   declaration: '''
 external class PageInfo {
   construct({ url, locale });
+
+  get url;
+  get locale;
+
+  fun toJson();
 }
       '''
       .trim(),

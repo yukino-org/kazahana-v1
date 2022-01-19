@@ -6,6 +6,11 @@ final HetuHelperClass hImageDescriberClass = HetuHelperClass(
   declaration: '''
 external class ImageDescriber {
   construct({ url, headers });
+
+  get url;
+  get headers;
+
+  fun toJson();
 }
       '''
       .trim(),

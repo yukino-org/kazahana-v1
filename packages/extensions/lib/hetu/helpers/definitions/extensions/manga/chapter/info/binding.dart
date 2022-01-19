@@ -34,4 +34,40 @@ class ChapterInfoClassBinding extends HTExternalClass {
         throw HTError.undefined(varName);
     }
   }
+
+  @override
+  dynamic instanceMemberGet(final dynamic object, final String varName) {
+    final ChapterInfo element = object as ChapterInfo;
+
+    switch (varName) {
+      case 'chapter':
+        return element.chapter;
+
+      case 'url':
+        return element.url;
+
+      case 'locale':
+        return element.locale;
+
+      case 'title':
+        return element.title;
+
+      case 'volume':
+        return element.volume;
+
+      case 'toJson':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              element.toJson(),
+        );
+
+      default:
+        throw HTError.undefined(varName);
+    }
+  }
 }

@@ -6,6 +6,15 @@ final HetuHelperClass hAnimeInfoClass = HetuHelperClass(
   declaration: '''
 external class AnimeInfo {
   construct({ title, url, episodes, locale, availableLocales, thumbnail });
+
+  get title;
+  get url;
+  get episodes;
+  get locale;
+  get availableLocales;
+  get thumbnail;
+
+  fun toJson();
 }
       '''
       .trim(),

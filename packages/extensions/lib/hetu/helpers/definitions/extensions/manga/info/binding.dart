@@ -40,4 +40,45 @@ class MangaInfoClassBinding extends HTExternalClass {
         throw HTError.undefined(varName);
     }
   }
+
+  @override
+  dynamic instanceMemberGet(final dynamic object, final String varName) {
+    final MangaInfo element = object as MangaInfo;
+
+    switch (varName) {
+      case 'title':
+        return element.title;
+
+      case 'url':
+        return element.url;
+
+      case 'chapters':
+        return element.chapters;
+
+      case 'locale':
+        return element.locale.toCodeString();
+
+      case 'availableLocales':
+        return element.availableLocales
+            .map((final Locale x) => x.toCodeString())
+            .toList();
+
+      case 'thumbnail':
+        return element.thumbnail;
+
+      case 'toJson':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              element.toJson(),
+        );
+
+      default:
+        throw HTError.undefined(varName);
+    }
+  }
 }

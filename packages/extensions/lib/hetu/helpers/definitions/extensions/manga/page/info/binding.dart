@@ -31,4 +31,31 @@ class PageInfoClassBinding extends HTExternalClass {
         throw HTError.undefined(varName);
     }
   }
+
+  @override
+  dynamic instanceMemberGet(final dynamic object, final String varName) {
+    final PageInfo element = object as PageInfo;
+
+    switch (varName) {
+      case 'url':
+        return element.url;
+
+      case 'locale':
+        return element.locale.toCodeString();
+
+      case 'toJson':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              element.toJson(),
+        );
+
+      default:
+        throw HTError.undefined(varName);
+    }
+  }
 }

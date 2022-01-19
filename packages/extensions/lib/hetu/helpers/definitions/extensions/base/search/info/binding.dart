@@ -34,4 +34,37 @@ class SearchInfoClassBinding extends HTExternalClass {
         throw HTError.undefined(varName);
     }
   }
+
+  @override
+  dynamic instanceMemberGet(final dynamic object, final String varName) {
+    final SearchInfo element = object as SearchInfo;
+
+    switch (varName) {
+      case 'title':
+        return element.title;
+
+      case 'url':
+        return element.url;
+
+      case 'locale':
+        return element.locale.toCodeString();
+
+      case 'thumbnail':
+        return element.thumbnail;
+
+      case 'toJson':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              element.toJson(),
+        );
+
+      default:
+        throw HTError.undefined(varName);
+    }
+  }
 }

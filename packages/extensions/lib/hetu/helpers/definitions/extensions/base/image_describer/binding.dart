@@ -33,4 +33,31 @@ class ImageDescriberClassBinding extends HTExternalClass {
         throw HTError.undefined(varName);
     }
   }
+
+  @override
+  dynamic instanceMemberGet(final dynamic object, final String varName) {
+    final ImageDescriber element = object as ImageDescriber;
+
+    switch (varName) {
+      case 'url':
+        return element.url;
+
+      case 'headers':
+        return element.headers;
+
+      case 'toJson':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              element.toJson(),
+        );
+
+      default:
+        throw HTError.undefined(varName);
+    }
+  }
 }

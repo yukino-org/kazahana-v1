@@ -6,6 +6,13 @@ final HetuHelperClass hSearchInfoClass = HetuHelperClass(
   declaration: '''
 external class SearchInfo {
   construct({ title, url, locale, thumbnail });
+
+  get title;
+  get url;
+  get locale;
+  get thumbnail;
+
+  fun toJson();
 }
       '''
       .trim(),

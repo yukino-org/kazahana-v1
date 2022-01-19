@@ -6,6 +6,13 @@ final HetuHelperClass hEpisodeSourceClass = HetuHelperClass(
   declaration: '''
 external class EpisodeSource {
   construct({ url, quality, headers, locale });
+
+  get url;
+  get quality;
+  get headers;
+  get locale;
+
+  fun toJson();
 }
       '''
       .trim(),
