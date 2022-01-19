@@ -1,13 +1,16 @@
-import '../../../../utils/webview/webview.dart';
+import '../../../../utils/webview/webview.dart' as webview;
 
 export '../../../../utils/webview/webview.dart' show WebviewWaitUntil;
 
-class HetuWebview {
-  const HetuWebview(this.instance);
+class Webview {
+  const Webview(this.instance);
 
-  final Webview<dynamic> instance;
+  final webview.Webview<dynamic> instance;
 
-  Future<void> open(final String url, final WebviewWaitUntil waitUntil) =>
+  Future<void> open(
+    final String url,
+    final webview.WebviewWaitUntil waitUntil,
+  ) =>
       instance.open(url, waitUntil);
 
   Future<dynamic> evalJavascript(final String code) =>
@@ -27,9 +30,10 @@ class HetuWebview {
 
   bool get disposed => instance.disposed;
 
-  static Future<HetuWebview> createWebview() async {
-    final Webview<dynamic> instance = await WebviewManager.provider.create();
+  static Future<Webview> createWebview() async {
+    final webview.Webview<dynamic> instance =
+        await webview.WebviewManager.provider.create();
 
-    return HetuWebview(instance);
+    return Webview(instance);
   }
 }

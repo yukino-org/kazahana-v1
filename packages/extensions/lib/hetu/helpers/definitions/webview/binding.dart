@@ -6,8 +6,8 @@ import './class.dart';
 import '../../../../utils/webview/utils.dart';
 import '../../model.dart';
 
-class HetuWebviewClassBinding extends HTExternalClass {
-  HetuWebviewClassBinding() : super('Webview');
+class WebviewClassBinding extends HTExternalClass {
+  WebviewClassBinding() : super('Webview');
 
   @override
   dynamic memberGet(
@@ -24,7 +24,7 @@ class HetuWebviewClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              HetuWebview.createWebview(),
+              Webview.createWebview(),
         );
 
       default:
@@ -34,7 +34,7 @@ class HetuWebviewClassBinding extends HTExternalClass {
 
   @override
   dynamic instanceMemberGet(final dynamic object, final String varName) {
-    final HetuWebview webview = object as HetuWebview;
+    final Webview webview = object as Webview;
 
     switch (varName) {
       case 'disposed':
