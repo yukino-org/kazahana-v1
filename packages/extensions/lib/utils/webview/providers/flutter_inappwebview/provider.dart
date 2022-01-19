@@ -8,8 +8,11 @@ class FlutterWebviewProvider extends WebviewProvider<FlutterWebviewProvider> {
   CookieManager? cookies = CookieManager.instance();
 
   @override
-  Future<FlutterWebviewWebview> create() async =>
-      FlutterWebviewWebview(provider: this);
+  Future<FlutterWebviewWebview> create() async {
+    final FlutterWebviewWebview webview = FlutterWebviewWebview(provider: this);
+    await webview.initialize();
+    return webview;
+  }
 
   @override
   Future<void> dispose() async {

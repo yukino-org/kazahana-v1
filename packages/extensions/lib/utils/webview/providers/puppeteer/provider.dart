@@ -53,7 +53,11 @@ class PuppeteerProvider extends WebviewProvider<PuppeteerProvider> {
   }
 
   @override
-  Future<PuppeteerWebview> create() async => PuppeteerWebview(provider: this);
+  Future<PuppeteerWebview> create() async {
+    final PuppeteerWebview webview = PuppeteerWebview(provider: this);
+    await webview.initialize();
+    return webview;
+  }
 
   Future<void> _disposePages(final List<Page> pages) => Future.wait(
         pages.map((final Page x) => x.close()),
