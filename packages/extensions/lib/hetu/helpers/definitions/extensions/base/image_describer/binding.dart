@@ -1,5 +1,6 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
+import 'package:hetu_script/values.dart';
 import '../../../../../../models/base/image_describer.dart';
 import '../../../../model.dart';
 
@@ -22,7 +23,8 @@ class ImageDescriberClassBinding extends HTExternalClass {
           }) =>
               ImageDescriber(
             url: namedArgs['url'] as String,
-            headers: (namedArgs['headers'] as Map<dynamic, dynamic>)
+            headers: (namedArgs['headers'] as HTStruct)
+                .toJson()
                 .cast<String, String>(),
           ),
         );
