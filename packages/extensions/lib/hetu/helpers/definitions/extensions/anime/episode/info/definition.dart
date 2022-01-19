@@ -9,6 +9,7 @@ external class EpisodeInfo {
 
   get episode;
   get url;
+  get locale;
 
   fun toJson();
 }
