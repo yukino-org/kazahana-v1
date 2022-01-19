@@ -13,8 +13,8 @@ external class Webview {
   fun getCookies(url);
   fun deleteCookie(url, name);
   fun clearAllCookies();
-  fun tryBypassBrowserChecks(check);
-  fun tryBypassCloudflareCheck();
+  fun tryBypassBrowserVerification(check);
+  fun tryBypassCloudfareBrowserVerification();
   fun dispose();
 
   static fun create();
