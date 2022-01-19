@@ -90,7 +90,7 @@ abstract class ExtensionInternals {
           final dynamic result = await runner.invoke(
             'getSources',
             positionalArgs: <dynamic>[
-              episode.toJson(),
+              episode,
             ],
           );
 
@@ -158,7 +158,7 @@ abstract class ExtensionInternals {
           final dynamic result = await runner.invoke(
             'getChapter',
             positionalArgs: <dynamic>[
-              chapter.toJson(),
+              chapter,
             ],
           );
 
@@ -173,7 +173,7 @@ abstract class ExtensionInternals {
           final dynamic result = await runner.invoke(
             'getPage',
             positionalArgs: <dynamic>[
-              page.toJson(),
+              page,
             ],
           );
 
