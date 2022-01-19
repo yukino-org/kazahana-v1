@@ -19,10 +19,14 @@ class HtmlElement {
   String get innerHtml => _element.innerHtml;
   String get outerHtml => _element.outerHtml;
 
-  Map<String, String> get attributes => Map<String, String>.fromIterable(
-        _element.attributes.entries
-            .where((final MapEntry<Object, String> x) => x.key is String),
-      );
+  Map<String, String> get attributes => <String, String>{}..addEntries(
+      _element.attributes.entries
+          .where((final MapEntry<Object, String> x) => x.key is String)
+          .map(
+            (final MapEntry<Object, String> x) =>
+                MapEntry<String, String>(x.key as String, x.value),
+          ),
+    );
 
   HtmlElement? querySelector(final String selector) {
     final dom.Element? found = _element.querySelector(selector);
