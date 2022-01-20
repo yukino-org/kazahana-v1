@@ -1,6 +1,7 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
 import 'package:hetu_script/values.dart';
+import './bytes/class.dart';
 import './class.dart';
 import '../../model.dart';
 
@@ -14,7 +15,7 @@ class ConverterClassBinding extends HTExternalClass {
     final bool error = true,
   }) {
     switch (varName) {
-      case 'Converter.encodeJson':
+      case 'Converter.jsonEncode':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -22,10 +23,10 @@ class ConverterClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Converter.encodeJson(positionalArgs[0]),
+              Converter.jsonEncode(positionalArgs[0]),
         );
 
-      case 'Converter.decodeJson':
+      case 'Converter.jsonDecode':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -33,10 +34,10 @@ class ConverterClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Converter.decodeJson(positionalArgs[0] as String),
+              Converter.jsonDecode(positionalArgs[0] as String),
         );
 
-      case 'Converter.encodeQueryString':
+      case 'Converter.queryStringEncode':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -44,12 +45,12 @@ class ConverterClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Converter.encodeQueryString(
+              Converter.queryStringEncode(
             (positionalArgs[0] as HTStruct).toJson(),
           ),
         );
 
-      case 'Converter.decodeQueryString':
+      case 'Converter.queryStringDecode':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -57,7 +58,51 @@ class ConverterClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              Converter.decodeQueryString(positionalArgs[0] as String),
+              Converter.queryStringDecode(positionalArgs[0] as String),
+        );
+
+      case 'Converter.utf8Encode':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.utf8Encode(positionalArgs[0] as String),
+        );
+
+      case 'Converter.utf8Decode':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.utf8Decode(positionalArgs[0] as BytesContainer),
+        );
+
+      case 'Converter.base64Encode':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.base64Encode(positionalArgs[0] as BytesContainer),
+        );
+
+      case 'Converter.base64Decode':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Converter.base64Decode(positionalArgs[0] as String),
         );
 
       default:

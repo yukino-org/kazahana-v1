@@ -1,5 +1,6 @@
 import 'package:hetu_script/binding.dart';
 import './definitions/collection/definition.dart';
+import './definitions/converter/bytes/definition.dart';
 import './definitions/converter/definition.dart';
 import './definitions/crypto/definition.dart';
 import './definitions/extensions/anime/episode/info/definition.dart';
@@ -28,6 +29,7 @@ import './model.dart';
 abstract class HetuHelperExports {
   static final List<HetuHelperClass> classes = <HetuHelperClass>[
     hCollectionClass,
+    hBytesContainerClass,
     hConverterClass,
     hCryptoClass,
     hEpisodeInfoClass,
