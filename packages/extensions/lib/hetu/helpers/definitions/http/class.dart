@@ -22,15 +22,15 @@ class Http {
             .timeout(HttpUtils.timeout);
         break;
 
-      case 'head':
-        res = await HetuHttpClient.client
-            .head(Uri.parse(encodedURL), headers: castedHeaders)
-            .timeout(HttpUtils.timeout);
-        break;
-
       case 'post':
         res = await HetuHttpClient.client
             .post(Uri.parse(encodedURL), body: body, headers: castedHeaders)
+            .timeout(HttpUtils.timeout);
+        break;
+
+      case 'head':
+        res = await HetuHttpClient.client
+            .head(Uri.parse(encodedURL), headers: castedHeaders)
             .timeout(HttpUtils.timeout);
         break;
 

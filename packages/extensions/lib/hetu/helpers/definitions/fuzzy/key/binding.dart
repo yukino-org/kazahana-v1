@@ -33,4 +33,20 @@ class FuzzySearchKeyClassBinding extends HTExternalClass {
         throw HTError.undefined(varName);
     }
   }
+
+  @override
+  dynamic instanceMemberGet(final dynamic object, final String varName) {
+    final FuzzySearchKey element = object as FuzzySearchKey;
+
+    switch (varName) {
+      case 'getter':
+        return element.getter;
+
+      case 'weight':
+        return element.weight;
+
+      default:
+        throw HTError.undefined(varName);
+    }
+  }
 }

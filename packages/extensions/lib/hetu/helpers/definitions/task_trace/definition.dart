@@ -7,7 +7,10 @@ final HetuHelperClass hTaskTraceClass = HetuHelperClass(
 external class TaskTrace {
   construct();
 
-  fun add(line: str);
+  /// (string) => void
+  fun add(line);
+
+  /// () => string
   fun toString();
 }
       '''

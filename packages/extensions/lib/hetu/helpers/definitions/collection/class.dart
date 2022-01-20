@@ -130,4 +130,11 @@ class Collection {
             },
           )
           .toList();
+
+  static int repeatUntil(final HTFunction repeater) {
+    int i = 0;
+    while (repeater.call(positionalArgs: <dynamic>[i++]) as bool) {}
+
+    return i;
+  }
 }

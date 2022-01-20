@@ -32,7 +32,7 @@ class Promise {
     final TaskTrace? trace,
   }) async {
     try {
-      final dynamic result = await Future.wait(
+      final List<dynamic> result = await Future.wait(
         functions.map((final HTFunction x) => x.call() as Future<dynamic>),
       ).timeout(const Duration(seconds: 30));
 

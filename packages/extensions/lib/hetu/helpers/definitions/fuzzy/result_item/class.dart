@@ -4,6 +4,6 @@ class FuzzySearchResultItem {
     required final this.score,
   });
 
-  final Map<dynamic, dynamic> item;
+  final dynamic item;
   final double score;
 }

@@ -5,16 +5,31 @@ final HetuHelperClass hHtmlElementClass = HetuHelperClass(
   definition: HtmlElementClassBinding(),
   declaration: '''
 external class HtmlElement {
-  final classes;
-  final id;
-  final text;
-  final innerHtml;
-  final outerHtml;
-  final attributes;
+  /// string[]
+  get classes;
+
+  /// string
+  get id;
+
+  /// string
+  get text;
+
+  /// string
+  get innerHtml;
+
+  /// string
+  get outerHtml;
+
+  /// Map<string, string>
+  get attributes;
   
+  /// (string) => HtmlElement
   fun querySelector(selector);
+  
+  /// (string) => HtmlElement[]
   fun querySelectorAll(selector);
 
+  /// (string) => HtmlElement
   static fun parse(html);
 }
       '''

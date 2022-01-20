@@ -39,6 +39,12 @@ class FuzzySearchClassBinding extends HTExternalClass {
     final FuzzySearch element = object as FuzzySearch;
 
     switch (varName) {
+      case 'items':
+        return element.items;
+
+      case 'keys':
+        return element.keys;
+
       case 'search':
         return createHTExternalFunction(
           (

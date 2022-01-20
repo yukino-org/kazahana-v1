@@ -5,9 +5,11 @@ final HetuHelperClass hRegexMatchClass = HetuHelperClass(
   definition: RegexMatchClassBinding(),
   declaration: '''
 external class RegexMatch {
-  final input: str;
+  /// string
+  final input;
   
-  fun group(group: num);
+  /// (int) => string?
+  fun group(group);
 }
       '''
       .trim(),

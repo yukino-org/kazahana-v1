@@ -9,22 +9,21 @@ class FuzzySearch {
     required final this.keys,
   });
 
-  final List<Map<dynamic, dynamic>> items;
+  final List<dynamic> items;
   final List<FuzzySearchKey> keys;
 
-  late final Fuzzy<Map<dynamic, dynamic>> _client =
-      Fuzzy<Map<dynamic, dynamic>>(
+  late final Fuzzy<dynamic> _client = Fuzzy<dynamic>(
     items,
-    options: FuzzyOptions<Map<dynamic, dynamic>>(
+    options: FuzzyOptions<dynamic>(
       keys: keys
           .asMap()
           .map(
             (final int i, final FuzzySearchKey x) =>
-                MapEntry<int, WeightedKey<Map<dynamic, dynamic>>>(
+                MapEntry<int, WeightedKey<dynamic>>(
               i,
-              WeightedKey<Map<dynamic, dynamic>>(
+              WeightedKey<dynamic>(
                 name: i.toString(),
-                getter: (final Map<dynamic, dynamic> data) =>
+                getter: (final dynamic data) =>
                     x.getter.call(positionalArgs: <dynamic>[data]) as String,
                 weight: x.weight,
               ),
@@ -39,7 +38,7 @@ class FuzzySearch {
     final List<FuzzySearchResultItem> results = _client
         .search(search)
         .map(
-          (final Result<Map<dynamic, dynamic>> x) => FuzzySearchResultItem(
+          (final Result<dynamic> x) => FuzzySearchResultItem(
             item: x.item,
             score: x.score,
           ),

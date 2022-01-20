@@ -132,8 +132,8 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.mergeMap(
-            positionalArgs[0] as Map<dynamic, dynamic>,
-            positionalArgs[1] as Map<dynamic, dynamic>,
+            (positionalArgs[0] as HTStruct).toJson(),
+            (positionalArgs[1] as HTStruct).toJson(),
           ),
         );
 
@@ -146,7 +146,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.eachMap(
-            positionalArgs[0] as Map<dynamic, dynamic>,
+            (positionalArgs[0] as HTStruct).toJson(),
             positionalArgs[1] as HTFunction,
           ),
         );
@@ -160,7 +160,20 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.mapToList(
-            positionalArgs[0] as Map<dynamic, dynamic>,
+            (positionalArgs[0] as HTStruct).toJson(),
+          ),
+        );
+
+      case 'Collection.repeatUntil':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Collection.repeatUntil(
+            positionalArgs[0] as HTFunction,
           ),
         );
 
