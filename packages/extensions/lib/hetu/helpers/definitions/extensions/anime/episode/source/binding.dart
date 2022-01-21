@@ -1,6 +1,5 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
-import 'package:hetu_script/values.dart';
 import 'package:utilx/utilities/locale.dart';
 import '../../../../../../../models/anime/episode/quality.dart';
 import '../../../../../../../models/anime/episode/source.dart';
@@ -26,8 +25,7 @@ class EpisodeSourceClassBinding extends HTExternalClass {
               EpisodeSource(
             url: namedArgs['url'] as String,
             quality: Quality.parse(namedArgs['quality'] as String),
-            headers: (namedArgs['headers'] as HTStruct)
-                .toJson()
+            headers: parseHetuReturnedMap(namedArgs['headers'])
                 .cast<String, String>(),
             locale: Locale.parse(namedArgs['locale'] as String),
           ),

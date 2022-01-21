@@ -1,6 +1,5 @@
 import 'package:hetu_script/binding.dart';
 import 'package:hetu_script/hetu_script.dart';
-import 'package:hetu_script/values.dart';
 import './bytes/class.dart';
 import './class.dart';
 import '../../model.dart';
@@ -46,7 +45,7 @@ class ConverterClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Converter.queryStringEncode(
-            (positionalArgs[0] as HTStruct).toJson(),
+            parseHetuReturnedMap(positionalArgs[0]),
           ),
         );
 

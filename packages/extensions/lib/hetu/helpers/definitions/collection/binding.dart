@@ -132,8 +132,8 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.mergeMap(
-            (positionalArgs[0] as HTStruct).toJson(),
-            (positionalArgs[1] as HTStruct).toJson(),
+            parseHetuReturnedMap(positionalArgs[0]),
+            parseHetuReturnedMap(positionalArgs[1]),
           ),
         );
 
@@ -146,7 +146,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.eachMap(
-            (positionalArgs[0] as HTStruct).toJson(),
+            parseHetuReturnedMap(positionalArgs[0]),
             positionalArgs[1] as HTFunction,
           ),
         );
@@ -160,7 +160,7 @@ class CollectionClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               Collection.mapToList(
-            (positionalArgs[0] as HTStruct).toJson(),
+            parseHetuReturnedMap(positionalArgs[0]),
           ),
         );
 
