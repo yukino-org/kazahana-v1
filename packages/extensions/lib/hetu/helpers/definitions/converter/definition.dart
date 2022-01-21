@@ -6,10 +6,10 @@ final HetuHelperClass hConverterClass = HetuHelperClass(
   declaration: '''
 external class Converter {
   /// (any) => string
-  static fun encodeJson(data);
+  static fun jsonEncode(data);
 
   /// (string) => any
-  static fun decodeJson(data);
+  static fun jsonDecode(data);
   
   /// (Map<string, string>) => string
   static fun queryStringEncode(data);
