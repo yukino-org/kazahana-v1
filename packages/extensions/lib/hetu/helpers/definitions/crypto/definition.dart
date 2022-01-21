@@ -5,15 +5,15 @@ final HetuHelperClass hCryptoClass = HetuHelperClass(
   definition: CryptoClassBinding(),
   declaration: '''
 external class Crypto {
-  /// (int[]) => int[]
+  /// (BytesContainer) => BytesContainer
   static fun md5Convert(data);
 
   /// ({
-  ///   encrypted: int[],
-  ///   key: int[],
-  ///   iv: int[]?,
+  ///   encrypted: BytesContainer,
+  ///   key: BytesContainer,
+  ///   iv: BytesContainer?,
   ///   aesMode: 'cbc' | 'cfb64' | 'ctr' | 'ecb' | 'ofb64Gctr' | 'ofb64' | 'sic' = 'sic',
-  /// }) => int[];
+  /// }) => BytesContainer;
   static fun aesDecrypt({ encrypted, key, iv, aesMode });
 }
       '''
