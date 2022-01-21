@@ -14,6 +14,18 @@ HTExternalFunction createHTExternalFunction<T>(
 ) =>
     function;
 
+Map<dynamic, dynamic> parseHetuReturnedMap(final dynamic map) {
+  if (map is HTStruct) {
+    return map.toJson();
+  }
+
+  if (map is Map<dynamic, dynamic>) {
+    return map;
+  }
+
+  throw TypeError();
+}
+
 class HetuHelperFunction {
   const HetuHelperFunction({
     required final this.name,
