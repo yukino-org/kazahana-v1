@@ -13,7 +13,7 @@ class BytesContainer {
     return this;
   }
 
-  BytesContainer addBytes(final BytesContainer data) {
+  BytesContainer add(final BytesContainer data) {
     bytes.addAll(data.bytes);
     return this;
   }

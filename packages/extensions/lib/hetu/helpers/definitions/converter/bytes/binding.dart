@@ -46,7 +46,7 @@ class BytesContainerClassBinding extends HTExternalClass {
               element.addSingleByte(positionalArgs[0] as int),
         );
 
-      case 'addBytes':
+      case 'add':
         return createHTExternalFunction(
           (
             final HTEntity entity, {
@@ -54,7 +54,7 @@ class BytesContainerClassBinding extends HTExternalClass {
             final Map<String, dynamic> namedArgs = const <String, dynamic>{},
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
-              element.addBytes(positionalArgs[0] as BytesContainer),
+              element.add(positionalArgs[0] as BytesContainer),
         );
 
       case 'sublist':

@@ -11,7 +11,7 @@ external class BytesContainer {
   
   // Returns current instance
   /// (BytesContainer) => BytesContainer
-  fun addBytes(data);
+  fun add(data);
 
   /// (int, [int?]) => BytesContainer
   fun sublist(start, end);
