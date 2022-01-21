@@ -6,8 +6,8 @@ final HetuHelperClass hFuzzySearchKeyClass = HetuHelperClass(
   declaration: '''
 external class FuzzySearchKey {
   /// ({
-  ///   getter: (T) => string
-  ///   weight: float
+  ///   getter: (T) => string,
+  ///   weight: float?,
   /// })<T = any> => FuzzySearchKey;
   construct({ getter, weight });
 
