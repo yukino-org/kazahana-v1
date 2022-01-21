@@ -8,15 +8,11 @@ class BytesContainer {
 
   final Uint8List bytes;
 
-  BytesContainer addSingleByte(final int data) {
-    bytes.add(data);
-    return this;
-  }
+  BytesContainer addSingleByte(final int data) =>
+      BytesContainer.fromList(list..add(data));
 
-  BytesContainer add(final BytesContainer data) {
-    bytes.addAll(data.bytes);
-    return this;
-  }
+  BytesContainer add(final BytesContainer data) =>
+      BytesContainer.fromList(list..addAll(data.list));
 
   BytesContainer sublist(final int start, [final int? end]) =>
       BytesContainer(bytes.sublist(start, end));
