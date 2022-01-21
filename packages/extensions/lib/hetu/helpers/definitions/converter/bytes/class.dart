@@ -12,6 +12,9 @@ class BytesContainer {
     bytes.addAll(data.bytes);
   }
 
+  BytesContainer sublist(final int start, [final int? end]) =>
+      BytesContainer(bytes.sublist(start, end));
+
   BytesContainer clone() => BytesContainer(bytes.sublist(0));
 
   int get length => bytes.length;
