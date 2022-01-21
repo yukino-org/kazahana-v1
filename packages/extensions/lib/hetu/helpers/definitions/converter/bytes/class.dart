@@ -8,5 +8,11 @@ class BytesContainer {
 
   final Uint8List bytes;
 
+  void add(final BytesContainer data) {
+    bytes.addAll(data.bytes);
+  }
+
+  BytesContainer clone() => BytesContainer(bytes.sublist(0));
+
   List<int> get list => bytes.toList();
 }

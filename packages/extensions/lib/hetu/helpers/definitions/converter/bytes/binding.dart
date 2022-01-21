@@ -35,6 +35,28 @@ class BytesContainerClassBinding extends HTExternalClass {
     final BytesContainer element = object as BytesContainer;
 
     switch (varName) {
+      case 'add':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              element.add(positionalArgs[0] as BytesContainer),
+        );
+
+      case 'clone':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              element.clone(),
+        );
+
       case 'list':
         return element.list;
 

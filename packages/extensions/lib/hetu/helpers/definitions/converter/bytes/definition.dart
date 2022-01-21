@@ -5,6 +5,12 @@ final HetuHelperClass hBytesContainerClass = HetuHelperClass(
   definition: BytesContainerClassBinding(),
   declaration: '''
 external class BytesContainer {
+  /// (BytesContainer) => void
+  fun add(data);
+
+  /// () => BytesContainer
+  fun clone();
+
   /// int[]
   get list;
 
