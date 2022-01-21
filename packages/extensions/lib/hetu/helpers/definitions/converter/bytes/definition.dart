@@ -11,6 +11,9 @@ external class BytesContainer {
   /// () => BytesContainer
   fun clone();
 
+  /// int
+  get length;
+
   /// int[]
   get list;
 

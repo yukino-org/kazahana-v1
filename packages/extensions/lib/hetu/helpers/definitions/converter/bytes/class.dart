@@ -14,5 +14,7 @@ class BytesContainer {
 
   BytesContainer clone() => BytesContainer(bytes.sublist(0));
 
+  int get length => bytes.length;
+
   List<int> get list => bytes.toList();
 }

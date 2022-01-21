@@ -57,6 +57,9 @@ class BytesContainerClassBinding extends HTExternalClass {
               element.clone(),
         );
 
+      case 'length':
+        return element.length;
+
       case 'list':
         return element.list;
 
