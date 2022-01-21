@@ -9,6 +9,14 @@ external class Crypto {
   static fun md5Convert(data);
 
   /// ({
+  ///   input: BytesContainer,
+  ///   key: BytesContainer,
+  ///   iv: BytesContainer?,
+  ///   aesMode: 'cbc' | 'cfb64' | 'ctr' | 'ecb' | 'ofb64Gctr' | 'ofb64' | 'sic' = 'sic',
+  /// }) => BytesContainer;
+  static fun aesEncrypt({ input, key, iv, aesMode });
+
+  /// ({
   ///   encrypted: BytesContainer,
   ///   key: BytesContainer,
   ///   iv: BytesContainer?,

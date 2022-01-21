@@ -26,6 +26,27 @@ class CryptoClassBinding extends HTExternalClass {
               Crypto.md5Convert(positionalArgs[0] as BytesContainer),
         );
 
+      case 'Crypto.aesEncrypt':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              Crypto.aesEncrypt(
+            input: namedArgs['input'] as BytesContainer,
+            key: namedArgs['key'] as BytesContainer,
+            iv: namedArgs['iv'] as BytesContainer?,
+            aesMode: namedArgs['aesMode'] is String
+                ? EnumUtils.find(
+                    crypto.AESMode.values,
+                    namedArgs['aesMode'] as String,
+                  )
+                : Crypto.defaultAesMode,
+          ),
+        );
+
       case 'Crypto.aesDecrypt':
         return createHTExternalFunction(
           (
