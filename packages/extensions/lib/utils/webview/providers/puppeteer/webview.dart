@@ -10,11 +10,18 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
   }) : super(provider: provider);
 
   Page? page;
+  final Map<String, String> headers = <String, String>{};
 
   @override
   Future<void> initialize() async {
     page = await provider.context!.newPage();
+
     await page!.setUserAgent(HttpUtils.userAgent);
+
+    await page!.setRequestInterception(true);
+    page!.onRequest.listen((final Request request) {
+      request.continueRequest(headers: headers);
+    });
 
     await super.initialize();
   }
@@ -111,7 +118,10 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
   Future<void> addExtraHeaders(final Map<String, String> headers) async {
     beforeMethod();
 
-    await page!.setExtraHTTPHeaders(headers);
+    headers.forEach((final String key, final String value) {
+      this.headers[key] = value;
+    });
+    // await page!.setExtraHTTPHeaders(headers);
   }
 
   @override
