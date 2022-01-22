@@ -26,8 +26,10 @@ class Webview {
 
   Future<String?> getHtml() => instance.getHtml();
 
-  Future<void> addExtraHeaders(final Map<String, String> headers) =>
+  void addExtraHeaders(final Map<String, String?> headers) =>
       instance.addExtraHeaders(headers);
+
+  void removeAllExtraHeaders() => instance.removeAllExtraHeaders();
 
   Future<void> dispose() => instance.dispose();
 

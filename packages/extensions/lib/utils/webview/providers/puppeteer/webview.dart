@@ -10,7 +10,6 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
   }) : super(provider: provider);
 
   Page? page;
-  final Map<String, String> headers = <String, String>{};
 
   @override
   Future<void> initialize() async {
@@ -112,16 +111,6 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
       (await page!.cookies())
           .map((final Cookie x) => page!.deleteCookie(x.name)),
     );
-  }
-
-  @override
-  Future<void> addExtraHeaders(final Map<String, String> headers) async {
-    beforeMethod();
-
-    headers.forEach((final String key, final String value) {
-      this.headers[key] = value;
-    });
-    // await page!.setExtraHTTPHeaders(headers);
   }
 
   @override

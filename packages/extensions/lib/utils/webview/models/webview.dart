@@ -15,6 +15,8 @@ abstract class Webview<T extends WebviewProvider<T>> {
 
   final T provider;
 
+  final Map<String, String> headers = <String, String>{};
+
   bool ready = false;
   bool disposed = false;
   int lastUsed = DateTime.now().millisecondsSinceEpoch;
@@ -53,7 +55,21 @@ abstract class Webview<T extends WebviewProvider<T>> {
 
   Future<String?> getHtml();
 
-  Future<void> addExtraHeaders(final Map<String, String> headers);
+  void addExtraHeaders(final Map<String, String?> headers) {
+    beforeMethod();
+
+    headers.forEach((final String key, final String? value) {
+      if (value == null) {
+        this.headers.remove(key);
+      } else {
+        this.headers[key] = value;
+      }
+    });
+  }
+
+  void removeAllExtraHeaders() {
+    headers.clear();
+  }
 
   @mustCallSuper
   Future<void> dispose() async {

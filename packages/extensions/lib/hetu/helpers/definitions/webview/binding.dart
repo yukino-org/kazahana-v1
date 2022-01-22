@@ -124,7 +124,7 @@ class WebviewClassBinding extends HTExternalClass {
             final List<HTType> typeArgs = const <HTType>[],
           }) =>
               webview.addExtraHeaders(
-            parseHetuReturnedMap(positionalArgs[0]).cast<String, String>(),
+            parseHetuReturnedMap(positionalArgs[0]).cast<String, String?>(),
           ),
         );
 

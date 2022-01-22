@@ -26,8 +26,11 @@ external class Webview {
   /// () => DartFuture<void>
   fun clearAllCookies();
 
-  /// (Map<string, string>) => DartFuture<void>
+  /// (Map<string, string?>) => void
   fun addExtraHeaders(headers);
+
+  /// () => void
+  fun removeAllExtraHeaders();
   
   /// In the [check] function, returning `true` = Needs to be bypassed | `false` = Has been bypassed
   /// ((string) => bool) => DartFuture<void>
