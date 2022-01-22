@@ -115,6 +115,19 @@ class WebviewClassBinding extends HTExternalClass {
               webview.clearAllCookies(),
         );
 
+      case 'addExtraHeaders':
+        return createHTExternalFunction(
+          (
+            final HTEntity entity, {
+            final List<dynamic> positionalArgs = const <dynamic>[],
+            final Map<String, dynamic> namedArgs = const <String, dynamic>{},
+            final List<HTType> typeArgs = const <HTType>[],
+          }) =>
+              webview.addExtraHeaders(
+            parseHetuReturnedMap(positionalArgs[0]).cast<String, String>(),
+          ),
+        );
+
       case 'dispose':
         return createHTExternalFunction(
           (

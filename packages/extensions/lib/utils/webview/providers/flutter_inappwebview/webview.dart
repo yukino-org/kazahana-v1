@@ -42,6 +42,8 @@ class FlutterWebviewWebview extends Webview<FlutterWebviewProvider> {
   HeadlessInAppWebView? webview;
   FlutterWebviewEventer? eventer = FlutterWebviewEventer();
 
+  final Map<String, String> headers = <String, String>{};
+
   @override
   Future<void> initialize() async {
     webview = HeadlessInAppWebView(
@@ -110,7 +112,12 @@ class FlutterWebviewWebview extends Webview<FlutterWebviewProvider> {
         break;
     }
 
-    await webview!.webViewController.loadUrl(urlRequest: URLRequest(url: uri));
+    await webview!.webViewController.loadUrl(
+      urlRequest: URLRequest(
+        url: uri,
+        headers: headers,
+      ),
+    );
 
     return future.future..timeout(_futureTimeout);
   }
@@ -157,6 +164,15 @@ class FlutterWebviewWebview extends Webview<FlutterWebviewProvider> {
     beforeMethod();
 
     await provider.cookies!.deleteAllCookies();
+  }
+
+  @override
+  Future<void> addExtraHeaders(final Map<String, String> headers) async {
+    beforeMethod();
+
+    headers.forEach((final String key, final String value) {
+      this.headers[key] = value;
+    });
   }
 
   @override

@@ -108,6 +108,13 @@ class PuppeteerWebview extends Webview<PuppeteerProvider> {
   }
 
   @override
+  Future<void> addExtraHeaders(final Map<String, String> headers) async {
+    beforeMethod();
+
+    await page!.setExtraHTTPHeaders(headers);
+  }
+
+  @override
   Future<void> dispose() async {
     await page?.close();
     page = null;

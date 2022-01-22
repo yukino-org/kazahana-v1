@@ -53,6 +53,8 @@ abstract class Webview<T extends WebviewProvider<T>> {
 
   Future<String?> getHtml();
 
+  Future<void> addExtraHeaders(final Map<String, String> headers);
+
   @mustCallSuper
   Future<void> dispose() async {
     if (!disposed) {
