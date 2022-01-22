@@ -59,10 +59,10 @@ abstract class Webview<T extends WebviewProvider<T>> {
     beforeMethod();
 
     headers.forEach((final String key, final String? value) {
-      if (value == null) {
-        this.headers.remove(key);
-      } else {
+      if (value is String) {
         this.headers[key] = value;
+      } else {
+        this.headers.remove(key);
       }
     });
   }
