@@ -228,9 +228,11 @@ packages:
   devx:
     dependency: "direct dev"
     description:
-      path: "packages/devx"
-      relative: true
-    source: path
+      path: "."
+      ref: devx
+      resolved-ref: "96017f7b512cf18c7d227e8a46b4b308377b646d"
+      url: "git://github.com/yukino-app/packages.git"
+    source: git
     version: "0.0.0"
   encrypt:
     dependency: transitive
@@ -242,10 +244,12 @@ packages:
   extensions:
     dependency: "direct main"
     description:
-      path: "packages/extensions"
-      relative: true
-    source: path
-    version: "0.0.16"
+      path: "."
+      ref: extensions
+      resolved-ref: e76c4d7f199ac67fef0410d6913298abd041e3ab
+      url: "git://github.com/yukino-app/packages.git"
+    source: git
+    version: "1.0.3"
   ffi:
     dependency: transitive
     description:
@@ -630,11 +634,9 @@ packages:
   protocol_registry:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "885fc4bdaf6a60e5fd27013b876a9d6bec3addc2"
-      resolved-ref: "885fc4bdaf6a60e5fd27013b876a9d6bec3addc2"
-      url: "https://github.com/zyrouge/dart_protocol_registry.git"
-    source: git
+      name: protocol_registry
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.5"
   pub_semver:
     dependency: transitive
@@ -840,9 +842,11 @@ packages:
   utilx:
     dependency: "direct main"
     description:
-      path: "packages/utilx"
-      relative: true
-    source: path
+      path: "."
+      ref: utilx
+      resolved-ref: "8513c7844dc2f8899d0378f3d4c1a44b29533af1"
+      url: "git://github.com/yukino-app/packages.git"
+    source: git
     version: "0.0.0"
   vector_math:
     dependency: transitive
@@ -924,12 +928,10 @@ packages:
   window_manager:
     dependency: "direct main"
     description:
-      path: "."
-      ref: a051716c04a05e41b0415ea43ba8dafa297e0d5b
-      resolved-ref: a051716c04a05e41b0415ea43ba8dafa297e0d5b
-      url: "https://github.com/leanflutter/window_manager.git"
-    source: git
-    version: "0.0.3"
+      name: window_manager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   xdg_directories:
     dependency: transitive
     description:
