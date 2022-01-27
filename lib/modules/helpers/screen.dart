@@ -150,7 +150,8 @@ abstract class Screen {
   static Future<void> close() async {
     if (!AppState.isDesktop) return;
 
-    await WindowManager.instance.terminate();
+    // Hopefully this works
+    exit(0);
   }
 
   static Future<void> focus() async {
