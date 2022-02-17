@@ -6,6 +6,8 @@
 
 # Yukino
 
+> The development of this application has been paused temporarily.
+
 An extension-based Anime and Manga client. The project's name "Yukino" meaning "Snow" was named after the character "Yukino Yukinoshita" from the anime "Yahari Ore no Seishun Love Comedy wa Machigatteiru".
 
 The developer of this application does not have any affiliation with any of the third-party sources.
