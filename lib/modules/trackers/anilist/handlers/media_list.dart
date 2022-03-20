@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
-import 'package:extensions/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:tenka/tenka.dart';
+import 'package:utilx/utils.dart';
 import './fuzzy_date.dart';
 import '../../../../ui/components/trackers/detailed_item.dart';
 import '../../../../ui/pages/store_page/trackers_page/anilist_page/edit_modal.dart';
@@ -184,7 +184,7 @@ mutation (
           total: media.episodes ?? media.chapters,
           startedAt: startedAt,
           completedAt: completedAt,
-          volumes: media.type == ExtensionType.manga
+          volumes: media.type == TenkaType.manga
               ? VolumesProgress(
                   progress: progressVolumes,
                   total: media.volumes,
@@ -266,7 +266,7 @@ query (
 const int _perPage = 50;
 
 Future<List<AniListMediaList>> getMediaList(
-  final ExtensionType type,
+  final TenkaType type,
   final AniListMediaListStatus status,
   final int page,
 ) async {
@@ -286,20 +286,23 @@ query (
 
   final AniListUserInfo user = await AniListUserInfo.getUserInfo();
 
-  final dynamic res = await AnilistManager.request(
+  final Map<dynamic, dynamic> res = await AnilistManager.request(
     RequestBody(
       query: query,
       variables: <dynamic, dynamic>{
         'userId': user.id,
-        'type': type.type.toUpperCase(),
+        'type': type.name.toUpperCase(),
         'status': status.status,
         'page': page,
         'perpage': _perPage,
       },
     ),
-  );
+  ) as Map<dynamic, dynamic>;
 
-  return (res['data']['Page']['mediaList'] as List<dynamic>)
+  return MapUtils.get<List<dynamic>>(
+    res,
+    <dynamic>['data', 'Page', 'mediaList'],
+  )
       .cast<Map<dynamic, dynamic>>()
       .map((final Map<dynamic, dynamic> x) => AniListMediaList.fromJson(x))
       .toList();

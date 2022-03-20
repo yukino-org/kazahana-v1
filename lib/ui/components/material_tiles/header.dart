@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../modules/helpers/ui.dart';
 
 class MaterialHeaderTile extends StatelessWidget {

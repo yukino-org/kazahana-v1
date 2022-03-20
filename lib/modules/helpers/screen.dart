@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:utilx/utilities/window.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:window_manager/window_manager.dart';
 import '../app/state.dart';
@@ -150,19 +149,14 @@ abstract class Screen {
   static Future<void> close() async {
     if (!AppState.isDesktop) return;
 
-    // Hopefully this works
-    exit(0);
+    await WindowManager.instance.close();
   }
 
   static Future<void> focus() async {
     if (!AppState.isDesktop) return;
 
-    WindowManager.instance.show();
-    if (Platform.isLinux || Platform.isMacOS) {
-      WindowManager.instance.focus();
-    } else {
-      await WindowUtils.focus();
-    }
+    await WindowManager.instance.show();
+    await WindowManager.instance.focus();
   }
 
   static Future<ScreenState?> enterFullscreen() async {

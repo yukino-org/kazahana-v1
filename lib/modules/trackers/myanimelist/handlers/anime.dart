@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:extensions/extensions.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
+import 'package:tenka/tenka.dart';
+import 'package:utilx/utils.dart';
 import '../../provider.dart';
 import '../myanimelist.dart';
 

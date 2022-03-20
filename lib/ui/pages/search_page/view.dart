@@ -96,9 +96,9 @@ class _SearchPageState extends State<SearchPage> {
                   TextField(
                     controller: controller.searchTextController,
                     decoration: InputDecoration(
-                      labelText: controller.currentPlugin != null
+                      labelText: controller.currentModule != null
                           ? Translator.t.searchInPlugin(
-                              controller.currentPlugin!.plugin.name,
+                              controller.currentModule!.name,
                             )
                           : (controller.args?.autoSearch == true)
                               ? Translator.t.selectAPluginToGetResults()
@@ -107,7 +107,7 @@ class _SearchPageState extends State<SearchPage> {
                     onSubmitted: (final String terms) async {
                       await controller.search();
                     },
-                    enabled: controller.currentPlugin != null,
+                    enabled: controller.currentModule != null,
                   ),
                   SizedBox(
                     height: remToPx(1.25),
@@ -158,10 +158,10 @@ class _SearchPageState extends State<SearchPage> {
                                       onTap: () {
                                         Navigator.of(context).pushNamed(
                                           ParsedRouteInfo(
-                                            x.plugin.type.route,
-                                            x.plugin.type.constructQuery(
+                                            x.module.type.route,
+                                            x.module.type.constructQuery(
                                               src: x.info.url,
-                                              plugin: x.plugin.plugin.id,
+                                              plugin: x.module.id,
                                             ),
                                           ).toString(),
                                         );
@@ -229,7 +229,7 @@ class _SearchPageState extends State<SearchPage> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    x.plugin.plugin.name,
+                                                    x.module.name,
                                                     style: TextStyle(
                                                       color: Theme.of(context)
                                                           .primaryColor,

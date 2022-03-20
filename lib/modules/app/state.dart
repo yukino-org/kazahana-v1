@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:extensions/hetu/helpers/definitions/http/client.dart';
+import 'package:tenka/tenka.dart';
 import '../database/database.dart';
 import '../state/eventer.dart';
 
@@ -7,20 +7,21 @@ abstract class AppState {
   static ReactiveEventer<SettingsSchema>? _settings;
 
   static Future<void> initialize() async {
-    _settings = ReactiveEventer<SettingsSchema>(SettingsBox.get())
-      ..subscribe(
-        (final SettingsSchema current, final SettingsSchema previous) {
-          if (current.developers.ignoreBadHttpCertificate !=
-              previous.developers.ignoreBadHttpCertificate) {
-            HetuHttpClient.initialize(
-              HttpClientOptions(
-                ignoreSSLCertificate:
-                    current.developers.ignoreBadHttpCertificate,
-              ),
-            );
-          }
-        },
-      );
+    // TODO: Fix this
+    // _settings = ReactiveEventer<SettingsSchema>(SettingsBox.get())
+    //   ..subscribe(
+    //     (final SettingsSchema current, final SettingsSchema previous) {
+    //       if (current.developers.ignoreBadHttpCertificate !=
+    //           previous.developers.ignoreBadHttpCertificate) {
+    //         TenkaRuntimeHttpClient.initialize(
+    //           HttpClientOptions(
+    //             ignoreSSLCertificate:
+    //                 current.developers.ignoreBadHttpCertificate,
+    //           ),
+    //         );
+    //       }
+    //     },
+    //   );
   }
 
   static ReactiveEventer<SettingsSchema> get settings => _settings!;

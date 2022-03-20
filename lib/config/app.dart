@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 abstract class Config {
-  static const String name = 'Yukino';
-  static const String protocol = 'yukino-app';
+  static const String name = 'Kazahana';
+  static const String protocol = 'kazahana';
   static late String code;
   static late String version;
 
@@ -21,7 +21,7 @@ abstract class Config {
   }
 
   static const String repoAuthor = 'yukino-app';
-  static const String repoName = 'yukino';
+  static const String repoName = 'kazahana';
 
   static const String storeURL =
       'https://raw.githubusercontent.com/$repoAuthor/extensions-store/dist/extensions.json';
@@ -31,8 +31,8 @@ abstract class Config {
 
   static const String gitHubURL = 'https://github.com/$repoAuthor/$repoName';
   static const String gitHubIssuesURL = '$gitHubURL/issues';
-  static const String websiteURL = 'https://yukino-app.github.io';
-  static const String discordURL = 'https://yukino-app.github.io/discord';
-  static const String wikiURL = 'https://yukino-app.github.io/wiki';
-  static const String patreonURL = 'https://yukino-app.github.io/patreon';
+  static const String websiteURL = 'https://yukino-org.github.io';
+  static const String discordURL = 'https://yukino-org.github.io/discord';
+  static const String wikiURL = 'https://yukino-org.github.io/wiki';
+  static const String patreonURL = 'https://yukino-org.github.io/patreon';
 }

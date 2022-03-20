@@ -1,5 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import '../../../config/defaults.dart';
 import '../../../modules/helpers/ui.dart';
@@ -17,7 +17,7 @@ class MediaList extends StatefulWidget {
     final Key? key,
   }) : super(key: key);
 
-  final ExtensionType type;
+  final TenkaType type;
   final dynamic status;
   final Future<List<dynamic>> Function(int page) getMediaList;
   final Widget Function(BuildContext, dynamic) getItemCard;

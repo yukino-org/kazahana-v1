@@ -1,4 +1,4 @@
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import '../state/eventer.dart';
 
@@ -56,7 +56,7 @@ class DetailedInfo {
 
   final String title;
   final String? description;
-  final ExtensionType type;
+  final TenkaType type;
   final String? thumbnail;
   final String? banner;
   final String? status;

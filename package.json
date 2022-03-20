@@ -1,7 +1,7 @@
 {
-    "name": "@yukino-app/cli",
+    "name": "@yukino-org/kazahana-cli",
     "version": "0.0.0",
-    "description": "🔧 Yukino's handy command-line interface",
+    "description": "🔧 Kazahana's handy command-line interface",
     "private": true,
     "author": "Zyrouge",
     "license": "GPL-3.0",
@@ -33,10 +33,7 @@
         "windows:build:installer": "ts-node ./cli/commands/windows/build/installer/run.ts",
         "windows:build:zip": "ts-node ./cli/commands/windows/build/zip/run.ts"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/yukino-app/yukino.git"
-    },
+    "repository": "https://github.com/yukino-org/kazahana.git",
     "devDependencies": {
         "@types/adm-zip": "^0.4.34",
         "@types/archiver": "^5.1.1",
@@ -64,7 +61,6 @@
         "fast-glob": "^3.2.7",
         "fs-extra": "^10.0.0",
         "got": "^11.8.2",
-        "i": "^0.3.7",
         "inquirer": "^8.2.0",
         "jimp": "^0.16.1",
         "log-symbols": "^4.1.0",

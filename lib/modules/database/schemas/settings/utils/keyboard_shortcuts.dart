@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../helpers/keyboard.dart';
 
 abstract class KeyboardShortcutsSchemaUtils {

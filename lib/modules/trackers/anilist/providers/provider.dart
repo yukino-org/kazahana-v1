@@ -1,5 +1,5 @@
-import 'package:extensions/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import '../../../database/database.dart';
 import '../../../helpers/assets.dart';
 import '../../../translator/translator.dart';
@@ -11,9 +11,9 @@ abstract class AniListProvider {
       TrackerProvider<AnimeProgress>(
     name: Translator.t.anilist(),
     image: Assets.anilistLogo,
-    getComputed: _getComputed(ExtensionType.anime),
-    getComputables: _getComputables(ExtensionType.anime),
-    resolveComputed: _resolveComputable(ExtensionType.anime),
+    getComputed: _getComputed(TenkaType.anime),
+    getComputables: _getComputables(TenkaType.anime),
+    resolveComputed: _resolveComputable(TenkaType.anime),
     updateComputed: (
       final ResolvedTrackerItem media,
       final AnimeProgress progress,
@@ -57,8 +57,8 @@ abstract class AniListProvider {
       }
     },
     isLoggedIn: _isLoggedIn,
-    isEnabled: _isEnabled(ExtensionType.anime),
-    setEnabled: _setEnabled(ExtensionType.anime),
+    isEnabled: _isEnabled(TenkaType.anime),
+    setEnabled: _setEnabled(TenkaType.anime),
     getDetailedPage: _getDetailedPage,
     isItemSameKind: _isItemSameKind,
   );
@@ -67,9 +67,9 @@ abstract class AniListProvider {
       TrackerProvider<MangaProgress>(
     name: Translator.t.anilist(),
     image: Assets.anilistLogo,
-    getComputed: _getComputed(ExtensionType.manga),
-    getComputables: _getComputables(ExtensionType.manga),
-    resolveComputed: _resolveComputable(ExtensionType.manga),
+    getComputed: _getComputed(TenkaType.manga),
+    getComputables: _getComputables(TenkaType.manga),
+    resolveComputed: _resolveComputable(TenkaType.manga),
     updateComputed: (
       final ResolvedTrackerItem media,
       final MangaProgress progress,
@@ -115,8 +115,8 @@ abstract class AniListProvider {
       }
     },
     isLoggedIn: _isLoggedIn,
-    isEnabled: _isEnabled(ExtensionType.manga),
-    setEnabled: _setEnabled(ExtensionType.manga),
+    isEnabled: _isEnabled(TenkaType.manga),
+    setEnabled: _setEnabled(TenkaType.manga),
     getDetailedPage: _getDetailedPage,
     isItemSameKind: _isItemSameKind,
   );
@@ -130,7 +130,7 @@ abstract class AniListProvider {
     String plugin, {
     bool force,
   }) _getComputed(
-    final ExtensionType mediaType,
+    final TenkaType mediaType,
   ) =>
       (
         final String title,
@@ -179,7 +179,7 @@ abstract class AniListProvider {
 
   static Future<List<ResolvableTrackerItem>> Function(String title)
       _getComputables(
-    final ExtensionType mediaType,
+    final TenkaType mediaType,
   ) =>
           (final String title) async {
             final List<AniListMedia> media =
@@ -200,7 +200,7 @@ abstract class AniListProvider {
     String plugin,
     ResolvableTrackerItem item,
   ) _resolveComputable(
-    final ExtensionType mediaType,
+    final TenkaType mediaType,
   ) =>
       (
         final String title,
@@ -224,19 +224,19 @@ abstract class AniListProvider {
       };
 
   static bool Function(String, String) _isEnabled(
-    final ExtensionType mediaType,
+    final TenkaType mediaType,
   ) =>
       (final String title, final String plugin) =>
-          CacheBox.get('anilist-${mediaType.type}-$title-$plugin-disabled') ==
+          CacheBox.get('anilist-${mediaType.name}-$title-$plugin-disabled') ==
           null;
 
   static Future<void> Function(String, String, bool) _setEnabled(
-    final ExtensionType mediaType,
+    final TenkaType mediaType,
   ) =>
 
       // ignore: avoid_positional_boolean_parameters
       (final String title, final String plugin, final bool isEnabled) async {
-        final String key = 'anilist-${mediaType.type}-$title-$plugin-disabled';
+        final String key = 'anilist-${mediaType.name}-$title-$plugin-disabled';
         isEnabled ? CacheBox.delete(key) : await CacheBox.saveKV(key, null, 0);
       };
 
@@ -253,6 +253,8 @@ abstract class AniListProvider {
     final ResolvedTrackerItem current,
     final ResolvedTrackerItem unknown,
   ) =>
+      current.info is AniListMediaList &&
       unknown.info is AniListMediaList &&
-      unknown.info.media.id == current.info.media.id;
+      (unknown.info as AniListMediaList).media.id ==
+          (current.info as AniListMediaList).media.id;
 }

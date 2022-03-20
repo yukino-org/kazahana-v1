@@ -1,6 +1,6 @@
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../../modules/helpers/ui.dart';
 import '../../../../../modules/trackers/anilist/anilist.dart';
 import '../../../../../modules/translator/translator.dart';
@@ -19,13 +19,13 @@ class PageArguments {
     }
 
     return PageArguments(
-      type: ExtensionType.values.firstWhere(
-        (final ExtensionType type) => type.type == json['type'],
+      type: TenkaType.values.firstWhere(
+        (final TenkaType type) => type.type == json['type'],
       ),
     );
   }
 
-  ExtensionType type;
+  TenkaType type;
 
   Map<String, String> toJson() => <String, String>{
         'type': type.type,

@@ -6,28 +6,28 @@
 
 An extension-based Anime and Manga client.
 
-[![Downloads](https://img.shields.io/github/downloads/yukino-app/yukino/total.svg?style=flat)](https://github.com/yukino-app/yukino/releases/)
-[![Latest release](https://img.shields.io/github/release/yukino-app/yukino.svg?style=flat)](https://github.com/yukino-app/yukino/releases/)
-[![Code Analysis](https://github.com/yukino-app/yukino/actions/workflows/code-analysis.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/code-analysis.yml)
-[![Android (Apk)](https://github.com/yukino-app/yukino/actions/workflows/android-build.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/android-build.yml)
-[![Linux (AppImage & tar)](https://github.com/yukino-app/yukino/actions/workflows/linux-build.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/linux-build.yml)
-[![MacOS (Dmg)](https://github.com/yukino-app/yukino/actions/workflows/macos-build.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/macos-build.yml)
-[![Windows (Zip & Installer)](https://github.com/yukino-app/yukino/actions/workflows/windows-build.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/windows-build.yml)
-[![iOS (Ipa)](https://github.com/yukino-app/yukino/actions/workflows/ios-build.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/ios-build.yml)
+[![Downloads](https://img.shields.io/github/downloads/yukino-org/kazahana/total.svg?style=flat)](https://github.com/yukino-org/kazahana/releases/)
+[![Latest release](https://img.shields.io/github/release/yukino-org/kazahana.svg?style=flat)](https://github.com/yukino-org/kazahana/releases/)
+[![Code Analysis](https://github.com/yukino-org/kazahana/actions/workflows/code-analysis.yml/badge.svg)](https://github.com/yukino-org/kazahana/actions/workflows/code-analysis.yml)
+[![Android (Apk)](https://github.com/yukino-org/kazahana/actions/workflows/android-build.yml/badge.svg)](https://github.com/yukino-org/kazahana/actions/workflows/android-build.yml)
+[![Linux (AppImage & tar)](https://github.com/yukino-org/kazahana/actions/workflows/linux-build.yml/badge.svg)](https://github.com/yukino-org/kazahana/actions/workflows/linux-build.yml)
+[![MacOS (Dmg)](https://github.com/yukino-org/kazahana/actions/workflows/macos-build.yml/badge.svg)](https://github.com/yukino-org/kazahana/actions/workflows/macos-build.yml)
+[![Windows (Zip & Installer)](https://github.com/yukino-org/kazahana/actions/workflows/windows-build.yml/badge.svg)](https://github.com/yukino-org/kazahana/actions/workflows/windows-build.yml)
+[![iOS (Ipa)](https://github.com/yukino-org/kazahana/actions/workflows/ios-build.yml/badge.svg)](https://github.com/yukino-org/kazahana/actions/workflows/ios-build.yml)
 
 ## Download
 
-You can download the latest version of app from the [releases](https://github.com/yukino-app/yukino/releases) tab.
+You can download the latest version of app from the [releases](https://github.com/yukino-org/kazahana/releases) tab.
 
 ## Links
 
--   [Website](https://yukino-app.github.io/)
--   [Wiki](https://yukino-app.github.io/wiki/)
--   [Discord](https://yukino-app.github.io/discord/)
--   [GitHub](https://github.com/yukino-app/yukino/)
+-   [Website](https://yukino-org.github.io/)
+-   [Wiki](https://yukino-org.github.io/wiki/)
+-   [Discord](https://yukino-org.github.io/discord/)
+-   [GitHub](https://github.com/yukino-org/kazahana/)
 -   [Patreon](https://patreon.com/yukino_app/)
 
-For any queries, contact me at [yukino-app@hotmail.com](mailto:yukino-app@hotmail.com).
+For any queries, contact me at [yukino-org@hotmail.com](mailto:yukino-org@hotmail.com).
 
 ## Branding
 
@@ -61,8 +61,8 @@ For any queries, contact me at [yukino-app@hotmail.com](mailto:yukino-app@hotmai
 
 Ways to contribute to this project:
 
--   Submitting bugs and feature requests at [issues](https://github.com/yukino-app/yukino/issues).
--   Opening [pull requests](https://github.com/yukino-app/yukino/pulls) containing bug fixes, new features, etc.
+-   Submitting bugs and feature requests at [issues](https://github.com/yukino-org/kazahana/issues).
+-   Opening [pull requests](https://github.com/yukino-org/kazahana/pulls) containing bug fixes, new features, etc.
 
 ## License
 

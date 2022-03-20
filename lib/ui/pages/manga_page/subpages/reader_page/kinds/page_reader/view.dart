@@ -1,4 +1,4 @@
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import './controller.dart';
 import '../../../../../../../config/defaults.dart';

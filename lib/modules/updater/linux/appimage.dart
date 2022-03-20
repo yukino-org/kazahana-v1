@@ -24,10 +24,10 @@ class LinuxAppImageUpdater with PlatformUpdater {
 
     final String newExeName = update.path.split('/').last;
 
-    final File newExeFile = File(path.join(PathDirs.temp, newExeName));
+    final File newExeFile = File(path.join(PathDirs.tmp, newExeName));
 
     if (!(await newExeFile.exists())) {
-      final File partFile = File(path.join(PathDirs.temp, '$newExeName.part'));
+      final File partFile = File(path.join(PathDirs.tmp, '$newExeName.part'));
 
       if (!(await partFile.exists())) {
         await partFile.create(recursive: true);

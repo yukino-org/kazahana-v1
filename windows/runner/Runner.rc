@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "io.github.yukino_app" "\0"
-            VALUE "FileDescription", "Yukino" "\0"
+            VALUE "CompanyName", "io.github.yukino_org" "\0"
+            VALUE "FileDescription", "kazahana" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "yukino_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 io.github.yukino_app. All rights reserved." "\0"
-            VALUE "OriginalFilename", "yukino_app.exe" "\0"
-            VALUE "ProductName", "yukino_app" "\0"
+            VALUE "InternalName", "kazahana" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 Yukino Org. All rights reserved." "\0"
+            VALUE "OriginalFilename", "kazahana.exe" "\0"
+            VALUE "ProductName", "kazahana" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

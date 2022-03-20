@@ -1,7 +1,8 @@
+// TODO: do this
 export const Repos = {
     extensionsStore: {
         repo: {
-            owner: "yukino-app",
+            owner: "yukino-org",
             repo: "extensions-store",
         },
         commitsApiURL() {

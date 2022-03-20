@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 
 part 'preferences.g.dart';
 

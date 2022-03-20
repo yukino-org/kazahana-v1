@@ -1,8 +1,8 @@
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../config/defaults.dart';
-import '../../../../modules/extensions/extensions.dart';
+import '../../../../modules/tenka.dart';
 import '../../../../modules/helpers/ui.dart';
 import '../../../../modules/translator/translator.dart';
 import '../../../models/view.dart';
@@ -21,23 +21,23 @@ class SearchExtensionsPopUp extends StatefulWidget {
 }
 
 class _SearchExtensionsPopUpState extends State<SearchExtensionsPopUp> {
-  late ExtensionType activeType =
-      widget.controller.currentPlugin?.type ?? ExtensionType.anime;
+  late TenkaType activeType =
+      widget.controller.currentModule?.type ?? TenkaType.anime;
 
   Widget buildListTile({
     required final BuildContext context,
-    required final CurrentPlugin plugin,
+    required final TenkaMetadata module,
   }) =>
       Material(
         type: MaterialType.transparency,
         child: RadioListTile<String>(
-          title: Text(plugin.plugin.name),
-          value: plugin.plugin.id,
-          groupValue: widget.controller.currentPlugin?.plugin.id,
+          title: Text(module.name),
+          value: module.id,
+          groupValue: widget.controller.currentModule?.id,
           activeColor: Theme.of(context).primaryColor,
           onChanged: (final String? val) async {
-            if (val == plugin.plugin.id) {
-              await widget.controller.setCurrentPlugin(plugin);
+            if (val == module.id) {
+              await widget.controller.setCurrentModule(module);
             }
           },
         ),
@@ -45,9 +45,27 @@ class _SearchExtensionsPopUpState extends State<SearchExtensionsPopUp> {
 
   Widget buildList(
     final BuildContext context,
-    final ExtensionType type,
+    final TenkaType type,
   ) {
-    Widget tile = Center(
+    final List<TenkaMetadata> filtered = TenkaManager
+        .repository.installed.values
+        .where((final TenkaMetadata x) => x.type == type)
+        .toList();
+    if (filtered.isNotEmpty) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: filtered
+            .map(
+              (final TenkaMetadata x) => buildListTile(
+                context: context,
+                module: x,
+              ),
+            )
+            .toList(),
+      );
+    }
+
+    return Center(
       child: Padding(
         padding: EdgeInsets.only(
           left: remToPx(1),
@@ -63,48 +81,6 @@ class _SearchExtensionsPopUpState extends State<SearchExtensionsPopUp> {
         ),
       ),
     );
-
-    switch (type) {
-      case ExtensionType.anime:
-        if (ExtensionsManager.animes.isNotEmpty) {
-          tile = Column(
-            mainAxisSize: MainAxisSize.min,
-            children: ExtensionsManager.animes.values
-                .map(
-                  (final AnimeExtractor x) => buildListTile(
-                    context: context,
-                    plugin: CurrentPlugin(
-                      type: ExtensionType.anime,
-                      plugin: x,
-                    ),
-                  ),
-                )
-                .toList(),
-          );
-        }
-        break;
-
-      case ExtensionType.manga:
-        if (ExtensionsManager.mangas.isNotEmpty) {
-          tile = Column(
-            mainAxisSize: MainAxisSize.min,
-            children: ExtensionsManager.mangas.values
-                .map(
-                  (final MangaExtractor x) => buildListTile(
-                    context: context,
-                    plugin: CurrentPlugin(
-                      type: ExtensionType.manga,
-                      plugin: x,
-                    ),
-                  ),
-                )
-                .toList(),
-          );
-        }
-        break;
-    }
-
-    return tile;
   }
 
   Widget buildTitle(final BuildContext context) {
@@ -112,10 +88,10 @@ class _SearchExtensionsPopUpState extends State<SearchExtensionsPopUp> {
 
     final Widget switcher = Row(
       mainAxisSize: isLarge ? MainAxisSize.min : MainAxisSize.max,
-      children: <ExtensionType>[
-        ExtensionType.anime,
-        ExtensionType.manga,
-      ].map((final ExtensionType x) {
+      children: <TenkaType>[
+        TenkaType.anime,
+        TenkaType.manga,
+      ].map((final TenkaType x) {
         final bool isCurrent = x == activeType;
 
         return Padding(
@@ -145,7 +121,7 @@ class _SearchExtensionsPopUpState extends State<SearchExtensionsPopUp> {
                     vertical: remToPx(0.2),
                   ),
                   child: Text(
-                    StringUtils.capitalize(x.type),
+                    StringUtils.capitalize(x.name),
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           color: isCurrent ? Colors.white : null,
                         ),
@@ -201,7 +177,7 @@ class _SearchExtensionsPopUpState extends State<SearchExtensionsPopUp> {
           ],
         ),
         child: View<SearchPageController>(
-          key: ValueKey<ExtensionType>(activeType),
+          key: ValueKey<TenkaType>(activeType),
           controller: widget.controller,
           builder: (
             final BuildContext context,

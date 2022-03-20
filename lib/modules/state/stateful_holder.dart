@@ -1,4 +1,4 @@
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import './states.dart';
 
 class StatefulValueHolder<T> {

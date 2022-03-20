@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../myanimelist.dart';
 
 enum MyAnimeListHomeContentType {

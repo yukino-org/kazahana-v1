@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:extensions/extensions.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:objectbox/objectbox.dart';
+import 'package:tenka/tenka.dart';
 
 part 'schema.g.dart';
 
@@ -16,12 +16,12 @@ class LastSelectedSearchPlugin {
   factory LastSelectedSearchPlugin.fromJson(final Map<dynamic, dynamic> json) =>
       _$LastSelectedSearchPluginFromJson(json.cast<String, dynamic>());
 
-  final ExtensionType? lastSelectedType;
+  final TenkaType? lastSelectedType;
   final String? lastSelectedAnimePlugin;
   final String? lastSelectedMangaPlugin;
 
   LastSelectedSearchPlugin copyWith({
-    final ExtensionType? lastSelectedType,
+    final TenkaType? lastSelectedType,
     final String? lastSelectedAnimePlugin,
     final String? lastSelectedMangaPlugin,
   }) =>

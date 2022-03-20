@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../config/app.dart';
 import '../../../../modules/database/database.dart';
 import '../../../../modules/helpers/assets.dart';

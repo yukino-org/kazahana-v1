@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils/error.dart';
+import 'package:utilx/utils.dart';
 import '../../../config/app.dart';
 import '../../../modules/app/lifecycle.dart';
 import '../../../modules/helpers/http_download.dart';

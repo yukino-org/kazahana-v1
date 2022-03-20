@@ -70,7 +70,8 @@ abstract class AnilistManager {
     final dynamic parsed = res.body.isNotEmpty ? json.decode(res.body) : null;
     if (parsed is Map<dynamic, dynamic> &&
         (parsed['errors'] as List<dynamic>?)?.firstWhereOrNull(
-              (final dynamic x) => x['message'] == 'Invalid token',
+              (final dynamic x) =>
+                  (x as Map<dynamic, dynamic>)['message'] == 'Invalid token',
             ) !=
             null) {
       await auth.deleteToken();

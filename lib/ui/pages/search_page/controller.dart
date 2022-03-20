@@ -1,8 +1,8 @@
 import 'package:collection/collection.dart';
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import '../../../modules/database/database.dart';
-import '../../../modules/extensions/extensions.dart';
+import '../../../modules/tenka.dart';
 import '../../../modules/state/stateful_holder.dart';
 import '../../../modules/translator/translator.dart';
 import '../../models/controller.dart';
@@ -14,24 +14,24 @@ class SearchPageArguments {
   SearchPageArguments({
     final this.terms,
     final this.autoSearch,
-    final this.pluginType,
-    final this.pluginId,
+    final this.moduleType,
+    final this.moduleId,
   });
 
   factory SearchPageArguments.fromJson(final Map<String, String> json) =>
       SearchPageArguments(
         terms: json['terms'],
         autoSearch: json['autoSearch'] == 'true',
-        pluginType: ExtensionType.values.firstWhereOrNull(
-          (final ExtensionType x) => x.type == json['pluginType'],
+        moduleType: TenkaType.values.firstWhereOrNull(
+          (final TenkaType x) => x.name == json['moduleType'],
         ),
-        pluginId: json['pluginId'],
+        moduleId: json['moduleId'],
       );
 
   String? terms;
   bool? autoSearch;
-  ExtensionType? pluginType;
-  String? pluginId;
+  TenkaType? moduleType;
+  String? moduleId;
 
   Map<String, String> toJson() {
     final Map<String, String> json = <String, String>{};
@@ -44,25 +44,25 @@ class SearchPageArguments {
       json['autoSearch'] = autoSearch.toString();
     }
 
-    if (pluginType != null) {
-      json['pluginType'] = pluginType!.type;
+    if (moduleType != null) {
+      json['moduleType'] = moduleType!.name;
     }
 
-    if (pluginId != null) {
-      json['pluginId'] = pluginId!;
+    if (moduleId != null) {
+      json['moduleId'] = moduleId!;
     }
 
     return json;
   }
 }
 
-extension PluginRoutes on ExtensionType {
+extension PluginRoutes on TenkaType {
   String get route {
     switch (this) {
-      case ExtensionType.anime:
+      case TenkaType.anime:
         return RouteNames.animePage;
 
-      case ExtensionType.manga:
+      case TenkaType.manga:
         return RouteNames.mangaPage;
     }
   }
@@ -72,42 +72,23 @@ extension PluginRoutes on ExtensionType {
     required final String src,
   }) {
     switch (this) {
-      case ExtensionType.anime:
+      case TenkaType.anime:
         return AnimePageArguments(src: src, plugin: plugin).toJson();
 
-      case ExtensionType.manga:
+      case TenkaType.manga:
         return MangaPageArguments(src: src, plugin: plugin).toJson();
     }
   }
 }
 
-class CurrentPlugin {
-  const CurrentPlugin({
-    required final this.type,
-    required final this.plugin,
-  });
-
-  final ExtensionType type;
-  final BaseExtractor plugin;
-
-  CurrentPlugin copyWith({
-    final ExtensionType? type,
-    final BaseExtractor? plugin,
-  }) =>
-      CurrentPlugin(
-        type: type ?? this.type,
-        plugin: plugin ?? this.plugin,
-      );
-}
-
 class SearchResult {
   const SearchResult({
     required final this.info,
-    required final this.plugin,
+    required final this.module,
   });
 
   final SearchInfo info;
-  final CurrentPlugin plugin;
+  final TenkaMetadata module;
 }
 
 class SearchPageController extends Controller<SearchPageController> {
@@ -116,33 +97,37 @@ class SearchPageController extends Controller<SearchPageController> {
       StatefulValueHolderWithError<List<SearchResult>?>(null);
 
   final TextEditingController searchTextController = TextEditingController();
-  CurrentPlugin? currentPlugin;
+  TenkaMetadata? currentModule;
 
   @override
   Future<void> setup() async {
     final CachedPreferencesSchema preferences = CachedPreferencesBox.get();
-    final ExtensionType type =
-        preferences.lastSelectedSearch?.lastSelectedType ?? ExtensionType.anime;
+    final TenkaType type =
+        preferences.lastSelectedSearch?.lastSelectedType ?? TenkaType.anime;
 
-    BaseExtractor? plugin;
+    TenkaMetadata? module;
     switch (type) {
-      case ExtensionType.anime:
-        plugin = ExtensionsManager.animes[
+      case TenkaType.anime:
+        module = TenkaManager.repository.installed[
                 preferences.lastSelectedSearch?.lastSelectedAnimePlugin ??
                     ''] ??
-            ExtensionsManager.animes.values.firstOrNull;
+            TenkaManager.repository.installed.values.firstWhereOrNull(
+              (final TenkaMetadata x) => x.type == TenkaType.anime,
+            );
         break;
 
-      case ExtensionType.manga:
-        plugin = ExtensionsManager.mangas[
+      case TenkaType.manga:
+        module = TenkaManager.repository.installed[
                 preferences.lastSelectedSearch?.lastSelectedMangaPlugin ??
                     ''] ??
-            ExtensionsManager.mangas.values.firstOrNull;
+            TenkaManager.repository.installed.values.firstWhereOrNull(
+              (final TenkaMetadata x) => x.type == TenkaType.manga,
+            );
         break;
     }
 
-    if (plugin != null) {
-      setCurrentPlugin(CurrentPlugin(type: type, plugin: plugin));
+    if (module != null) {
+      setCurrentModule(module);
     }
 
     await super.setup();
@@ -164,46 +149,36 @@ class SearchPageController extends Controller<SearchPageController> {
       searchTextController.value = TextEditingValue(text: args!.terms!);
     }
 
-    if (args?.pluginType != null) {
-      BaseExtractor? plugin;
-      switch (args!.pluginType!) {
-        case ExtensionType.anime:
-          plugin = ExtensionsManager.animes[args!.pluginId!];
-          break;
+    if (args?.moduleType != null) {
+      final TenkaMetadata? module =
+          TenkaManager.repository.installed[args!.moduleId];
 
-        case ExtensionType.manga:
-          plugin = ExtensionsManager.mangas[args!.pluginId!];
-          break;
-      }
-
-      if (plugin != null) {
-        setCurrentPlugin(
-          CurrentPlugin(type: args!.pluginType!, plugin: plugin),
-        );
+      if (module != null) {
+        setCurrentModule(module);
       }
     }
   }
 
-  Future<void> setCurrentPlugin(final CurrentPlugin? plugin) async {
-    currentPlugin = plugin;
+  Future<void> setCurrentModule(final TenkaMetadata? module) async {
+    currentModule = module;
 
-    if (plugin != null) {
+    if (module != null) {
       final CachedPreferencesSchema preferences = CachedPreferencesBox.get();
       preferences.lastSelectedSearch =
           (preferences.lastSelectedSearch ?? const LastSelectedSearchPlugin())
               .copyWith(
-        lastSelectedType: plugin.type,
+        lastSelectedType: module.type,
         lastSelectedAnimePlugin:
-            plugin.type == ExtensionType.anime ? plugin.plugin.id : null,
+            module.type == TenkaType.anime ? module.id : null,
         lastSelectedMangaPlugin:
-            plugin.type == ExtensionType.manga ? plugin.plugin.id : null,
+            module.type == TenkaType.manga ? module.id : null,
       );
       await CachedPreferencesBox.save(preferences);
     }
 
     reassemble();
 
-    if (currentPlugin != null &&
+    if (currentModule != null &&
         searchTextController.value.text.isNotEmpty &&
         (args?.autoSearch ?? false)) {
       args!.autoSearch = false;
@@ -212,7 +187,7 @@ class SearchPageController extends Controller<SearchPageController> {
   }
 
   Future<void> search() async {
-    if (currentPlugin == null) {
+    if (currentModule == null) {
       throw Exception('No plugin has been selected');
     }
 
@@ -220,17 +195,35 @@ class SearchPageController extends Controller<SearchPageController> {
     reassemble();
 
     try {
-      final List<SearchInfo> searches = await currentPlugin!.plugin.search(
-        searchTextController.text,
-        Translator.t.locale,
-      );
+      final List<SearchInfo> searches;
+      switch (currentModule!.type) {
+        case TenkaType.anime:
+          final AnimeExtractor extractor =
+              await TenkaManager.getExtractor(currentModule!);
+
+          searches = await extractor.search(
+            searchTextController.text,
+            Translator.t.locale,
+          );
+          break;
+
+        case TenkaType.manga:
+          final MangaExtractor extractor =
+              await TenkaManager.getExtractor(currentModule!);
+
+          searches = await extractor.search(
+            searchTextController.text,
+            Translator.t.locale,
+          );
+          break;
+      }
 
       results.resolve(
         searches
             .map(
               (final SearchInfo x) => SearchResult(
                 info: x,
-                plugin: currentPlugin!,
+                module: currentModule!,
               ),
             )
             .toList(),

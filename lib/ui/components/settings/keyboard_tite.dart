@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../modules/helpers/keyboard.dart';
 import '../../../modules/helpers/ui.dart';
 import '../../../modules/translator/translator.dart';

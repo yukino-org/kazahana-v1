@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../ui/components/trackers/detailed_item.dart';
 import '../../../../ui/pages/store_page/trackers_page/myanimelist_page/mangalist/edit_modal.dart';
 import '../../../state/hooks.dart';
@@ -211,7 +211,7 @@ class MyAnimeListMangaList {
   DetailedInfo toDetailedInfo() => DetailedInfo(
         title: title,
         description: details?.synopsis,
-        type: ExtensionType.manga,
+        type: TenkaType.manga,
         thumbnail: mainPictureLarge,
         banner: null,
         status: status?.status.pretty,

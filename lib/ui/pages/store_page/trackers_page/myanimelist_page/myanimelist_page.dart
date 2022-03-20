@@ -1,4 +1,4 @@
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import './animelist/animelist_page.dart' as animelist_page;
 import './mangalist/mangalist_page.dart' as mangalist_page;
@@ -16,13 +16,13 @@ class PageArguments {
     }
 
     return PageArguments(
-      type: ExtensionType.values.firstWhere(
-        (final ExtensionType type) => type.type == json['type'],
+      type: TenkaType.values.firstWhere(
+        (final TenkaType type) => type.type == json['type'],
       ),
     );
   }
 
-  ExtensionType type;
+  TenkaType type;
 
   Map<String, String> toJson() => <String, String>{
         'type': type.type,
@@ -61,12 +61,12 @@ class _PageState extends State<Page> with HooksMixin {
 
   Widget getPage() {
     switch (args.type) {
-      case ExtensionType.anime:
+      case TenkaType.anime:
         return animelist_page.Page(
           args: args,
         );
 
-      case ExtensionType.manga:
+      case TenkaType.manga:
         return mangalist_page.Page(
           args: args,
         );

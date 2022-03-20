@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:extensions/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:tenka/tenka.dart';
+import 'package:utilx/utils.dart';
 import '../../../../../modules/app/state.dart';
 import '../../../../../modules/database/database.dart';
 import '../../../../../modules/helpers/keyboard.dart';
@@ -98,8 +98,10 @@ class WatchPageController extends Controller<WatchPageController> {
   }
 
   Future<void> fetchSources() async {
-    sources = await animeController.extractor!
-        .getSources(animeController.currentEpisode!);
+    sources = await animeController.extractor!.getSources(
+      animeController.currentEpisode!.url,
+      animeController.currentEpisode!.locale,
+    );
   }
 
   Future<void> setFullscreen({
@@ -275,11 +277,11 @@ class WatchPageController extends Controller<WatchPageController> {
           if (provider.isLoggedIn() &&
               provider.isEnabled(
                 animeController.info.value!.title,
-                animeController.extractor!.id,
+                animeController.module!.id,
               )) {
             final ResolvedTrackerItem? item = await provider.getComputed(
               animeController.info.value!.title,
-              animeController.extractor!.id,
+              animeController.module!.id,
             );
 
             if (item != null) {

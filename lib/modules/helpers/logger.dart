@@ -17,6 +17,11 @@ class Logger {
 
   final String name;
 
+  void debug(final String msg) {
+    final String _msg = '[$time DEBUG] $name: $msg';
+    _write(_msg);
+  }
+
   void info(final String msg) {
     final String _msg = '[$time INFO] $name: $msg';
     _write(_msg);
@@ -45,7 +50,7 @@ class Logger {
   static Future<void> initialize() async {
     final DateTime time = DateTime.now();
     filePath = path.join(
-      PathDirs.temp,
+      PathDirs.tmp,
       'logs',
       'debug ${time.day}-${time.month}-${time.year}.log',
     );

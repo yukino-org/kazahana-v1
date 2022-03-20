@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import './pages/error_page/view.dart';
 import './router.dart';
 import '../config/app.dart';

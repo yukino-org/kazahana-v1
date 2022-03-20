@@ -35,8 +35,8 @@ Add any other context about the problem here.
   <summary>Logs</summary>
   
   <!-- Attach log file content -->
-  <!-- Log file can be found at `<temporary folder location>/yukino_app/` -->
+  <!-- Log file can be found at `<temporary folder location>/kazahana/` -->
 </details>
  
  ## Checklist
- -   [ ] I have read the [Contribution Guidelines](https://yukino-app.github.io/wiki/developers/contribution/#contribution).
+ -   [ ] I have read the [Contribution Guidelines](https://yukino-org.github.io/wiki/developers/contribution/#contribution).

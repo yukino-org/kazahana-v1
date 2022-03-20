@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../../modules/app/state.dart';
 import '../../../../../modules/database/database.dart';
 import '../../../../../modules/helpers/keyboard.dart';
@@ -72,8 +72,10 @@ class ReaderPageController extends Controller<ReaderPageController> {
 
     try {
       pages.resolve(
-        await mangaController.extractor!
-            .getChapter(mangaController.currentChapter!),
+        await mangaController.extractor!.getChapter(
+          mangaController.currentChapter!.url,
+          mangaController.currentChapter!.locale,
+        ),
       );
     } catch (err, stack) {
       pages.fail(null, ErrorInfo(err, stack));
@@ -109,7 +111,12 @@ class ReaderPageController extends Controller<ReaderPageController> {
       _reassemble();
 
       try {
-        images[page]!.resolve(await mangaController.extractor!.getPage(page));
+        images[page]!.resolve(
+          await mangaController.extractor!.getPage(
+            page.url,
+            page.locale,
+          ),
+        );
       } catch (err, stack) {
         images[page]!.fail(null, ErrorInfo(err, stack));
       }
@@ -135,7 +142,7 @@ class ReaderPageController extends Controller<ReaderPageController> {
     );
 
     final String title = mangaController.info.value!.title;
-    final String plugin = mangaController.extractor!.id;
+    final String plugin = mangaController.module!.id;
 
     for (final TrackerProvider<MangaProgress> provider in Trackers.manga) {
       if (provider.isLoggedIn() && provider.isEnabled(title, plugin)) {

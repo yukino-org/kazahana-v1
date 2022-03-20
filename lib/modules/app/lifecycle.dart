@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import './state.dart';
 import '../../config/app.dart';
 import '../../config/paths.dart';
 import '../database/database.dart';
-import '../extensions/extensions.dart';
 import '../helpers/deeplink.dart';
 import '../helpers/instance_manager.dart';
 import '../helpers/logger.dart';
@@ -12,6 +11,7 @@ import '../helpers/protocol_handler.dart';
 import '../helpers/screen.dart';
 import '../local_server/server.dart';
 import '../state/eventer.dart';
+import '../tenka.dart';
 import '../trackers/trackers.dart';
 import '../translator/translations.dart';
 import '../translator/translator.dart';
@@ -46,7 +46,7 @@ abstract class AppLifecycle {
     AppLifecycle.args = args;
 
     WidgetsFlutterBinding.ensureInitialized();
-    WidgetsBinding.instance!.addObserver(appLifecycleObserver);
+    WidgetsBinding.instance.addObserver(appLifecycleObserver);
 
     await Config.initialize();
     await PathDirs.initialize();
@@ -109,8 +109,8 @@ abstract class AppLifecycle {
     await VideoPlayerManager.initialize();
     Logger.of('VideoPlayerManager').info('Finished "initialize"');
 
-    await ExtensionsManager.initialize();
-    Logger.of('ExtensionsManager').info('Finished "initialize"');
+    await TenkaManager.initialize();
+    Logger.of('TenkaManager').info('Finished "initialize"');
 
     await Trackers.initialize();
     Logger.of('Trackers').info('Finished "initialize"');

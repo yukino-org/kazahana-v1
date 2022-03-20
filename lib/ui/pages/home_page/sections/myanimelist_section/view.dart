@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/locale.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/locale.dart';
+import 'package:utilx/utils.dart';
 import '../../../../../config/defaults.dart';
 import '../../../../../modules/app/state.dart';
 import '../../../../../modules/helpers/assets.dart';

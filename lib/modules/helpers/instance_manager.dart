@@ -90,6 +90,5 @@ abstract class InstanceManager {
     }
   }
 
-  static String get instanceFilePath =>
-      path.join(PathDirs.documents, '.instance');
+  static String get instanceFilePath => path.join(PathDirs.data, '.instance');
 }

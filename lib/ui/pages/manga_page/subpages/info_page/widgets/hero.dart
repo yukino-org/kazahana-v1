@@ -47,7 +47,7 @@ class MangaHero extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Text(
-          controller.extractor!.name,
+          controller.module!.name,
           style: TextStyle(
             color: Theme.of(context).primaryColor,
             fontSize: Theme.of(context).textTheme.headline6?.fontSize,

@@ -1,12 +1,12 @@
-import 'package:extensions/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/locale.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:tenka/tenka.dart';
+import 'package:utilx/locale.dart';
+import 'package:utilx/utils.dart';
 import '../../../config/defaults.dart';
 import '../../../modules/database/database.dart';
-import '../../../modules/extensions/extensions.dart';
 import '../../../modules/state/stateful_holder.dart';
 import '../../../modules/state/states.dart';
+import '../../../modules/tenka.dart';
 import '../../../ui/router.dart';
 import '../../models/controller.dart';
 
@@ -58,6 +58,7 @@ class AnimePageController extends Controller<AnimePageController> {
 
   bool initialized = false;
   AnimePageArguments? args;
+  TenkaMetadata? module;
   AnimeExtractor? extractor;
   Locale? locale;
   int? currentEpisodeIndex;
@@ -71,9 +72,12 @@ class AnimePageController extends Controller<AnimePageController> {
       ParsedRouteInfo.fromSettings(ModalRoute.of(context)!.settings).params,
     );
 
-    extractor = ExtensionsManager.animes[args!.plugin];
-    if (extractor != null) {
-      await getInfo();
+    module = TenkaManager.repository.installed[args!.plugin];
+    if (module != null) {
+      extractor = await TenkaManager.getExtractor(module!);
+      if (extractor != null) {
+        await getInfo();
+      }
     }
 
     initialized = true;
@@ -108,7 +112,7 @@ class AnimePageController extends Controller<AnimePageController> {
 
     try {
       final int nowMs = DateTime.now().millisecondsSinceEpoch;
-      final String cacheKey = 'anime-${extractor!.id}-${args!.src}';
+      final String cacheKey = 'anime-${module!.id}-${args!.src}';
 
       if (removeCache) {
         CacheBox.delete(cacheKey);

@@ -1,7 +1,7 @@
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../../modules/helpers/ui.dart';
 import '../../../../../modules/trackers/anilist/anilist.dart';
 import '../../../../../modules/translator/translator.dart';
@@ -102,7 +102,7 @@ class _EditModalState extends State<EditModal> {
             ),
             MaterialDialogTile(
               title: Text(
-                widget.media.media.type == ExtensionType.anime
+                widget.media.media.type == TenkaType.anime
                     ? Translator.t.episodesWatched()
                     : Translator.t.chaptersRead(),
               ),
@@ -153,7 +153,7 @@ class _EditModalState extends State<EditModal> {
                           child: TextField(
                             decoration: InputDecoration(
                               labelText:
-                                  widget.media.media.type == ExtensionType.anime
+                                  widget.media.media.type == TenkaType.anime
                                       ? Translator.t.noOfEpisodes()
                                       : Translator.t.noOfChapters(),
                             ),
@@ -175,7 +175,7 @@ class _EditModalState extends State<EditModal> {
             SizedBox(
               height: remToPx(0.3),
             ),
-            if (widget.media.media.type == ExtensionType.manga) ...<Widget>[
+            if (widget.media.media.type == TenkaType.manga) ...<Widget>[
               MaterialDialogTile(
                 title: Text(Translator.t.volumesCompleted()),
                 icon: const Icon(Icons.sync_alt),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 import './widgets/chapters.dart';
 import './widgets/hero.dart';
 import '../../../../../config/defaults.dart';
@@ -216,7 +216,7 @@ class _InfoPageState extends State<InfoPage>
                           SizedBox(height: remToPx(1.5)),
                           TrackersTile(
                             title: widget.controller.info.value!.title,
-                            plugin: widget.controller.extractor!.id,
+                            plugin: widget.controller.module!.id,
                             providers: Trackers.manga,
                           ),
                           SizedBox(height: remToPx(1)),

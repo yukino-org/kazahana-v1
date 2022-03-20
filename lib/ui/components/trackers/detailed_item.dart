@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../config/defaults.dart';
 import '../../../modules/helpers/assets.dart';
 import '../../../modules/helpers/ui.dart';
@@ -101,7 +101,7 @@ class _DetailedItemState extends State<DetailedItem> {
                   width: remToPx(0.3),
                 ),
                 Text(
-                  item.type == ExtensionType.anime
+                  item.type == TenkaType.anime
                       ? Translator.t.play()
                       : Translator.t.read(),
                   style: TextStyle(
@@ -263,7 +263,7 @@ class _DetailedItemState extends State<DetailedItem> {
                                     ),
                                     Text(
                                       StringUtils.capitalize(
-                                        item.type.type,
+                                        item.type.name,
                                       ),
                                       style: Theme.of(context)
                                           .textTheme
@@ -311,7 +311,7 @@ class _DetailedItemState extends State<DetailedItem> {
                     if (!isLargest) ...<Widget>[
                       Text(
                         StringUtils.capitalize(
-                          item.type.type,
+                          item.type.name,
                         ),
                         style: Theme.of(context).textTheme.bodyText1?.copyWith(
                               color: Theme.of(context).primaryColor,

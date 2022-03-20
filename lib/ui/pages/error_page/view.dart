@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils/error.dart';
+import 'package:utilx/utils.dart';
 import '../../../modules/helpers/ui.dart';
 import '../../components/error_widget.dart';
 

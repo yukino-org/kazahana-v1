@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../../../../config/defaults.dart';
 import '../../../../../../../modules/app/state.dart';
 import '../../../../../../../modules/database/database.dart';

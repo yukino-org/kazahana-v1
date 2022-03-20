@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
-import 'package:extensions/extensions.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:tenka/tenka.dart';
+import 'package:utilx/utils.dart';
 import './fuzzy_date.dart';
 import '../anilist.dart';
 
@@ -64,10 +64,11 @@ class AniListMedia {
       AniListMedia(
         id: json['id'] as int,
         idMal: json['idMal'] as int?,
-        titleUserPreferred: json['title']['userPreferred'] as String,
-        type: ExtensionType.values.firstWhere(
-          (final ExtensionType type) =>
-              type.type.toUpperCase() == (json['type'] as String),
+        titleUserPreferred:
+            MapUtils.get<String>(json, <dynamic>['title', 'userPreferred']),
+        type: TenkaType.values.firstWhere(
+          (final TenkaType type) =>
+              type.name.toUpperCase() == (json['type'] as String),
         ),
         format: AniListMediaFormat.values.firstWhere(
           (final AniListMediaFormat type) =>
@@ -88,27 +89,35 @@ class AniListMedia {
         chapters: json['chapters'] as int?,
         volumes: json['volumes'] as int?,
         episodes: json['episodes'] as int?,
-        coverImageMedium: json['coverImage']['medium'] as String,
-        coverImageExtraLarge: json['coverImage']['extraLarge'] as String,
+        coverImageMedium:
+            MapUtils.get<String>(json, <dynamic>['coverImage', 'medium']),
+        coverImageExtraLarge:
+            MapUtils.get<String>(json, <dynamic>['coverImage', 'extraLarge']),
         bannerImage: json['bannerImage'] as String?,
         genres: (json['genres'] as List<dynamic>).cast<String>(),
         synonyms: (json['synonyms'] as List<dynamic>).cast<String>(),
         tags: (json['tags'] as List<dynamic>)
-            .map((final dynamic x) => x['name'] as String)
+            .cast<Map<dynamic, dynamic>>()
+            .map((final Map<dynamic, dynamic> x) => x['name'] as String)
             .toList(),
-        characters: (json['characters']['edges'] as List<dynamic>)
-            .asMap()
-            .map(
-              (final int k, final dynamic x) => MapEntry<int, AniListCharacter>(
-                k,
-                AniListCharacter.fromJson(
-                  x as Map<dynamic, dynamic>,
-                  json['characters']['nodes'][k] as Map<dynamic, dynamic>,
-                ),
-              ),
-            )
-            .values
-            .toList(),
+        characters:
+            MapUtils.get<List<dynamic>>(json, <dynamic>['characters', 'edges'])
+                .asMap()
+                .map(
+                  (final int k, final dynamic x) =>
+                      MapEntry<int, AniListCharacter>(
+                    k,
+                    AniListCharacter.fromJson(
+                      x as Map<dynamic, dynamic>,
+                      MapUtils.get<Map<dynamic, dynamic>>(
+                        json,
+                        <dynamic>['characters', 'nodes', k],
+                      ),
+                    ),
+                  ),
+                )
+                .values
+                .toList(),
         meanScore: json['meanScore'] as int?,
         isAdult: json['isAdult'] as bool,
         siteUrl: json['siteUrl'] as String,
@@ -151,7 +160,7 @@ class AniListMedia {
   final int id;
   final int? idMal;
   final String titleUserPreferred;
-  final ExtensionType type;
+  final TenkaType type;
   final AniListMediaFormat format;
   final String? description;
   final DateTime? startDate;
@@ -174,7 +183,7 @@ class AniListMedia {
 
   static Future<List<AniListMedia>> search(
     final String title,
-    final ExtensionType type, [
+    final TenkaType type, [
     final int page = 0,
     final int perPage = 25,
   ]) async {
@@ -191,19 +200,19 @@ query (
 }
     ''';
 
-    final dynamic res = await AnilistManager.request(
+    final Map<dynamic, dynamic> res = await AnilistManager.request(
       RequestBody(
         query: query,
         variables: <dynamic, dynamic>{
           'search': title,
           'page': page,
           'perpage': perPage,
-          'type': type.type.toUpperCase(),
+          'type': type.name.toUpperCase(),
         },
       ),
-    );
+    ) as Map<dynamic, dynamic>;
 
-    return (res['data']['Page']['media'] as List<dynamic>)
+    return MapUtils.get<List<dynamic>>(res, <dynamic>['data', 'Page', 'media'])
         .cast<Map<dynamic, dynamic>>()
         .map((final Map<dynamic, dynamic> x) => AniListMedia.fromJson(x))
         .toList();
@@ -220,15 +229,17 @@ query (
 }
     ''';
 
-    final dynamic res = await AnilistManager.request(
+    final Map<dynamic, dynamic> res = await AnilistManager.request(
       RequestBody(
         query: query,
         variables: <dynamic, dynamic>{
           'mediaId': mediaId,
         },
       ),
-    );
+    ) as Map<dynamic, dynamic>;
 
-    return AniListMedia.fromJson(res['data']['Media'] as Map<dynamic, dynamic>);
+    return AniListMedia.fromJson(
+      MapUtils.get<Map<dynamic, dynamic>>(res, <dynamic>['data', 'Media']),
+    );
   }
 }

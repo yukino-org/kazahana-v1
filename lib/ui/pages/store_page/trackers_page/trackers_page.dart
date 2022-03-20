@@ -1,7 +1,7 @@
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import './anilist_page/anilist_page.dart' as anilist_page;
 import './myanimelist_page/myanimelist_page.dart' as myanimelist_page;
 import '../../../../modules/helpers/assets.dart';
@@ -40,8 +40,8 @@ class TrackersPage extends StatefulWidget {
 class _TrackersPageState extends State<TrackersPage>
     with RouteAware, HooksMixin {
   final List<TrackerRoute> connections = <TrackerRoute>[
-    ...ExtensionType.values.map(
-      (final ExtensionType type) => TrackerRoute(
+    ...TenkaType.values.map(
+      (final TenkaType type) => TrackerRoute(
         name:
             '${Translator.t.anilist()} - ${StringUtils.capitalize(type.type)}',
         image: Assets.anilistLogo,
@@ -55,8 +55,8 @@ class _TrackersPageState extends State<TrackersPage>
         loggedIn: AnilistManager.auth.isValidToken,
       ),
     ),
-    ...ExtensionType.values.map(
-      (final ExtensionType type) => TrackerRoute(
+    ...TenkaType.values.map(
+      (final TenkaType type) => TrackerRoute(
         name:
             '${Translator.t.myAnimeList()} - ${StringUtils.capitalize(type.type)}',
         image: Assets.myAnimeListLogo,

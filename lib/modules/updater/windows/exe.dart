@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:path/path.dart' as path;
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../config/paths.dart';
 import '../../helpers/archive.dart';
 import '../../helpers/http_download.dart';
@@ -11,7 +11,7 @@ import '../updater.dart';
 const String _template = '''
 @echo off
 
-title Yukino - Updater
+title Kazahana - Updater
 
 :LOOP
 tasklist | find /i "{{{ exeName }}}" >nul 2>&1
@@ -55,10 +55,10 @@ class WindowsExeUpdater with PlatformUpdater {
     final String baseDir = path.dirname(Platform.resolvedExecutable);
     final String zipName = update.path.split('/').last;
 
-    final File zipFile = File(path.join(PathDirs.temp, zipName));
+    final File zipFile = File(path.join(PathDirs.tmp, zipName));
 
     if (!(await zipFile.exists())) {
-      final File partFile = File(path.join(PathDirs.temp, '$zipName.part'));
+      final File partFile = File(path.join(PathDirs.tmp, '$zipName.part'));
 
       if (!(await partFile.exists())) {
         await partFile.create(recursive: true);
@@ -85,7 +85,7 @@ class WindowsExeUpdater with PlatformUpdater {
 
     final Directory unzipPath = Directory(
       path.join(
-        PathDirs.temp,
+        PathDirs.tmp,
         zipName.replaceFirst(RegExp(r'.zip$'), ''),
       ),
     );
@@ -98,7 +98,7 @@ class WindowsExeUpdater with PlatformUpdater {
     await extractArchive(ExtractArchiveConfig(zipFile.path, unzipPath.path));
     Logger.of('WindowsExeUpdater').info('Unzipped into: $unzipPath');
 
-    final String batPath = path.join(PathDirs.temp, 'updater.bat');
+    final String batPath = path.join(PathDirs.tmp, 'updater.bat');
     final File batFile = File(batPath);
 
     if (!(await batFile.exists())) {

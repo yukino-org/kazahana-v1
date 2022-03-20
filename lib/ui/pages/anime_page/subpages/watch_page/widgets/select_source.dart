@@ -1,5 +1,5 @@
-import 'package:extensions/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import '../../../../../../modules/app/state.dart';
 import '../../../../../../modules/helpers/logger.dart';
 import '../../../../../../modules/helpers/ui.dart';
@@ -51,7 +51,7 @@ class _SelectSourceWidgetState extends State<SelectSourceWidget> {
                         type: MaterialType.transparency,
                         child: RadioListTile<EpisodeSource>(
                           title: Text(
-                            '${HttpUtils.domainFromURL(x.url)} (${x.quality.code})',
+                            '${Uri.parse(x.url).host} (${x.quality.code})',
                           ),
                           value: x,
                           groupValue:

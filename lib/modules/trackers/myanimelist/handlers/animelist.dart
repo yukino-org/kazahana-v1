@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../ui/components/trackers/detailed_item.dart';
 import '../../../../ui/pages/store_page/trackers_page/myanimelist_page/animelist/edit_modal.dart';
 import '../../provider.dart';
@@ -156,7 +156,7 @@ class MyAnimeListAnimeList {
   DetailedInfo toDetailedInfo() => DetailedInfo(
         title: title,
         description: details?.synopsis,
-        type: ExtensionType.anime,
+        type: TenkaType.anime,
         thumbnail: mainPictureLarge,
         banner: null,
         status: status?.status.pretty,

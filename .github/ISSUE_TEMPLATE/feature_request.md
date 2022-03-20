@@ -20,4 +20,4 @@ Add any other context or screenshots about the feature request here.
 
 ## Checklist
 
--   [ ] I have read the [Contribution Guidelines](https://yukino-app.github.io/wiki/developers/contribution/#contribution).
+-   [ ] I have read the [Contribution Guidelines](https://yukino-org.github.io/wiki/developers/contribution/#contribution).

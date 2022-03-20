@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/locale.dart';
+import 'package:utilx/locale.dart';
 
 abstract class TranslationSentences {
   Locale get locale;

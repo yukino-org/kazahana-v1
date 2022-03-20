@@ -1,6 +1,6 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../modules/helpers/faces.dart';
 import '../../modules/helpers/ui.dart';
 import '../../modules/translator/translator.dart';

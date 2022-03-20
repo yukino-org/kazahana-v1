@@ -15,7 +15,7 @@ const githubMatch = /^git\+https:\/\/github\.com\/([^/]+)\/([^.]+)\.git$/.exec(
 export const config = {
     name: "Yukino",
     code: "yukino_app",
-    url: "https://yukino-app.github.io",
+    url: "https://yukino-org.github.io",
     base: root,
     cacheDir: cacheDir,
     android: {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import './setting_labels/about.dart';
 import './setting_labels/anime.dart';
 import './setting_labels/developers.dart';

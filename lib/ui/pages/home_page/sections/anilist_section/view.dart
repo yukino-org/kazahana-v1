@@ -1,8 +1,8 @@
 import 'package:animations/animations.dart';
-import 'package:extensions/extensions.dart';
+import 'package:tenka/tenka.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:utilx/utilities/utils.dart';
+import 'package:utilx/utils.dart';
 import '../../../../../config/defaults.dart';
 import '../../../../../modules/helpers/assets.dart';
 import '../../../../../modules/helpers/ui.dart';
@@ -238,7 +238,7 @@ class _AnilistSectionState extends State<AnilistSection> {
                                             children: <InlineSpan>[
                                               TextSpan(
                                                 text: StringUtils.capitalize(
-                                                  x.type.type,
+                                                  x.type.name,
                                                 ),
                                                 style: Theme.of(context)
                                                     .textTheme
