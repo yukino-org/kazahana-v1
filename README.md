@@ -1,18 +1,13 @@
-<br />
-
 <p align="center">
-    <img src="./media/large.png" width="50%">
+    <img src="https://github.com/yukino-org/media/blob/main/images/subbanners/gh-kazahana-banner.png?raw=true">
 </p>
 
-# Yukino
+# Kazahana
 
-An extension-based Anime and Manga client. The project's name "Yukino" meaning "Snow" was named after the character "Yukino Yukinoshita" from the anime "Yahari Ore no Seishun Love Comedy wa Machigatteiru".
-
-The developer of this application does not have any affiliation with any of the third-party sources.
+An extension-based Anime and Manga client.
 
 [![Downloads](https://img.shields.io/github/downloads/yukino-app/yukino/total.svg?style=flat)](https://github.com/yukino-app/yukino/releases/)
 [![Latest release](https://img.shields.io/github/release/yukino-app/yukino.svg?style=flat)](https://github.com/yukino-app/yukino/releases/)
-[![CodeFactor](https://www.codefactor.io/repository/github/yukino-app/yukino/badge/next)](https://www.codefactor.io/repository/github/yukino-app/yukino/overview/next)
 [![Code Analysis](https://github.com/yukino-app/yukino/actions/workflows/code-analysis.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/code-analysis.yml)
 [![Android (Apk)](https://github.com/yukino-app/yukino/actions/workflows/android-build.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/android-build.yml)
 [![Linux (AppImage & tar)](https://github.com/yukino-app/yukino/actions/workflows/linux-build.yml/badge.svg)](https://github.com/yukino-app/yukino/actions/workflows/linux-build.yml)
