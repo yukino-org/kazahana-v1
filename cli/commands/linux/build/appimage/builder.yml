@@ -2,7 +2,7 @@ version: 1
 AppDir:
     path: "{{{ rootDir }}}"
     app_info:
-        id: io.github.yukino-org.kazahana
+        id: io.github.yukino_org.kazahana
         name: "{{{ appName }}}"
         icon: "{{{ primaryExe }}}"
         version: "{{{ version }}}"

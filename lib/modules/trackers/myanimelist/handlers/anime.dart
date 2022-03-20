@@ -20,12 +20,8 @@ class MyAnimeListSearchAnime {
     return MyAnimeListSearchAnime(
       nodeId: node['id'] as int,
       title: node['title'] as String,
-      mainPictureMedium: node['main_picture'] != null
-          ? MapUtils.get<String>(node, <dynamic>['main_picture', 'medium'])
-          : null,
-      mainPictureLarge: node['main_picture'] != null
-          ? MapUtils.get<String>(node, <dynamic>['main_picture', 'large'])
-          : null,
+      mainPictureMedium: MapUtils.maybeGet<String>(node, <dynamic>['main_picture', 'medium']),
+      mainPictureLarge: MapUtils.maybeGet<String>(node, <dynamic>['main_picture', 'large']),
     );
   }
 

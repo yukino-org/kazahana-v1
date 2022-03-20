@@ -855,7 +855,7 @@ packages:
     description:
       path: "."
       ref: dart_utilx
-      resolved-ref: b2b5566611f9375f57c333ec9d5fbde3cbd4a206
+      resolved-ref: b498c79f406f02ae1f08ecc4328de4f60c7637c0
       url: "https://github.com/yukino-org/packages.git"
     source: git
     version: "0.0.0"
