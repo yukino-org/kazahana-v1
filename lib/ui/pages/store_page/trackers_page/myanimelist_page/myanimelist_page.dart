@@ -1,5 +1,5 @@
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import './animelist/animelist_page.dart' as animelist_page;
 import './mangalist/mangalist_page.dart' as mangalist_page;
 import '../../../../../modules/state/hooks.dart';
@@ -17,7 +17,7 @@ class PageArguments {
 
     return PageArguments(
       type: TenkaType.values.firstWhere(
-        (final TenkaType type) => type.type == json['type'],
+        (final TenkaType type) => type.name == json['type'],
       ),
     );
   }
@@ -25,7 +25,7 @@ class PageArguments {
   TenkaType type;
 
   Map<String, String> toJson() => <String, String>{
-        'type': type.type,
+        'type': type.name,
       };
 }
 

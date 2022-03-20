@@ -1,5 +1,5 @@
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:utilx/utils.dart';
 import './anilist_page/anilist_page.dart' as anilist_page;
@@ -43,7 +43,7 @@ class _TrackersPageState extends State<TrackersPage>
     ...TenkaType.values.map(
       (final TenkaType type) => TrackerRoute(
         name:
-            '${Translator.t.anilist()} - ${StringUtils.capitalize(type.type)}',
+            '${Translator.t.anilist()} - ${StringUtils.capitalize(type.name)}',
         image: Assets.anilistLogo,
         route: ParsedRouteInfo(
           RouteManager.routes[RouteNames.anilistPage]!.route,
@@ -58,7 +58,7 @@ class _TrackersPageState extends State<TrackersPage>
     ...TenkaType.values.map(
       (final TenkaType type) => TrackerRoute(
         name:
-            '${Translator.t.myAnimeList()} - ${StringUtils.capitalize(type.type)}',
+            '${Translator.t.myAnimeList()} - ${StringUtils.capitalize(type.name)}',
         image: Assets.myAnimeListLogo,
         route: ParsedRouteInfo(
           RouteManager.routes[RouteNames.myAnimeListPage]!.route,

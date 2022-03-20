@@ -1,7 +1,7 @@
 import 'dart:ui';
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:tenka/tenka.dart';
 import 'package:utilx/utils.dart';
 import '../../../config/defaults.dart';
 import '../../../modules/helpers/assets.dart';
@@ -51,7 +51,7 @@ class _DetailedItemState extends State<DetailedItem> {
         RouteNames.search,
         SearchPageArguments(
           terms: item.title,
-          pluginType: item.type,
+          moduleType: item.type,
           autoSearch: true,
         ).toJson(),
       ).toString(),

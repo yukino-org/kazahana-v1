@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
+import 'package:tenka/tenka.dart';
 import 'package:utilx/utils.dart';
 import '../../../../ui/components/trackers/detailed_item.dart';
 import '../../../../ui/pages/store_page/trackers_page/myanimelist_page/mangalist/edit_modal.dart';
@@ -90,21 +90,22 @@ class MyAnimeListMangaList {
 
   factory MyAnimeListMangaList.fromMangaListJson(
     final Map<dynamic, dynamic> json,
-  ) =>
-      MyAnimeListMangaList(
-        nodeId: json['node']['id'] as int,
-        title: json['node']['title'] as String,
-        mainPictureMedium: json['node']['main_picture'] != null
-            ? json['node']['main_picture']['medium'] as String
-            : null,
-        mainPictureLarge: json['node']['main_picture'] != null
-            ? json['node']['main_picture']['large'] as String
-            : null,
-        status: MyAnimeListMangaListProgress.fromJson(
-          json['list_status'] as Map<dynamic, dynamic>,
-        ),
-        details: null,
-      );
+  ) {
+    final Map<dynamic, dynamic> node = json['node'] as Map<dynamic, dynamic>;
+
+    return MyAnimeListMangaList(
+      nodeId: node['id'] as int,
+      title: node['title'] as String,
+      mainPictureMedium:
+          MapUtils.get<String>(node, <dynamic>['main_picture', 'medium']),
+      mainPictureLarge:
+          MapUtils.get<String>(node, <dynamic>['main_picture', 'large']),
+      status: MyAnimeListMangaListProgress.fromJson(
+        json['list_status'] as Map<dynamic, dynamic>,
+      ),
+      details: null,
+    );
+  }
 
   factory MyAnimeListMangaList.fromMangaDetails(
     final Map<dynamic, dynamic> json,
@@ -112,8 +113,10 @@ class MyAnimeListMangaList {
       MyAnimeListMangaList(
         nodeId: json['id'] as int,
         title: json['title'] as String,
-        mainPictureMedium: json['main_picture']['medium'] as String,
-        mainPictureLarge: json['main_picture']['large'] as String,
+        mainPictureMedium:
+            MapUtils.get<String>(json, <dynamic>['main_picture', 'medium']),
+        mainPictureLarge:
+            MapUtils.get<String>(json, <dynamic>['main_picture', 'large']),
         status: json.containsKey('my_list_status')
             ? MyAnimeListMangaListProgress.fromJson(
                 json['my_list_status'] as Map<dynamic, dynamic>,

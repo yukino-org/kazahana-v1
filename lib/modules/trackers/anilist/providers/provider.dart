@@ -19,7 +19,7 @@ abstract class AniListProvider {
       final AnimeProgress progress,
     ) async {
       final AniListMediaList info = media.info as AniListMediaList;
-      final AniListMediaListStatus status = media.info.media.episodes != null &&
+      final AniListMediaListStatus status = info.media.episodes != null &&
               progress.episodes >= info.media.episodes!
           ? AniListMediaListStatus.completed
           : AniListMediaListStatus.current;
@@ -32,9 +32,9 @@ abstract class AniListProvider {
 
       int changes = 0;
       final List<List<dynamic>> changables = <List<dynamic>>[
-        <dynamic>[media.info.status, status],
-        <dynamic>[media.info.progress, episodes],
-        <dynamic>[media.info.repeat, repeat],
+        <dynamic>[info.status, status],
+        <dynamic>[info.progress, episodes],
+        <dynamic>[info.repeat, repeat],
       ];
 
       for (final List<dynamic> item in changables) {
@@ -44,7 +44,7 @@ abstract class AniListProvider {
       }
 
       if (changes > 0) {
-        await media.info.update(
+        await info.update(
           status: status,
           progress: episodes,
           progressVolumes: null,
@@ -75,7 +75,7 @@ abstract class AniListProvider {
       final MangaProgress progress,
     ) async {
       final AniListMediaList info = media.info as AniListMediaList;
-      final AniListMediaListStatus status = media.info.media.chapters != null &&
+      final AniListMediaListStatus status = info.media.chapters != null &&
               progress.chapters >= info.media.chapters!
           ? AniListMediaListStatus.completed
           : AniListMediaListStatus.current;
@@ -89,10 +89,10 @@ abstract class AniListProvider {
 
       int changes = 0;
       final List<List<dynamic>> changables = <List<dynamic>>[
-        <dynamic>[media.info.status, status],
-        <dynamic>[media.info.progress, chapters],
-        <dynamic>[media.info.progressVolumes, volumes],
-        <dynamic>[media.info.repeat, repeat],
+        <dynamic>[info.status, status],
+        <dynamic>[info.progress, chapters],
+        <dynamic>[info.progressVolumes, volumes],
+        <dynamic>[info.repeat, repeat],
       ];
 
       for (final List<dynamic> item in changables) {
@@ -102,7 +102,7 @@ abstract class AniListProvider {
       }
 
       if (changes > 0) {
-        await media.info.update(
+        await info.update(
           status: status,
           progress: chapters,
           progressVolumes: volumes,

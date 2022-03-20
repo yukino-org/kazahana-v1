@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import '../../../config/defaults.dart';
 import '../../../modules/helpers/ui.dart';
 import '../../../modules/state/hooks.dart';

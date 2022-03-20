@@ -1,3 +1,4 @@
+import 'package:utilx/utils.dart';
 import '../anilist.dart';
 
 class AniListUserInfo {
@@ -11,7 +12,7 @@ class AniListUserInfo {
       AniListUserInfo(
         id: json['id'] as int,
         name: json['name'] as String,
-        avatarMedium: json['avatar']['medium'] as String,
+        avatarMedium: MapUtils.get<String>(json, <dynamic>['avatar', 'medium']),
       );
 
   int id;
@@ -39,14 +40,14 @@ query {
 }
   ''';
 
-    final dynamic res = await AnilistManager.request(
+    final Map<dynamic, dynamic> res = await AnilistManager.request(
       RequestBody(
         query: query,
       ),
-    );
+    ) as Map<dynamic, dynamic>;
 
     final AniListUserInfo info = AniListUserInfo.fromJson(
-      res['data']['Viewer'] as Map<dynamic, dynamic>,
+      MapUtils.get<Map<dynamic, dynamic>>(res, <dynamic>['data', 'Viewer']),
     );
 
     _cachedUser = info;

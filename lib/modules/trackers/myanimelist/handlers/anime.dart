@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as html;
 import 'package:http/http.dart' as http;
-import 'package:tenka/tenka.dart';
 import 'package:utilx/utils.dart';
 import '../../provider.dart';
 import '../myanimelist.dart';
@@ -15,17 +14,20 @@ class MyAnimeListSearchAnime {
     required final this.mainPictureLarge,
   });
 
-  factory MyAnimeListSearchAnime.fromJson(final Map<dynamic, dynamic> json) =>
-      MyAnimeListSearchAnime(
-        nodeId: json['node']['id'] as int,
-        title: json['node']['title'] as String,
-        mainPictureMedium: json['node']['main_picture'] != null
-            ? json['node']['main_picture']['medium'] as String
-            : null,
-        mainPictureLarge: json['node']['main_picture'] != null
-            ? json['node']['main_picture']['large'] as String
-            : null,
-      );
+  factory MyAnimeListSearchAnime.fromJson(final Map<dynamic, dynamic> json) {
+    final Map<dynamic, dynamic> node = json['node'] as Map<dynamic, dynamic>;
+
+    return MyAnimeListSearchAnime(
+      nodeId: node['id'] as int,
+      title: node['title'] as String,
+      mainPictureMedium: node['main_picture'] != null
+          ? MapUtils.get<String>(node, <dynamic>['main_picture', 'medium'])
+          : null,
+      mainPictureLarge: node['main_picture'] != null
+          ? MapUtils.get<String>(node, <dynamic>['main_picture', 'large'])
+          : null,
+    );
+  }
 
   final int nodeId;
   final String title;
@@ -40,18 +42,15 @@ class MyAnimeListSearchAnime {
       '/anime?q=${Uri.encodeQueryComponent(terms)}&limit=10',
     );
 
-    final Map<dynamic, dynamic> decoded =
+    final Map<dynamic, dynamic> parsed =
         json.decode(res) as Map<dynamic, dynamic>;
 
-    return decoded.containsKey('data')
-        ? (decoded['data'] as List<dynamic>)
-            .cast<Map<dynamic, dynamic>>()
-            .map(
-              (final Map<dynamic, dynamic> x) =>
-                  MyAnimeListSearchAnime.fromJson(x),
-            )
-            .toList()
-        : <MyAnimeListSearchAnime>[];
+    return (parsed['data'] as List<dynamic>)
+        .cast<Map<dynamic, dynamic>>()
+        .map(
+          (final Map<dynamic, dynamic> x) => MyAnimeListSearchAnime.fromJson(x),
+        )
+        .toList();
   }
 
   static Future<MyAnimeListAnimeList> scrapeFromNodeId(

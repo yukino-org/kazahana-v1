@@ -1,3 +1,4 @@
+import 'package:utilx/utils.dart';
 import '../anilist.dart';
 
 abstract class AniListRecommendations {
@@ -26,7 +27,7 @@ query (
 }
   ''';
 
-    final dynamic res = await AnilistManager.request(
+    final Map<dynamic, dynamic> res = await AnilistManager.request(
       RequestBody(
         query: query,
         variables: <dynamic, dynamic>{
@@ -35,11 +36,15 @@ query (
           'onlist': onList,
         },
       ),
-    );
+    ) as Map<dynamic, dynamic>;
 
-    return (res['data']['Page']['recommendations'] as List<dynamic>)
+    return MapUtils.get<List<dynamic>>(
+      res,
+      <dynamic>['data', 'Page', 'recommendations'],
+    )
+        .cast<Map<dynamic, dynamic>>()
         .map(
-          (final dynamic x) =>
+          (final Map<dynamic, dynamic> x) =>
               AniListMedia.fromJson(x['media'] as Map<dynamic, dynamic>),
         )
         .toList();

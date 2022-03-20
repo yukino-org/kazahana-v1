@@ -1,5 +1,4 @@
 import 'package:animations/animations.dart';
-import 'package:tenka/tenka.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:utilx/utils.dart';

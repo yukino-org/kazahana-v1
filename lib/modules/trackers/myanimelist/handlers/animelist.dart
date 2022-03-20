@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import 'package:utilx/utils.dart';
 import '../../../../ui/components/trackers/detailed_item.dart';
 import '../../../../ui/pages/store_page/trackers_page/myanimelist_page/animelist/edit_modal.dart';
@@ -81,17 +81,22 @@ class MyAnimeListAnimeList {
 
   factory MyAnimeListAnimeList.fromAnimeListJson(
     final Map<dynamic, dynamic> json,
-  ) =>
-      MyAnimeListAnimeList(
-        nodeId: json['node']['id'] as int,
-        title: json['node']['title'] as String,
-        mainPictureMedium: json['node']['main_picture']['medium'] as String,
-        mainPictureLarge: json['node']['main_picture']['large'] as String,
-        status: MyAnimeListAnimeListProgress.fromJson(
-          json['list_status'] as Map<dynamic, dynamic>,
-        ),
-        details: null,
-      );
+  ) {
+    final Map<dynamic, dynamic> node = json['node'] as Map<dynamic, dynamic>;
+
+    return MyAnimeListAnimeList(
+      nodeId: node['id'] as int,
+      title: node['title'] as String,
+      mainPictureMedium:
+          MapUtils.get<String>(node, <dynamic>['main_picture', 'medium']),
+      mainPictureLarge:
+          MapUtils.get<String>(node, <dynamic>['main_picture', 'large']),
+      status: MyAnimeListAnimeListProgress.fromJson(
+        json['list_status'] as Map<dynamic, dynamic>,
+      ),
+      details: null,
+    );
+  }
 
   factory MyAnimeListAnimeList.fromAnimeDetails(
     final Map<dynamic, dynamic> json,
@@ -99,8 +104,10 @@ class MyAnimeListAnimeList {
       MyAnimeListAnimeList(
         nodeId: json['id'] as int,
         title: json['title'] as String,
-        mainPictureMedium: json['main_picture']['medium'] as String,
-        mainPictureLarge: json['main_picture']['large'] as String,
+        mainPictureMedium:
+            MapUtils.get<String>(json, <dynamic>['main_picture', 'medium']),
+        mainPictureLarge:
+            MapUtils.get<String>(json, <dynamic>['main_picture', 'large']),
         status: json.containsKey('my_list_status')
             ? MyAnimeListAnimeListProgress.fromJson(
                 json['my_list_status'] as Map<dynamic, dynamic>,

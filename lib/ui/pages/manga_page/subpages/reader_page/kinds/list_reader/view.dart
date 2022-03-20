@@ -1,6 +1,6 @@
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:tenka/tenka.dart';
 import './widgets/controls.dart';
 import '../../../../../../../config/defaults.dart';
 import '../../../../../../../modules/app/state.dart';

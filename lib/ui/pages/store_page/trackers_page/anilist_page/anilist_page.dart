@@ -1,5 +1,5 @@
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import 'package:utilx/utils.dart';
 import '../../../../../modules/helpers/ui.dart';
 import '../../../../../modules/trackers/anilist/anilist.dart';
@@ -20,7 +20,7 @@ class PageArguments {
 
     return PageArguments(
       type: TenkaType.values.firstWhere(
-        (final TenkaType type) => type.type == json['type'],
+        (final TenkaType type) => type.name == json['type'],
       ),
     );
   }
@@ -28,7 +28,7 @@ class PageArguments {
   TenkaType type;
 
   Map<String, String> toJson() => <String, String>{
-        'type': type.type,
+        'type': type.name,
       };
 }
 
@@ -45,7 +45,7 @@ class Page extends StatelessWidget {
                 .params,
           );
 
-          return '${Translator.t.anilist()} - ${StringUtils.capitalize(args.type.type)}';
+          return '${Translator.t.anilist()} - ${StringUtils.capitalize(args.type.name)}';
         },
         tabs: AniListMediaListStatus.values
             .map(

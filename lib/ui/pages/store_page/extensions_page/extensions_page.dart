@@ -303,23 +303,26 @@ class _ExtensionPopupState extends State<_ExtensionPopup> {
                                     if (preferences
                                             .lastSelectedSearch?.isEmpty ??
                                         true) {
-                                      final BaseExtractor? ext =
-                                          TenkaManager.animes[widget.ext.id];
+                                      final TenkaMetadata? module = TenkaManager
+                                          .repository
+                                          .installed[widget.module.id];
 
-                                      if (ext != null) {
+                                      if (module != null) {
                                         preferences
                                             .lastSelectedSearch = (preferences
                                                     .lastSelectedSearch ??
                                                 const LastSelectedSearchPlugin())
                                             .copyWith(
-                                          lastSelectedType: widget.ext.type,
+                                          lastSelectedType: widget.module.type,
                                           lastSelectedAnimePlugin:
-                                              widget.ext.type == TenkaType.anime
-                                                  ? ext.id
+                                              widget.module.type ==
+                                                      TenkaType.anime
+                                                  ? module.id
                                                   : null,
                                           lastSelectedMangaPlugin:
-                                              widget.ext.type == TenkaType.manga
-                                                  ? ext.id
+                                              widget.module.type ==
+                                                      TenkaType.manga
+                                                  ? module.id
                                                   : null,
                                         );
                                         await CachedPreferencesBox.save(

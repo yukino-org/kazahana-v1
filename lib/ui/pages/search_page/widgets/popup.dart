@@ -1,9 +1,9 @@
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import 'package:utilx/utils.dart';
 import '../../../../config/defaults.dart';
-import '../../../../modules/tenka.dart';
 import '../../../../modules/helpers/ui.dart';
+import '../../../../modules/tenka.dart';
 import '../../../../modules/translator/translator.dart';
 import '../../../models/view.dart';
 import '../controller.dart';

@@ -1,9 +1,9 @@
 import 'package:collection/collection.dart';
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import '../../../modules/database/database.dart';
-import '../../../modules/tenka.dart';
 import '../../../modules/state/stateful_holder.dart';
+import '../../../modules/tenka.dart';
 import '../../../modules/translator/translator.dart';
 import '../../models/controller.dart';
 import '../../router.dart';

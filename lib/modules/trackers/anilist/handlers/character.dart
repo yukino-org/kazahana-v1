@@ -1,3 +1,4 @@
+import 'package:utilx/utils.dart';
 import '../../provider.dart';
 
 enum AniListCharacterRole {
@@ -24,8 +25,9 @@ class AniListCharacter {
   ) =>
       AniListCharacter(
         id: json['id'] as int,
-        nameUserPreferred: json['name']['userPreferred'] as String,
-        imageMedium: json['image']['medium'] as String,
+        nameUserPreferred:
+            MapUtils.get<String>(json, <dynamic>['name', 'userPreferred']),
+        imageMedium: MapUtils.get<String>(json, <dynamic>['image', 'medium']),
         role: AniListCharacterRole.values.firstWhere(
           (final AniListCharacterRole role) =>
               role.role == (edge['role'] as String),

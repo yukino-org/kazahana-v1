@@ -1,12 +1,12 @@
-import 'package:tenka/tenka.dart';
 import 'package:flutter/material.dart';
+import 'package:tenka/tenka.dart';
 import 'package:utilx/locale.dart';
 import 'package:utilx/utils.dart';
 import '../../../config/defaults.dart';
 import '../../../modules/database/database.dart';
-import '../../../modules/tenka.dart';
 import '../../../modules/state/stateful_holder.dart';
 import '../../../modules/state/states.dart';
+import '../../../modules/tenka.dart';
 import '../../../ui/router.dart';
 import '../../models/controller.dart';
 

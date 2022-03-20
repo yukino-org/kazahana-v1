@@ -138,7 +138,7 @@ mutation (
 }
   ''';
 
-    final dynamic res = await AnilistManager.request(
+    final Map<dynamic, dynamic> res = await AnilistManager.request(
       RequestBody(
         query: query,
         variables: <dynamic, dynamic>{
@@ -152,10 +152,12 @@ mutation (
             (final dynamic key, final dynamic value) => value == null,
           ),
       ),
-    );
+    ) as Map<dynamic, dynamic>;
 
-    final Map<dynamic, dynamic> json =
-        res['data']['SaveMediaListEntry'] as Map<dynamic, dynamic>;
+    final Map<dynamic, dynamic> json = MapUtils.get<Map<dynamic, dynamic>>(
+      res,
+      <dynamic>['data', 'SaveMediaListEntry'],
+    );
 
     this.status = AniListMediaListStatus.values.firstWhere(
       (final AniListMediaListStatus x) => x.status == json['status'] as String,
@@ -240,7 +242,7 @@ query (
 }
     ''';
 
-    final dynamic res = await AnilistManager.request(
+    final Map<dynamic, dynamic> res = await AnilistManager.request(
       RequestBody(
         query: query,
         variables: <dynamic, dynamic>{
@@ -248,18 +250,19 @@ query (
           'userId': userId,
         },
       ),
-    );
+    ) as Map<dynamic, dynamic>;
 
     return res['errors'] is List<dynamic> &&
-            (res['errors'] as List<dynamic>).firstWhereOrNull(
-                  (final dynamic x) => x['status'] == 404,
-                ) !=
-                null &&
-            res['data']['MediaList'] == null
-        ? null
-        : AniListMediaList.fromJson(
-            res['data']['MediaList'] as Map<dynamic, dynamic>,
-          );
+            (res['errors'] as List<dynamic>).cast<Map<dynamic, dynamic>>().none(
+                  (final Map<dynamic, dynamic> x) => x['status'] == 404,
+                )
+        ? AniListMediaList.fromJson(
+            MapUtils.get<Map<dynamic, dynamic>>(
+              res,
+              <dynamic>['data', 'MediaList'],
+            ),
+          )
+        : null;
   }
 }
 
