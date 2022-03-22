@@ -8,8 +8,8 @@ const defaultIcon = join(root, "assets/images/yukino-icon.png");
 const buildDir = join(root, "build", "packed");
 const cacheDir = join(__dirname, ".cache");
 
-const githubMatch = /^git\+https:\/\/github\.com\/([^/]+)\/([^.]+)\.git$/.exec(
-    pkgJson.repository.url
+const githubMatch = /^https:\/\/github\.com\/([^/]+)\/([^.]+)\.git$/.exec(
+    pkgJson.repository
 );
 
 export const config = {

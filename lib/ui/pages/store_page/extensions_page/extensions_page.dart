@@ -68,25 +68,26 @@ class _ExtensionsPageState extends State<ExtensionsPage> {
                     ),
                     child: Row(
                       children: <Widget>[
-                        // TODO: fix this
-                        // DecoratedBox(
-                        //   decoration: BoxDecoration(
-                        //     color: Colors.black.withOpacity(0.9),
-                        //     borderRadius: BorderRadiusDirectional.circular(
-                        //       remToPx(0.2),
-                        //     ),
-                        //   ),
-                        //   child: Padding(
-                        //     padding: EdgeInsets.symmetric(
-                        //       horizontal: remToPx(0.4),
-                        //       vertical: remToPx(0.1),
-                        //     ),
-                        //     child: Image.network(
-                        //       module.thumbnail,
-                        //       width: remToPx(1.8),
-                        //     ),
-                        //   ),
-                        // ),
+                        DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.9),
+                            borderRadius: BorderRadiusDirectional.circular(
+                              remToPx(0.2),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: remToPx(0.4),
+                              vertical: remToPx(0.1),
+                            ),
+                            child: Image.network(
+                              TenkaManager.resolveTenkaCloudDSURL(
+                                module.thumbnail as TenkaCloudDS,
+                              ),
+                              width: remToPx(1.8),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           width: remToPx(0.75),
                         ),
@@ -150,6 +151,13 @@ class _ExtensionsPageState extends State<ExtensionsPage> {
       );
 }
 
+enum ModuleState {
+  install,
+  installed,
+  installing,
+  uninstalling,
+}
+
 class _ExtensionPopup extends StatefulWidget {
   const _ExtensionPopup({
     required final this.module,
@@ -160,13 +168,6 @@ class _ExtensionPopup extends StatefulWidget {
 
   @override
   _ExtensionPopupState createState() => _ExtensionPopupState();
-}
-
-enum ModuleState {
-  install,
-  installed,
-  installing,
-  uninstalling,
 }
 
 class _ExtensionPopupState extends State<_ExtensionPopup> {
@@ -190,16 +191,19 @@ class _ExtensionPopupState extends State<_ExtensionPopup> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    // TODO: Fix this
-                    // ClipRRect(
-                    //   borderRadius: BorderRadius.circular(remToPx(0.2)),
-                    //   child: Container(
-                    //     height: remToPx(2.5),
-                    //     padding: EdgeInsets.all(remToPx(0.3)),
-                    //     color: Colors.black.withOpacity(0.9),
-                    //     child: Image.network(widget.module.image),
-                    //   ),
-                    // ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(remToPx(0.2)),
+                      child: Container(
+                        height: remToPx(2.5),
+                        padding: EdgeInsets.all(remToPx(0.3)),
+                        color: Colors.black.withOpacity(0.9),
+                        child: Image.network(
+                          TenkaManager.resolveTenkaCloudDSURL(
+                            widget.module.thumbnail as TenkaCloudDS,
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       width: remToPx(1),
                     ),

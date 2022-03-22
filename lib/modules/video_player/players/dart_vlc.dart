@@ -106,6 +106,7 @@ class DartVlc extends VideoPlayer {
         key: _playerKey,
         showControls: false,
         player: _player,
+        playlistLength: 1,
       );
 
   @override

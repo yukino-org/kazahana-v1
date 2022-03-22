@@ -15,6 +15,7 @@ import './pages/store_page/trackers_page/myanimelist_page/auth_page.dart'
     as myanimelist_auth_page;
 import './pages/store_page/trackers_page/myanimelist_page/myanimelist_page.dart'
     as myanimelist_page;
+import '../modules/helpers/querystring.dart';
 import '../modules/state/eventer.dart';
 import '../modules/translator/translator.dart';
 
@@ -116,7 +117,7 @@ class ParsedRouteInfo {
   final Map<String, String> params;
 
   @override
-  String toString() => '$route?${RouteManager.makeURLParams(params)}';
+  String toString() => '$route?${QueryString.stringify(params)}';
 }
 
 abstract class RouteManager {
@@ -222,13 +223,5 @@ abstract class RouteManager {
       }
     });
     return params;
-  }
-
-  static String makeURLParams(final Map<String, String> queries) {
-    final List<String> params = <String>[];
-    queries.forEach((final String k, final String v) {
-      params.add('$k=$v');
-    });
-    return params.join('&');
   }
 }

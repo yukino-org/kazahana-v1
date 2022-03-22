@@ -51,7 +51,12 @@ abstract class TenkaManager {
     return _cachedExtractors[metadata.id] as T;
   }
 
+  static String resolveTenkaCloudDSURL(final TenkaCloudDS source) =>
+      '$defaultStoreBaseURL/${source.url}';
+
   static WebviewProvider<dynamic> get webviewProvider =>
       (AppState.isDesktop ? PuppeteerProvider() : FlutterWebviewProvider())
           as WebviewProvider<dynamic>;
+
+  static String get defaultStoreBaseURL => repository.store.baseURLs['github']!;
 }

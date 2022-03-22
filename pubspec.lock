@@ -210,14 +210,14 @@ packages:
       name: dart_vlc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.8"
+    version: "0.1.9"
   dart_vlc_ffi:
     dependency: transitive
     description:
       name: dart_vlc_ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.5+1"
   devx:
     dependency: "direct dev"
     description:
@@ -646,11 +646,9 @@ packages:
   puppeteer:
     dependency: transitive
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "4558fa749d568e26dbe8fa58f921223f426299f4"
-      url: "https://github.com/xvrh/puppeteer-dart.git"
-    source: git
+      name: puppeteer
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "2.7.0"
   quiver:
     dependency: transitive
@@ -864,7 +862,7 @@ packages:
     description:
       path: "."
       ref: dart_utilx_desktop
-      resolved-ref: f4c569f2304640be48295390a5c57f6512def868
+      resolved-ref: f62d1a385f4e73cf8a2fb4beb4deb07d9618e07a
       url: "https://github.com/yukino-org/packages.git"
     source: git
     version: "0.0.0"
@@ -960,7 +958,7 @@ packages:
       name: window_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.9"
+    version: "0.2.0"
   xdg_directories:
     dependency: transitive
     description:
